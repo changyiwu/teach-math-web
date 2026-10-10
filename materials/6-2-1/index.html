@@ -4,39 +4,1289 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
-  <title>2-1 資料的分析 - 課堂教學資料庫</title>
-  <!-- FontAwesome for icons -->
+  <title>2-1 資料的分析 - 互動教學網頁</title>
+
+  <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- 佔位頁共用樣式 -->
-  <link rel="stylesheet" href="../pending.css">
-  <!-- 共用課堂元件 -->
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 共用課堂元件（課堂工具側邊欄 / 上下節導覽 / 課堂畫筆） -->
   <link rel="stylesheet" href="../../tools-sidebar.css">
   <link rel="stylesheet" href="../../lesson-nav.css">
+  <link rel="stylesheet" href="../../annotate.css">
+
+  <!-- MathJax for rendering professional LaTeX equations -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
 
+  <!-- Floating animated background blobs -->
   <div class="background-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
-  <div class="card">
-    <div class="icon-container">
-      <i class="fa-solid fa-screwdriver-wrench"></i>
-    </div>
-    <div class="breadcrumb">第六冊 (3下) • 第2章 統計與機率</div>
-    <h1>2-1 資料的分析</h1>
-    <div class="badge"><i class="fa-solid fa-person-digging" style="margin-right: 6px;"></i>教學資源待施工</div>
-    <p class="desc">此小節的教學網頁與專屬資料夾已成功建立。相關教學簡報、學習單或互動教材將陸續存入此目錄中。</p>
-    <a href="../../index.html" class="btn">
-      <i class="fa-solid fa-house"></i> 返回主網頁
-    </a>
+  <div class="container">
+    <!-- Header Navigation -->
+    <header>
+      <div class="nav-back">
+        <a href="../../index.html" class="btn-back">
+          <i class="fa-solid fa-arrow-left"></i> 返回主網頁
+        </a>
+      </div>
+      <div class="lesson-title">
+        <span class="badge">第六冊 • 第二章</span>
+        <h1>2-1 資料的分析</h1>
+        <p>走進桌遊咖啡館：九年甲班和乙班在這裡辦桌遊比賽，小棋和阿骰負責記分。七年級學過的平均數、中位數只說得出「中間大概在哪裡」；這一節要學把資料切成四等分的<strong>四分位數</strong>，用五個數畫出<strong>盒狀圖</strong>，再用<strong>全距</strong>與<strong>四分位距</strong>描述資料有多分散，最後用盒狀圖比較兩班、推估人數與排名。</p>
+      </div>
+      <!-- Progress navigation (11 points) -->
+      <nav class="lesson-nav">
+        <a href="#concept1" class="nav-item active"><i class="fa-solid fa-arrows-left-right-to-line"></i> 中位數</a>
+        <a href="#concept2" class="nav-item"><i class="fa-solid fa-chart-simple"></i> 四分位數</a>
+        <a href="#concept3" class="nav-item"><i class="fa-solid fa-scale-unbalanced"></i> 相對位置</a>
+        <a href="#concept4" class="nav-item"><i class="fa-solid fa-table"></i> 次數分配表</a>
+        <a href="#concept5" class="nav-item"><i class="fa-solid fa-chart-column"></i> 直方圖</a>
+        <a href="#concept6" class="nav-item"><i class="fa-solid fa-box-open"></i> 盒狀圖</a>
+        <a href="#concept7" class="nav-item"><i class="fa-solid fa-ruler-horizontal"></i> 全距與四分位距</a>
+        <a href="#concept8" class="nav-item"><i class="fa-solid fa-person-running"></i> 極端值</a>
+        <a href="#concept9" class="nav-item"><i class="fa-solid fa-code-compare"></i> 比較兩班</a>
+        <a href="#concept10" class="nav-item"><i class="fa-solid fa-users"></i> 推估人數</a>
+        <a href="#concept11" class="nav-item"><i class="fa-solid fa-ranking-star"></i> 判斷排名</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================
+           引起動機: 四格漫畫（桌遊咖啡館・羊毛氈）
+           ========================================== -->
+      <section class="concept-section" id="motivation-comic" style="margin-bottom: 2.5rem; border-color: rgba(250, 204, 21, 0.25);">
+        <h2 class="section-title" style="color: #fde047; border-bottom-color: rgba(250, 204, 21, 0.2);">
+          <i class="fa-solid fa-dice" aria-hidden="true" style="color: #fde047; text-shadow: 0 0 10px rgba(234, 179, 8, 0.4);"></i> 課前暖身漫畫：平均一樣，就是一樣強嗎？
+        </h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+          <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; text-align: center; max-width: 800px; margin: 0 auto;">
+            桌遊比賽結束，阿骰算出甲、乙兩班的平均分一樣，宣布「兩班一樣強」。小棋把兩班每個人的得分籌碼排在桌上一看：一班擠在中間，一班散得很開——<strong style="color:#fde047">只看平均，看得出這種差別嗎？</strong>
+          </p>
+          <div class="illustration-container" style="max-width: 600px; width: 100%; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.4); border-radius: 20px; overflow: hidden; background: rgba(15, 23, 42, 0.4);">
+            <img src="motivation_comic.webp" alt="桌遊咖啡館羊毛氈公仔風四格漫畫：阿骰拿著計分板，說兩班平均分一樣、一樣強；小棋把兩班的得分籌碼各排成一排，一排擠在中間、一排散得很開；阿骰抓頭看著兩排籌碼；小棋舉起一個盒子形狀的羊毛氈，說要看資料怎麼分布。" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" class="comic-img" onerror="this.parentElement.style.display='none'">
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 1: 中位數
+           ========================================== -->
+      <section class="concept-section" id="concept1">
+        <h2 class="section-title">
+          <i class="fa-solid fa-arrows-left-right-to-line" aria-hidden="true"></i> <span>重點 1：中位數——用 \(N \times \frac{1}{2}\) 找位置</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>七年級學過</strong>：把 \(N\) 個資料由小到大排好，\(N\) 是奇數時取最中間那一個，\(N\) 是偶數時取最中間兩個的平均。</li>
+              <li><strong>新的算法</strong>：先算 \(N \times \frac{1}{2} = a\)。
+                <ul class="bullet-list">
+                  <li>\(a\) <strong>是整數</strong>：取第 \(a\)、第 \(a + 1\) 個資料的平均。</li>
+                  <li>\(a\) <strong>不是整數</strong>：取 \(a\) 的整數部分再加 \(1\)，得到 \(b\)，取第 \(b\) 個資料。</li>
+                </ul>
+              </li>
+              <li>例：\(11\) 個資料，\(11 \times \frac{1}{2} = 5.5\)，取第 \(6\) 個；\(16\) 個資料，\(16 \times \frac{1}{2} = 8\)，取第 \(8\)、\(9\) 個的平均。</li>
+              <li><strong>中位數的意義</strong>：小於或等於中位數的資料<strong>至少占 \(\frac{1}{2}\)</strong>，大於或等於中位數的資料也<strong>至少占 \(\frac{1}{2}\)</strong>。中位數自己兩邊都算，同分的資料也會讓比例超過一半。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・中位數的位置</span>
+              \(N \times \frac{1}{2} = a\)：整數取第 \(a\)、\(a + 1\) 個的平均；<br>
+              不是整數取「整數部分 \(+ 1\)」那一個
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_median.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：小棋把七枚米白色的羊毛氈籌碼由左到右排成一排，用手指著正中間那一枚；阿骰趴在桌邊看。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：中位數排隊台</h3>
+            <p class="interactive-instruction">拉動「人數 \(N\)」，看 \(N \times \frac{1}{2}\) 是不是整數、中位數取哪一個或哪兩個；黃色帶是小於或等於中位數的、綠色帶是大於或等於中位數的。切到「乙桌」看同分會讓比例變成多少。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-median" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="md-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">資料</span>
+                    <div class="btn-group" id="md-ds-group">
+                      <button class="pick-btn active" data-md-ds="0">甲桌</button>
+                      <button class="pick-btn" data-md-ds="1">乙桌（有同分）</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="md-n">人數 \(N\)：<span id="md-vn" class="val-num">11</span></label>
+                    <input type="range" id="md-n" min="5" max="14" value="11" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="md-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (中位數)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-1">
+            <p class="quiz-question"><strong>Q1.</strong> 九位玩家的得分由小到大為 \(12\), \(15\), \(15\), \(18\), \(21\), \(24\), \(26\), \(30\), \(33\)。小於或等於中位數的資料，占全部資料的比例為何？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-1" value="A"><span class="option-text">A. \(\frac{4}{9}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-1" value="B"><span class="option-text">B. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-1" value="C"><span class="option-text">C. \(\frac{5}{9}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-1" value="D"><span class="option-text">D. \(\frac{2}{3}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(9 \times \frac{1}{2} = 4.5\) 不是整數，取第 \(5\) 個，中位數是 \(21\)。小於或等於 \(21\) 的有 \(12, 15, 15, 18, 21\) 共 \(5\) 個，占 \(\frac{5}{9}\)。<br>
+              A 錯：\(\frac{4}{9}\) 只算了「小於」\(21\) 的，漏掉中位數自己。<br>
+              B 錯：比例不一定剛好一半；資料個數是奇數時，中位數兩邊都算，一定超過一半。<br>
+              D 錯：把 \(4.5\) 進位成 \(5\) 之後又再加 \(1\)，取到第 \(6\) 個 \(24\)，得 \(\frac{6}{9} = \frac{2}{3}\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-2">
+            <p class="quiz-question"><strong>Q2.</strong> 十位玩家的得分由小到大為 \(8\), \(11\), \(13\), \(13\), \(16\), \(20\), \(22\), \(25\), \(27\), \(31\)。這群資料的中位數是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-2" value="A"><span class="option-text">A. \(16\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-2" value="B"><span class="option-text">B. \(18\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-2" value="C"><span class="option-text">C. \(20\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-2" value="D"><span class="option-text">D. \(18.6\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。\(10 \times \frac{1}{2} = 5\) 是整數，取第 \(5\)、\(6\) 個的平均：\(\frac{16 + 20}{2} = 18\)。<br>
+              A 錯：\(16\) 只取了第 \(5\) 個；\(a\) 是整數時要取第 \(a\)、\(a + 1\) 兩個的平均。<br>
+              C 錯：\(20\) 是第 \(6\) 個，同樣只取了一個。<br>
+              D 錯：\(18.6\) 是十個數的總和 \(186\) 除以 \(10\)，那是平均數，不是中位數。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 2: 四分位數的算法
+           ========================================== -->
+      <section class="concept-section" id="concept2">
+        <h2 class="section-title">
+          <i class="fa-solid fa-chart-simple" aria-hidden="true"></i> <span>重點 2：四分位數——把資料切成四等分</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>資料由小到大排好後，把整體分成 \(4\) 等分，三個等分點依序叫<strong>第 1、第 2、第 3 四分位數</strong>，記作 \(Q_1\)、\(Q_2\)、\(Q_3\)。</li>
+              <li><strong>算法</strong>（\(k = 1, 2, 3\)）：令 \(N \times \frac{k}{4} = a\)。
+                <ul class="bullet-list">
+                  <li>\(a\) 是整數：取第 \(a\)、第 \(a + 1\) 個的平均當作 \(Q_k\)。</li>
+                  <li>\(a\) 不是整數：取 \(a\) 的整數部分再加 \(1\)，得到 \(b\)，取第 \(b\) 個當作 \(Q_k\)。</li>
+                </ul>
+              </li>
+              <li>\(Q_2\) 的算法就是 \(N \times \frac{1}{2}\)，所以 <strong>\(Q_2\) 就是中位數</strong>。</li>
+              <li><strong>一定要先排序</strong>：資料若是照報名、出場順序記下來的，要先由小到大排好才能數位置。</li>
+              <li>例：\(13\) 個資料，\(13 \times \frac{1}{4} = 3.25\)，\(Q_1\) 取第 \(4\) 個；\(13 \times \frac{3}{4} = 9.75\)，\(Q_3\) 取第 \(10\) 個。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・第 k 四分位數</span>
+              排序 → \(N \times \frac{k}{4} = a\)<br>
+              \(a\) 是整數：第 \(a\)、\(a + 1\) 個的平均；不是整數：第「整數部分 \(+ 1\)」個
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_quartile.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：木桌上八枚羊毛氈籌碼排成一排，阿骰在籌碼之間插上三根小木籤，把它們分成每段兩枚的四段；小棋在旁邊拿著記分本。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：四分位數定位器</h3>
+            <p class="interactive-instruction">選 \(Q_1\)、\(Q_2\) 或 \(Q_3\)，拉動「人數 \(N\)」，看 \(N \times \frac{k}{4}\) 的結果怎麼決定取哪一個。切到「報名順序」，看沒排序就直接數會拿到什麼。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-quart" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="qt-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要找</span>
+                    <div class="btn-group" id="qt-k-group">
+                      <button class="pick-btn active" data-qt-k="1">\(Q_1\)</button>
+                      <button class="pick-btn" data-qt-k="2">\(Q_2\)</button>
+                      <button class="pick-btn" data-qt-k="3">\(Q_3\)</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">資料</span>
+                    <div class="btn-group" id="qt-ord-group">
+                      <button class="pick-btn active" data-qt-ord="sorted">已排序</button>
+                      <button class="pick-btn" data-qt-ord="raw">報名順序（未排序）</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="qt-n">人數 \(N\)：<span id="qt-vn" class="val-num">13</span></label>
+                    <input type="range" id="qt-n" min="4" max="20" value="13" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="qt-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (四分位數的算法)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-3">
+            <p class="quiz-question"><strong>Q3.</strong> \(14\) 位玩家的得分由小到大為 \(5\), \(7\), \(8\), \(10\), \(12\), \(12\), \(15\), \(17\), \(18\), \(20\), \(23\), \(24\), \(26\), \(29\)。這群資料的 \(Q_1\) 是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-3" value="A"><span class="option-text">A. \(8\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-3" value="B"><span class="option-text">B. \(9\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-3" value="C"><span class="option-text">C. \(10\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-3" value="D"><span class="option-text">D. \(12\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(14 \times \frac{1}{4} = 3.5\) 不是整數，取整數部分 \(3\) 再加 \(1\)，取第 \(4\) 個，\(Q_1 = 10\)。<br>
+              A 錯：\(8\) 是第 \(3\) 個，只取了整數部分、忘了加 \(1\)。<br>
+              B 錯：\(\frac{8 + 10}{2} = 9\) 是把 \(3.5\) 當成整數那種情形，取了第 \(3\)、\(4\) 個的平均。<br>
+              D 錯：\(12\) 是第 \(5\) 個，把 \(3.5\) 先進位成 \(4\) 又再加 \(1\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-4">
+            <p class="quiz-question"><strong>Q4.</strong> 桌遊社依報名順序記下 \(11\) 位社員的得分：\(36\), \(19\), \(28\), \(43\), \(23\), \(31\), \(16\), \(40\), \(26\), \(47\), \(30\)。這群資料的 \(Q_3\) 是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-4" value="A"><span class="option-text">A. \(40\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-4" value="B"><span class="option-text">B. \(26\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-4" value="C"><span class="option-text">C. \(38\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-4" value="D"><span class="option-text">D. \(43\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。先排序：\(16\), \(19\), \(23\), \(26\), \(28\), \(30\), \(31\), \(36\), \(40\), \(43\), \(47\)。\(11 \times \frac{3}{4} = 8.25\) 不是整數，取第 \(9\) 個，\(Q_3 = 40\)。<br>
+              B 錯：沒有排序，直接數報名順序的第 \(9\) 個，拿到 \(26\)。<br>
+              C 錯：\(\frac{36 + 40}{2} = 38\) 是取第 \(8\)、\(9\) 個的平均；\(8.25\) 不是整數，不取平均。<br>
+              D 錯：\(43\) 是第 \(10\) 個，多數了一個。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 3: 四分位數的相對位置
+           ========================================== -->
+      <section class="concept-section" id="concept3">
+        <h2 class="section-title">
+          <i class="fa-solid fa-scale-unbalanced" aria-hidden="true"></i> <span>重點 3：四分位數的相對位置——「至少」\(\frac{k}{4}\)</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>和中位數一樣，四分位數告訴我們一個數在整群資料裡的<strong>相對位置</strong>：
+                <ul class="bullet-list">
+                  <li>小於或等於 \(Q_1\) 的資料<strong>至少占 \(\frac{1}{4}\)</strong>，大於或等於 \(Q_1\) 的<strong>至少占 \(\frac{3}{4}\)</strong>。</li>
+                  <li>小於或等於 \(Q_3\) 的資料<strong>至少占 \(\frac{3}{4}\)</strong>，大於或等於 \(Q_3\) 的<strong>至少占 \(\frac{1}{4}\)</strong>。</li>
+                </ul>
+              </li>
+              <li>為什麼是「<strong>至少</strong>」而不是「剛好」？因為位置要進位，而且<strong>同分的資料</strong>會卡在 \(Q_k\) 上、兩邊都算進去，比例就會超過 \(\frac{k}{4}\)。</li>
+              <li>反過來說，<strong>小於</strong> \(Q_1\) 的資料<strong>至多占 \(\frac{1}{4}\)</strong>，大於 \(Q_3\) 的資料<strong>至多占 \(\frac{1}{4}\)</strong>。重點 10、11 推估人數就是用這兩句話。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・相對位置</span>
+              至少 \(\frac{k}{4}\) 的資料 \(\le Q_k\)，且至少 \(1 - \frac{k}{4}\) 的資料 \(\ge Q_k\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_atleast.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：木桌上有好幾枚一模一樣顏色的羊毛氈籌碼並排擠在一起，小棋歪著頭看，阿骰把手放在這群籌碼兩側比劃。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：同分的籌碼</h3>
+            <p class="interactive-instruction">選一個四分位數，調整資料個數與「同分幾筆」：同分的籌碼會集中在 \(Q_k\) 的位置附近。看看小於或等於 \(Q_k\) 的比例怎麼從 \(\frac{k}{4}\) 開始往上長。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-position" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="ps-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要看</span>
+                    <div class="btn-group" id="ps-k-group">
+                      <button class="pick-btn active" data-ps-k="1">\(Q_1\)</button>
+                      <button class="pick-btn" data-ps-k="2">\(Q_2\)</button>
+                      <button class="pick-btn" data-ps-k="3">\(Q_3\)</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="ps-n">資料個數 \(N\)：<span id="ps-vn" class="val-num">16</span></label>
+                    <input type="range" id="ps-n" min="8" max="16" value="16" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="ps-t">同分幾筆：<span id="ps-vt" class="val-num">1</span></label>
+                    <input type="range" id="ps-t" min="1" max="5" value="1" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="ps-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (四分位數的相對位置)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-5">
+            <p class="quiz-question"><strong>Q5.</strong> 某桌遊社 \(24\) 位社員得分的 \(Q_1 = 40\) 分。下列敘述何者<strong>一定</strong>正確？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-5" value="A"><span class="option-text">A. 恰有 \(6\) 人低於 \(40\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-5" value="B"><span class="option-text">B. 至少 \(6\) 人的得分小於或等於 \(40\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-5" value="C"><span class="option-text">C. 至多 \(6\) 人的得分小於或等於 \(40\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-5" value="D"><span class="option-text">D. 恰有 \(18\) 人高於 \(40\) 分</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。小於或等於 \(Q_1\) 的資料至少占 \(\frac{1}{4}\)，\(24 \times \frac{1}{4} = 6\)，所以至少 \(6\) 人小於或等於 \(40\) 分。<br>
+              A、D 錯：有同分時，\(40\) 分的人可能不只一兩個，低於、高於 \(40\) 分的人數都不一定剛好是 \(6\)、\(18\)。<br>
+              C 錯：方向反了；同分多的時候，小於或等於 \(40\) 分的人可能超過 \(6\) 人。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-6">
+            <p class="quiz-question"><strong>Q6.</strong> \(12\) 個資料由小到大為 \(3\), \(5\), \(6\), \(6\), \(6\), \(6\), \(8\), \(9\), \(10\), \(12\), \(13\), \(15\)。小於或等於 \(Q_1\) 的資料占全部的比例為何？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-6" value="A"><span class="option-text">A. \(\frac{1}{4}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-6" value="B"><span class="option-text">B. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-6" value="C"><span class="option-text">C. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-6" value="D"><span class="option-text">D. \(\frac{1}{6}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(12 \times \frac{1}{4} = 3\) 是整數，\(Q_1 = \frac{6 + 6}{2} = 6\)。小於或等於 \(6\) 的有 \(3\), \(5\), \(6\), \(6\), \(6\), \(6\) 共 \(6\) 個，占 \(\frac{6}{12} = \frac{1}{2}\)——四個 \(6\) 同分，所以遠超過 \(\frac{1}{4}\)。<br>
+              A 錯：\(\frac{1}{4}\) 只是「至少」的下限，不是實際的比例。<br>
+              B 錯：\(\frac{4}{12} = \frac{1}{3}\) 只數到第 \(4\) 個，漏了後面兩個同分的 \(6\)。<br>
+              D 錯：\(\frac{2}{12} = \frac{1}{6}\) 只算了「小於」\(6\) 的。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 4: 次數分配表求四分位數
+           ========================================== -->
+      <section class="concept-section" id="concept4">
+        <h2 class="section-title">
+          <i class="fa-solid fa-table" aria-hidden="true"></i> <span>重點 4：次數分配表求四分位數——累積次數找位置</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>次數分配表的值本來就由小到大排好了，不必再排序；<strong>總人數 \(N\)</strong> 是次數的總和。</li>
+              <li>用 \(N \times \frac{k}{4}\) 算出要第幾個，再把次數<strong>一路累加</strong>：累積次數第一次<strong>達到或超過</strong>那個位置的那一欄，就是答案。</li>
+              <li>例：值 \(2, 4, 6, 8\) 的次數依序為 \(3, 5, 4, 4\)，共 \(16\) 人，累積次數 \(3, 8, 12, 16\)。\(16 \times \frac{1}{4} = 4\)，取第 \(4\)、\(5\) 個；兩個都在累積到 \(8\) 的那一欄，都是 \(4\)，所以 \(Q_1 = \frac{4 + 4}{2} = 4\)。</li>
+              <li>整數情形的兩個位置可能<strong>落在不同的欄</strong>，這時要取兩個不同值的平均，答案會是表上沒有的數。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・次數分配表</span>
+              總數 \(N\) → \(N \times \frac{k}{4}\) 定位置 → 用累積次數找出那一個（或那兩個）
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_tally.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：阿骰把三種顏色的羊毛氈籌碼依顏色平放成上下三排，三排的左端對齊、長短不同；小棋在旁邊的空白小黑板上畫格子。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：累積次數尋寶</h3>
+            <p class="interactive-instruction">選一張次數分配表與要找的四分位數。下方的色條把 \(N\) 個人依序排開，每一色是一欄、分界上的數是累積次數；金色箭頭指出要找的那一個人。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-table" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="tb-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">表格</span>
+                    <div class="btn-group" id="tb-ds-group">
+                      <button class="pick-btn active" data-tb-ds="0">星星數</button>
+                      <button class="pick-btn" data-tb-ds="1">積分</button>
+                      <button class="pick-btn" data-tb-ds="2">玩過幾款</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要找</span>
+                    <div class="btn-group" id="tb-k-group">
+                      <button class="pick-btn active" data-tb-k="1">\(Q_1\)</button>
+                      <button class="pick-btn" data-tb-k="2">\(Q_2\)</button>
+                      <button class="pick-btn" data-tb-k="3">\(Q_3\)</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="visual-feedback" id="tb-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (次數分配表求四分位數)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-7">
+            <p class="quiz-question"><strong>Q7.</strong> 下表是某次桌遊比賽每位玩家拿到的寶石數。寶石數的 \(Q_3\) 是多少顆？</p>
+            <div class="table-scroll">
+              <table class="sign-table">
+                <thead><tr><th>寶石（顆）</th><th>\(2\)</th><th>\(3\)</th><th>\(4\)</th><th>\(5\)</th><th>\(6\)</th><th>\(7\)</th></tr></thead>
+                <tbody><tr><td>次數（人）</td><td>\(3\)</td><td>\(5\)</td><td>\(6\)</td><td>\(4\)</td><td>\(5\)</td><td>\(1\)</td></tr></tbody>
+              </table>
+            </div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-7" value="A"><span class="option-text">A. \(5\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-7" value="B"><span class="option-text">B. \(6\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-7" value="C"><span class="option-text">C. \(4.25\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-7" value="D"><span class="option-text">D. \(5.5\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。共 \(3 + 5 + 6 + 4 + 5 + 1 = 24\) 人，\(24 \times \frac{3}{4} = 18\) 是整數，取第 \(18\)、\(19\) 個的平均。累積次數依序為 \(3\), \(8\), \(14\), \(18\), \(23\), \(24\)：第 \(18\) 個是 \(5\)、第 \(19\) 個是 \(6\)，所以 \(Q_3 = \frac{5 + 6}{2} = 5.5\)。<br>
+              A 錯：只取了第 \(18\) 個。<br>
+              B 錯：只取了第 \(19\) 個。<br>
+              C 錯：\(4.25\) 是平均數 \(\frac{102}{24}\)，不是四分位數。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-8">
+            <p class="quiz-question"><strong>Q8.</strong> 下表是 \(26\) 位玩家完成一局桌遊所用的回合數。回合數的 \(Q_1\)、\(Q_2\) 分別是多少？</p>
+            <div class="table-scroll">
+              <table class="sign-table">
+                <thead><tr><th>回合數</th><th>\(4\)</th><th>\(5\)</th><th>\(6\)</th><th>\(7\)</th><th>\(8\)</th><th>\(9\)</th></tr></thead>
+                <tbody><tr><td>次數（人）</td><td>\(2\)</td><td>\(4\)</td><td>\(5\)</td><td>\(7\)</td><td>\(5\)</td><td>\(3\)</td></tr></tbody>
+              </table>
+            </div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-8" value="A"><span class="option-text">A. \(Q_1 = 6\)，\(Q_2 = 7\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-8" value="B"><span class="option-text">B. \(Q_1 = 5\)，\(Q_2 = 7\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-8" value="C"><span class="option-text">C. \(Q_1 = 5.5\)，\(Q_2 = 7\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-8" value="D"><span class="option-text">D. \(Q_1 = 6\)，\(Q_2 = 8\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。累積次數依序為 \(2\), \(6\), \(11\), \(18\), \(23\), \(26\)。<br>
+              \(26 \times \frac{1}{4} = 6.5\) 不是整數，取第 \(7\) 個：累積 \(6 \lt 7 \le 11\)，是 \(6\)，所以 \(Q_1 = 6\)。<br>
+              \(26 \times \frac{1}{2} = 13\) 是整數，取第 \(13\)、\(14\) 個：累積 \(11 \lt 13\)、\(14 \le 18\)，都是 \(7\)，所以 \(Q_2 = 7\)。<br>
+              B 錯：\(5\) 是第 \(6\) 個，忘了「整數部分再加 \(1\)」。<br>
+              C 錯：\(5.5\) 是把 \(6.5\) 當成整數情形，取第 \(6\)、\(7\) 個的平均。<br>
+              D 錯：\(8\) 是 \(Q_3\)（\(26 \times \frac{3}{4} = 19.5\)，第 \(20\) 個）。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 5: 直方圖
+           ========================================== -->
+      <section class="concept-section" id="concept5">
+        <h2 class="section-title">
+          <i class="fa-solid fa-chart-column" aria-hidden="true"></i> <span>重點 5：次數分配直方圖——四分位數在哪一組</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>直方圖的資料已經分組，只看得出每一組有幾人，<strong>看不出確切的數值</strong>，所以只能問「\(Q_k\) <strong>在哪一組</strong>」。</li>
+              <li>作法和次數分配表相同：先把各組次數加起來得到 \(N\)，算 \(N \times \frac{k}{4}\) 決定要第幾個人，再<strong>由左往右累加</strong>各組次數，看那個人落在哪一組。</li>
+              <li>分組的規則沿用七年級：每一組<strong>包含下限、不包含上限</strong>，例如 \(20\)～\(30\) 分包含 \(20\) 分、不包含 \(30\) 分。</li>
+              <li>整數情形要看兩個人：兩個人在<strong>同一組</strong>，\(Q_k\) 就在那一組；若剛好跨在兩組的分界，只看直方圖判斷不出來。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・直方圖</span>
+              加總次數得 \(N\) → \(N \times \frac{k}{4}\) 定第幾個人 → 累加次數找出他在哪一組
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_histogram.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：木桌上用羊毛氈方塊堆出高矮不同的幾根柱子，小棋從左邊第一根開始用手指一根一根數過去，阿骰在旁邊扳手指計數。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：直方圖找組別</h3>
+            <p class="interactive-instruction">選要找的四分位數，拉動「\(20\)～\(30\) 分這一組的人數」：總人數會跟著變，要找的那一個人也會換到別的位置。柱子下方是由左往右的累積次數。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-hist" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="hs-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要找</span>
+                    <div class="btn-group" id="hs-k-group">
+                      <button class="pick-btn" data-hs-k="1">\(Q_1\)</button>
+                      <button class="pick-btn" data-hs-k="2">\(Q_2\)</button>
+                      <button class="pick-btn active" data-hs-k="3">\(Q_3\)</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="hs-m">\(20\)～\(30\) 分的人數：<span id="hs-vm" class="val-num">11</span></label>
+                    <input type="range" id="hs-m" min="4" max="14" value="11" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="hs-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (直方圖的四分位數)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-9">
+            <p class="quiz-question"><strong>Q9.</strong> 下圖是某次桌遊比賽得分的次數分配直方圖。得分的 \(Q_3\) 在哪一組？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-9" class="quiz-chart" width="440" height="260"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-9" value="A"><span class="option-text">A. \(20\)～\(30\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-9" value="B"><span class="option-text">B. \(30\)～\(40\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-9" value="C"><span class="option-text">C. \(40\)～\(50\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-9" value="D"><span class="option-text">D. \(50\)～\(60\) 分</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。共 \(2 + 5 + 9 + 8 + 4 + 2 = 30\) 人，\(30 \times \frac{3}{4} = 22.5\)，取第 \(23\) 個。累積次數 \(2, 7, 16, 24\)：\(16 \lt 23 \le 24\)，第 \(23\) 個在 \(30\)～\(40\) 分這一組。<br>
+              A 錯：\(20\)～\(30\) 分是 \(Q_2\) 所在的組（第 \(15\)、\(16\) 個）。<br>
+              C 錯：累積到 \(30\)～\(40\) 分已經有 \(24\) 人，第 \(23\) 個還輪不到下一組。<br>
+              D 錯：最後一組是最大值所在的組，不是 \(Q_3\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-10">
+            <p class="quiz-question"><strong>Q10.</strong> 下圖是某班數學小考成績的次數分配直方圖。全班人數與 \(Q_1\) 所在的組別分別為何？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-10" class="quiz-chart" width="440" height="260"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-10" value="A"><span class="option-text">A. \(36\) 人，\(60\)～\(70\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-10" value="B"><span class="option-text">B. \(34\) 人，\(50\)～\(60\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-10" value="C"><span class="option-text">C. \(36\) 人，\(40\)～\(50\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-10" value="D"><span class="option-text">D. \(36\) 人，\(50\)～\(60\) 分</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。全班 \(3 + 7 + 10 + 9 + 5 + 2 = 36\) 人，\(36 \times \frac{1}{4} = 9\) 是整數，看第 \(9\)、\(10\) 個。累積次數 \(3, 10\)：第 \(9\)、\(10\) 個都在 \(50\)～\(60\) 分這一組。<br>
+              A 錯：\(60\)～\(70\) 分是人數最多的一組，但四分位數看的是位置，不是哪一組最多人。<br>
+              B 錯：人數加錯了，\(3 + 7 + 10 + 9 + 5 + 2 = 36\)。<br>
+              C 錯：第一組只有 \(3\) 人，第 \(9\) 個人已經在第二組。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 6: 盒狀圖的畫法
+           ========================================== -->
+      <section class="concept-section" id="concept6">
+        <h2 class="section-title">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i> <span>重點 6：盒狀圖——用五個數畫出分布</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>知道一群資料的<strong>五個數</strong>：最小值、\(Q_1\)、\(Q_2\)、\(Q_3\)、最大值，就能畫出<strong>盒狀圖</strong>。</li>
+              <li><strong>畫法四步驟</strong>：
+                <ul class="bullet-list">
+                  <li>❶ 畫出橫軸，標上適當的單位與刻度。</li>
+                  <li>❷ 在最小值、\(Q_2\)、最大值的上方各畫一條直線段。</li>
+                  <li>❸ 以 \(Q_2\) 線段的長度當寬、\(Q_1\) 到 \(Q_3\) 的長度當長，畫出長方形。</li>
+                  <li>❹ 畫橫線連接「最小值、\(Q_1\)」與「\(Q_3\)、最大值」。</li>
+                </ul>
+              </li>
+              <li>盒狀圖的位置與長度都<strong>照刻度畫</strong>：盒子短代表中間一半的資料擠在一起，不代表人數少——盒子左右、兩條橫線各管大約 \(\frac{1}{4}\) 的資料。</li>
+              <li>盒狀圖也可以畫成<strong>鉛直</strong>的，讀法一樣。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・盒狀圖</span>
+              最小值 ─ [ \(Q_1\) │ \(Q_2\) │ \(Q_3\) ] ─ 最大值<br>
+              盒子是 \(Q_1\) 到 \(Q_3\)，盒內直線是 \(Q_2\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_boxbuild.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：小棋在一條長長的木尺上方，用羊毛氈縫一個長方形的小盒子，盒子中間縫了一條直線；阿骰拿著兩根羊毛氈細條準備接在盒子兩邊。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：盒狀圖組裝台</h3>
+            <p class="interactive-instruction">上方的點圖是每一位玩家的得分。選一桌的資料，拉動「步驟」從 ❶ 走到 ❹，看盒狀圖怎麼一步一步由五個數組裝起來。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-buildbox" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="bx-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">資料</span>
+                    <div class="btn-group" id="bx-ds-group">
+                      <button class="pick-btn active" data-bx-ds="0">甲桌 12 人</button>
+                      <button class="pick-btn" data-bx-ds="1">乙桌 15 人</button>
+                      <button class="pick-btn" data-bx-ds="2">丙桌 10 人</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="bx-step">步驟：<span id="bx-vstep" class="val-num">4</span></label>
+                    <input type="range" id="bx-step" min="1" max="4" value="4" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="bx-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (盒狀圖的畫法)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-11">
+            <p class="quiz-question"><strong>Q11.</strong> \(13\) 個資料由小到大為 \(4\), \(6\), \(7\), \(8\), \(9\), \(10\), \(12\), \(13\), \(14\), \(15\), \(18\), \(20\), \(26\)。畫這群資料的盒狀圖時，盒子的左邊、盒內的直線、盒子的右邊依序在哪三個數？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-11" value="A"><span class="option-text">A. \(8\)、\(12\)、\(15\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-11" value="B"><span class="option-text">B. \(7\)、\(12\)、\(14\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-11" value="C"><span class="option-text">C. \(7.5\)、\(11\)、\(14.5\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-11" value="D"><span class="option-text">D. \(8\)、\(10\)、\(15\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。盒子從 \(Q_1\) 到 \(Q_3\)，盒內直線是 \(Q_2\)：
+              \[\begin{aligned} & 13 \times \frac{1}{4} = 3.25 \Rightarrow Q_1 = \text{第 } 4 \text{ 個} = 8 \\ & 13 \times \frac{1}{2} = 6.5 \Rightarrow Q_2 = \text{第 } 7 \text{ 個} = 12 \\ & 13 \times \frac{3}{4} = 9.75 \Rightarrow Q_3 = \text{第 } 10 \text{ 個} = 15 \end{aligned}\]
+              B 錯：\(Q_1\)、\(Q_3\) 只取了整數部分（第 \(3\)、\(9\) 個），忘了加 \(1\)。<br>
+              C 錯：把三個位置都當成整數情形取平均（第 \(3\)、\(4\) 個；第 \(6\)、\(7\) 個；第 \(9\)、\(10\) 個）。<br>
+              D 錯：盒內直線取了第 \(6\) 個 \(10\)；\(6.5\) 要取第 \(7\) 個。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-12">
+            <p class="quiz-question"><strong>Q12.</strong> 下圖是某桌遊社社員得分的盒狀圖。下列敘述何者正確？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-12" class="quiz-chart" width="440" height="170"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-12" value="A"><span class="option-text">A. 中位數是 \(\frac{17 + 71}{2} = 44\) 分</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-12" value="B"><span class="option-text">B. 盒子的長度代表全距</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-12" value="C"><span class="option-text">C. 盒子左半段比右半段短，所以 \(31\) 到 \(37\) 分的人比較少</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-12" value="D"><span class="option-text">D. 得分在 \(31\) 到 \(53\) 分之間（含）的人至少占一半</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。小於 \(Q_1 = 31\) 的至多占 \(\frac{1}{4}\)、大於 \(Q_3 = 53\) 的也至多占 \(\frac{1}{4}\)，所以 \(31\) 到 \(53\) 分之間（含）的至少占 \(1 - \frac{1}{4} - \frac{1}{4} = \frac{1}{2}\)。<br>
+              A 錯：中位數是盒內直線 \(37\)，不是最小值與最大值的平均。<br>
+              B 錯：盒子從 \(Q_1\) 到 \(Q_3\)，長度是四分位距；全距是整張圖從最左到最右。<br>
+              C 錯：盒子的左、右半段各管大約 \(\frac{1}{4}\) 的資料；左半段短代表那些分數擠在一起，不是人比較少。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 7: 全距與四分位距
+           ========================================== -->
+      <section class="concept-section" id="concept7">
+        <h2 class="section-title">
+          <i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i> <span>重點 7：全距與四分位距——資料有多分散</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>全距</strong>＝最大值－最小值：全部資料分布的範圍。</li>
+              <li><strong>四分位距</strong>＝\(Q_3 - Q_1\)：去掉頭尾各 \(\frac{1}{4}\) 之後，<strong>中間一半</strong>資料分布的範圍；在盒狀圖上就是<strong>盒子的長度</strong>。</li>
+              <li>例：最高分 \(95\)、最低分 \(32\)、\(Q_1 = 45\)、\(Q_3 = 78\)，全距 \(95 - 32 = 63\)，四分位距 \(78 - 45 = 33\)。</li>
+              <li>通常全距愈大，資料愈分散；四分位距愈小，中間一半的資料愈集中在中位數附近。</li>
+              <li>從次數分配表求四分位距：先照重點 4 求出 \(Q_1\)、\(Q_3\) 再相減，<strong>不是</strong>拿次數欄的數字相減。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・兩種距</span>
+              全距＝最大值－最小值；四分位距＝\(Q_3 - Q_1\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_range.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：阿骰拉開一條長長的布捲尺，從木桌最左端拉到最右端；小棋拿著一條較短的布捲尺，只量桌子中間那一段。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：五個數調整台</h3>
+            <p class="interactive-instruction">分別拉動最小值、\(Q_1\)、\(Q_2\)、\(Q_3\)、最大值，看全距（金色）與四分位距（橘色）兩把尺怎麼變。五個數的大小順序被打亂時，畫面會告訴你為什麼不成立。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-range" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="rg-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="rg-min">最小值：<span id="rg-vmin" class="val-num">22</span></label>
+                    <input type="range" id="rg-min" min="10" max="30" value="22" step="2">
+                  </div>
+                  <div class="slider-row">
+                    <label for="rg-q1">\(Q_1\)：<span id="rg-vq1" class="val-num">38</span></label>
+                    <input type="range" id="rg-q1" min="26" max="50" value="38" step="2">
+                  </div>
+                  <div class="slider-row">
+                    <label for="rg-q2">\(Q_2\)：<span id="rg-vq2" class="val-num">48</span></label>
+                    <input type="range" id="rg-q2" min="44" max="60" value="48" step="2">
+                  </div>
+                  <div class="slider-row">
+                    <label for="rg-q3">\(Q_3\)：<span id="rg-vq3" class="val-num">64</span></label>
+                    <input type="range" id="rg-q3" min="56" max="80" value="64" step="2">
+                  </div>
+                  <div class="slider-row">
+                    <label for="rg-max">最大值：<span id="rg-vmax" class="val-num">86</span></label>
+                    <input type="range" id="rg-max" min="76" max="100" value="86" step="2">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="rg-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (全距與四分位距)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-13">
+            <p class="quiz-question"><strong>Q13.</strong> 下表是 \(30\) 位學生桌遊推理賽的分數。分數的全距與四分位距分別是多少？</p>
+            <div class="table-scroll">
+              <table class="sign-table">
+                <thead><tr><th>分數（分）</th><th>次數（人）</th></tr></thead>
+                <tbody><tr><td>\(60\)</td><td>\(2\)</td></tr><tr><td>\(65\)</td><td>\(3\)</td></tr><tr><td>\(70\)</td><td>\(6\)</td></tr><tr><td>\(75\)</td><td>\(8\)</td></tr><tr><td>\(80\)</td><td>\(5\)</td></tr><tr><td>\(85\)</td><td>\(4\)</td></tr><tr><td>\(90\)</td><td>\(2\)</td></tr></tbody>
+              </table>
+            </div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-13" value="A"><span class="option-text">A. 全距 \(30\)，四分位距 \(20\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-13" value="B"><span class="option-text">B. 全距 \(6\)，四分位距 \(10\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-13" value="C"><span class="option-text">C. 全距 \(30\)，四分位距 \(10\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-13" value="D"><span class="option-text">D. 全距 \(30\)，四分位距 \(2\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。全距 \(= 90 - 60 = 30\)。累積次數 \(2\), \(5\), \(11\), \(19\), \(24\), \(28\), \(30\)：
+              \[\begin{aligned} & 30 \times \frac{1}{4} = 7.5 \Rightarrow \text{第 } 8 \text{ 個} \Rightarrow Q_1 = 70 \\ & 30 \times \frac{3}{4} = 22.5 \Rightarrow \text{第 } 23 \text{ 個} \Rightarrow Q_3 = 80 \end{aligned}\]
+              四分位距 \(= 80 - 70 = 10\)。<br>
+              A 錯：\(90 - 70 = 20\) 是拿最大值減 \(Q_1\)。<br>
+              B 錯：\(8 - 2 = 6\) 是拿次數欄相減；全距要用分數。<br>
+              D 錯：\(2\) 是拿次數欄的數字相減，四分位距要用分數。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-14">
+            <p class="quiz-question"><strong>Q14.</strong> 某次桌遊大賽的積分：最低 \(120\) 分、\(Q_1 = 185\) 分、\(Q_2 = 230\) 分、\(Q_3 = 262\) 分、最高 \(340\) 分。積分的四分位距是多少分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-14" value="A"><span class="option-text">A. \(77\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-14" value="B"><span class="option-text">B. \(220\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-14" value="C"><span class="option-text">C. \(32\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-14" value="D"><span class="option-text">D. \(45\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。四分位距 \(= Q_3 - Q_1 = 262 - 185 = 77\)。<br>
+              B 錯：\(340 - 120 = 220\) 是全距。<br>
+              C 錯：\(262 - 230 = 32\) 是 \(Q_3 - Q_2\)，只有盒子的右半段。<br>
+              D 錯：\(230 - 185 = 45\) 是 \(Q_2 - Q_1\)，只有盒子的左半段。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 8: 極端值
+           ========================================== -->
+      <section class="concept-section" id="concept8">
+        <h2 class="section-title">
+          <i class="fa-solid fa-person-running" aria-hidden="true"></i> <span>重點 8：一個極端值——全距與四分位距誰比較穩</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>全距只用到<strong>最大值與最小值</strong>兩筆資料，只要有一個特別大或特別小的值（<strong>極端值</strong>），全距就會被拉得很大。</li>
+              <li>四分位距去掉頭尾各 \(\frac{1}{4}\) 的資料，只看中間一半，<strong>幾乎不受極端值影響</strong>。</li>
+              <li>所以資料裡有極端值時，用<strong>四分位距</strong>描述分散程度比全距合適。</li>
+              <li>反過來讀：「全距很大、四分位距很小」代表<strong>中間一半的資料很集中</strong>，但有少數特別高或特別低的值。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・極端值</span>
+              極端值只會拉大全距；四分位距只看中間一半，比較穩定
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_outlier.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：一排羊毛氈籌碼整齊擠在木桌中間，只有一枚紅色籌碼滾到桌子最遠的另一端；阿骰驚訝地伸手去追那一枚，小棋淡定地看著中間那一群。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：拉走一顆籌碼</h3>
+            <p class="interactive-instruction">\(12\) 位玩家的得分中，紅色兩顆是最低分與最高分。拉動兩支滑桿把它們拉遠，對照下方兩根長條：全距一直變，四分位距卻動也不動。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-outlier" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="ol-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="ol-lo">最低分：<span id="ol-vlo" class="val-num">24</span></label>
+                    <input type="range" id="ol-lo" min="4" max="30" value="24" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="ol-hi">最高分：<span id="ol-vhi" class="val-num">58</span></label>
+                    <input type="range" id="ol-hi" min="50" max="120" value="58" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="ol-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (極端值)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-15">
+            <p class="quiz-question"><strong>Q15.</strong> 某桌 \(12\) 位玩家的得分中，最高分 \(48\) 分其實記錯了，應該是 \(130\) 分，其餘的分數都正確。改正後，得分的全距與四分位距會怎麼變？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-15" value="A"><span class="option-text">A. 全距與四分位距都變大</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-15" value="B"><span class="option-text">B. 全距變大，四分位距不變</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-15" value="C"><span class="option-text">C. 全距不變，四分位距變大</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-15" value="D"><span class="option-text">D. 全距與四分位距都不變</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。最高分從 \(48\) 改成 \(130\)，最小值不變，全距多了 \(130 - 48 = 82\) 分。\(12 \times \frac{1}{4} = 3\)、\(12 \times \frac{3}{4} = 9\)，\(Q_1\) 由第 \(3\)、\(4\) 個決定，\(Q_3\) 由第 \(9\)、\(10\) 個決定；改的是第 \(12\) 個，改完仍是最大的那一個，\(Q_1\)、\(Q_3\) 都不變，四分位距也不變。<br>
+              A、C 錯：第 \(12\) 個不影響 \(Q_1\)、\(Q_3\)，四分位距不會變。<br>
+              D 錯：全距用到的就是最大值，最大值變了，全距一定跟著變。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-16">
+            <p class="quiz-question"><strong>Q16.</strong> 某桌遊社社員得分的全距是 \(60\) 分，四分位距只有 \(8\) 分。下列推論何者最合理？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-16" value="A"><span class="option-text">A. 全部社員的得分都很分散</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-16" value="B"><span class="option-text">B. 中間一半社員的得分分散在 \(60\) 分的範圍內</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-16" value="C"><span class="option-text">C. 四分位距一定是全距的 \(\frac{1}{4}\)，所以資料有誤</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-16" value="D"><span class="option-text">D. 中間一半社員的得分很集中，但有特別高或特別低的得分</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。四分位距 \(8\) 分代表中間一半的人擠在 \(8\) 分的範圍裡；全距卻有 \(60\) 分，代表頭尾有少數人離得很遠。<br>
+              A 錯：中間一半很集中，不是全部都分散。<br>
+              B 錯：中間一半的範圍是四分位距 \(8\) 分，\(60\) 分是全距。<br>
+              C 錯：四分位距與全距沒有固定的倍數關係。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 9: 比較兩班
+           ========================================== -->
+      <section class="concept-section" id="concept9">
+        <h2 class="section-title">
+          <i class="fa-solid fa-code-compare" aria-hidden="true"></i> <span>重點 9：用盒狀圖比較兩群資料</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>把兩班的盒狀圖畫在<strong>同一條刻度</strong>上，就能一眼比較：</li>
+              <li><strong>中位數</strong>：看盒內那一條直線的位置，愈右邊中間的分數愈高。</li>
+              <li><strong>全距</strong>：看整張圖從最左端到最右端多長，愈長代表全部分數的分布範圍愈廣。</li>
+              <li><strong>四分位距</strong>：只看<strong>盒子</strong>多長，不看兩條橫線；盒子愈長，中間一半的分數愈分散。</li>
+              <li>例：甲班最小值 \(40\)、\(Q_1 = 60\)、\(Q_3 = 89\)、最大值 \(100\)；乙班 \(42\)、\(50\)、\(75\)、\(88\)。甲班全距 \(60\)、四分位距 \(29\)，乙班全距 \(46\)、四分位距 \(25\)，兩項都是甲班比較大。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・比較兩群資料</span>
+              中位數看盒內直線、全距看整張圖、四分位距看盒子
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_compare.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：牆上掛著兩條上下並排的羊毛氈長布條，一條黃色、一條綠色；小棋和阿骰站在牆前，一人指著一條布條比較。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：兩班對照板</h3>
+            <p class="interactive-instruction">選一組兩班的盒狀圖，再選要比較中位數、全距還是四分位距：畫面會把要看的地方標成金色。試著先自己猜哪一班比較大，再看畫面。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-compare" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="cp-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">兩班</span>
+                    <div class="btn-group" id="cp-pair-group">
+                      <button class="pick-btn active" data-cp-pair="0">第一組</button>
+                      <button class="pick-btn" data-cp-pair="1">第二組</button>
+                      <button class="pick-btn" data-cp-pair="2">第三組</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">比較</span>
+                    <div class="btn-group" id="cp-item-group">
+                      <button class="pick-btn active" data-cp-item="med">中位數</button>
+                      <button class="pick-btn" data-cp-item="range">全距</button>
+                      <button class="pick-btn" data-cp-item="iqr">四分位距</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="visual-feedback" id="cp-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (比較兩群資料)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-17">
+            <p class="quiz-question"><strong>Q17.</strong> 下圖是甲、乙兩班桌遊比賽得分的盒狀圖。若甲、乙兩班的中位數分別為 \(a\)、\(b\)，四分位距分別為 \(c\)、\(d\)，下列何者正確？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-17" class="quiz-chart" width="440" height="220"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-17" value="A"><span class="option-text">A. \(a \lt b\) 且 \(c \gt d\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-17" value="B"><span class="option-text">B. \(a \lt b\) 且 \(c \lt d\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-17" value="C"><span class="option-text">C. \(a \gt b\) 且 \(c \gt d\)</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-17" value="D"><span class="option-text">D. \(a \gt b\) 且 \(c \lt d\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。中位數看盒內直線：\(a = 55\)、\(b = 52\)，\(a \gt b\)。四分位距看盒子：\(c = 70 - 38 = 32\)、\(d = 62 - 45 = 17\)，\(c \gt d\)。<br>
+              A、B 錯：甲班盒內直線在 \(55\)，比乙班的 \(52\) 右邊，\(a \gt b\)。<br>
+              D 錯：甲班的盒子比乙班長，\(c \gt d\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-18">
+            <p class="quiz-question"><strong>Q18.</strong> 下圖是某班四次桌遊積分賽成績的盒狀圖。哪一次成績的<strong>四分位距</strong>最大？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-18" class="quiz-chart" width="440" height="280"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-18" value="A"><span class="option-text">A. 第二次</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-18" value="B"><span class="option-text">B. 第一次</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-18" value="C"><span class="option-text">C. 第三次</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-18" value="D"><span class="option-text">D. 第四次</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。四分位距是盒子的長度：第一次 \(70 - 40 = 30\)、第二次 \(85 - 45 = 40\)、第三次 \(80 - 50 = 30\)、第四次 \(70 - 35 = 35\)，第二次最大。<br>
+              B 錯：第一次的盒子只有 \(30\)。<br>
+              C 錯：第三次整張圖最長（全距 \(90\)），但題目問的是四分位距，只看盒子。<br>
+              D 錯：第四次的盒子是 \(35\)，比第二次短。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 10: 推估人數
+           ========================================== -->
+      <section class="concept-section" id="concept10">
+        <h2 class="section-title">
+          <i class="fa-solid fa-users" aria-hidden="true"></i> <span>重點 10：由盒狀圖推估人數——「至少」與「至多」</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>盒狀圖只有五個數，看不到每一個人，所以人數通常只能說<strong>至少</strong>或<strong>至多</strong>。</li>
+              <li>用重點 3 的兩句話：<strong>至少 \(\frac{k}{4}\)</strong> 的人小於或等於 \(Q_k\)；<strong>至多 \(\frac{k}{4}\)</strong> 的人小於 \(Q_k\)。</li>
+              <li>例（全班 \(40\) 人、未滿 \(60\) 分為不及格）：
+                <ul class="bullet-list">
+                  <li>若 \(Q_1 = 60\)：低於 \(60\) 分的至多 \(40 \times \frac{1}{4} = 10\) 人。</li>
+                  <li>若 \(Q_2 = 58\)：\(58\) 分以下（含）的至少 \(40 \times \frac{1}{2} = 20\) 人，所以不及格的至少 \(20\) 人。</li>
+                </ul>
+              </li>
+              <li>比較兩班：甲班的 \(Q_3\) 比乙班的最高分還高，就能確定甲班<strong>至少 \(\frac{1}{4}\)</strong> 的人高於乙班的最高分。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・推估人數</span>
+              \(t \le Q_k\)：低於 \(t\) 的<strong>至多</strong> \(\frac{k}{4}\)；\(t \gt Q_k\)：低於 \(t\) 的<strong>至少</strong> \(\frac{k}{4}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_estimate.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：木桌上用一條紅色毛線橫放把桌面分成兩邊，阿骰把一些籌碼推到紅線的一側，小棋在旁邊皺眉思考。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：門檻線推估器</h3>
+            <p class="interactive-instruction">拉動紅色門檻線 \(t\)，選全班人數與要問「低於 \(t\) 分」還是「\(t\) 分以上（含）」：畫面會說出用到盒狀圖的哪兩個點，以及人數至少、至多是多少。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-estimate" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="es-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">全班</span>
+                    <div class="btn-group" id="es-n-group">
+                      <button class="pick-btn" data-es-n="24">24 人</button>
+                      <button class="pick-btn active" data-es-n="32">32 人</button>
+                      <button class="pick-btn" data-es-n="40">40 人</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要問</span>
+                    <div class="btn-group" id="es-dir-group">
+                      <button class="pick-btn active" data-es-dir="below">低於 t 分</button>
+                      <button class="pick-btn" data-es-dir="atleast">t 分以上（含）</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="es-t">門檻 \(t\)：<span id="es-vt" class="val-num">58</span></label>
+                    <input type="range" id="es-t" min="30" max="100" value="58" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="es-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (推估人數)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-19">
+            <p class="quiz-question"><strong>Q19.</strong> 下圖是某班 \(36\) 人數學小考成績的盒狀圖（紅色虛線是 \(60\) 分）。未滿 \(60\) 分為不及格，關於不及格的人數，下列何者<strong>一定</strong>正確？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-19" class="quiz-chart" width="440" height="170"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-19" value="A"><span class="option-text">A. 恰有 \(9\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-19" value="B"><span class="option-text">B. 至多 \(9\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-19" value="C"><span class="option-text">C. 至少 \(9\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-19" value="D"><span class="option-text">D. 至少 \(18\) 人</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。\(Q_1 = 62\) 比 \(60\) 高，小於 \(Q_1\) 的至多占 \(\frac{1}{4}\)，所以低於 \(60\) 分的至多 \(36 \times \frac{1}{4} = 9\) 人。<br>
+              A、C 錯：\(41\) 到 \(62\) 之間到底有多少人低於 \(60\)，盒狀圖看不出來，可能少於 \(9\) 人。<br>
+              D 錯：\(Q_2 = 70\)，至少一半的人有 \(70\) 分以上（含），不及格的不可能到 \(18\) 人。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-20">
+            <p class="quiz-question"><strong>Q20.</strong> 下圖是甲、乙兩班（各 \(40\) 人）桌遊比賽得分的盒狀圖。關於甲班得分<strong>高於乙班最高分</strong>的人數，下列何者<strong>一定</strong>正確？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-20" class="quiz-chart" width="440" height="220"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-20" value="A"><span class="option-text">A. 至少 \(30\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-20" value="B"><span class="option-text">B. 至少 \(20\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-20" value="C"><span class="option-text">C. 至少 \(10\) 人</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-20" value="D"><span class="option-text">D. 至多 \(10\) 人</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。乙班最高分是 \(80\) 分；甲班 \(Q_3 = 84\) 比 \(80\) 高，而大於或等於 \(Q_3\) 的至少占 \(\frac{1}{4}\)，所以甲班高於 \(80\) 分的至少 \(40 \times \frac{1}{4} = 10\) 人。<br>
+              A 錯：甲班 \(Q_1 = 63\) 比 \(80\) 低，看不出有 \(\frac{3}{4}\) 的人高於 \(80\)。<br>
+              B 錯：甲班 \(Q_2 = 72\) 也比 \(80\) 低，看不出有一半的人高於 \(80\)。<br>
+              D 錯：\(72\) 到 \(84\) 之間也可能有人高於 \(80\)，人數可能超過 \(10\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 11: 判斷排名
+           ========================================== -->
+      <section class="concept-section" id="concept11">
+        <h2 class="section-title">
+          <i class="fa-solid fa-ranking-star" aria-hidden="true"></i> <span>重點 11：同一個分數，在哪裡排名比較好</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>同樣的分數，放在不同的群體裡，<strong>名次可能差很多</strong>：要看這個分數落在那一群的盒狀圖的哪裡。</li>
+              <li>分數<strong>低於 \(Q_1\)</strong>：至少 \(\frac{3}{4}\) 的人比你高，排在後段。</li>
+              <li>分數<strong>高於 \(Q_2\)</strong>：比你高的至多一半；<strong>高於 \(Q_3\)</strong>：比你高的至多 \(\frac{1}{4}\)。</li>
+              <li>兩群人數相同時，比你高的人「至少幾人」比另一群「至多幾人」還多，才能<strong>確定</strong>你在這一群排名比較差；範圍重疊就判斷不出來。</li>
+              <li>例：國文、數學的 \(Q_2\) 都是 \(70\)、英語的 \(Q_2\) 是 \(75\)，三科都考 \(73\) 分：國文、數學至少贏過一半的人，英語卻有一半以上的人比你高，所以英語排名最差。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">KEY POINT・判斷排名</span>
+              分數落在愈左邊（相對於 \(Q_1, Q_2, Q_3\)），比你高的人愈多，排名愈差
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft1_rank.webp" alt="桌遊咖啡館羊毛氈公仔風插圖：咖啡館牆上掛著三塊不同顏色的羊毛氈記分板，小棋手裡拿著一枚得分籌碼，在三塊記分板前來回比較；阿骰在旁邊替她加油。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> 視覺互動探索：三種桌遊排名比一比</h3>
+            <p class="interactive-instruction">三種桌遊各有 \(40\) 人參加。拉動小棋的分數，看在每一種桌遊裡「比她高的人」至少、至多幾人，以及能不能確定哪一種排名最差。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-rank" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="rk-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="rk-s">小棋的分數：<span id="rk-vs" class="val-num">60</span></label>
+                    <input type="range" id="rk-s" min="25" max="95" value="60" step="1">
+                  </div>
+                </div>
+                <div class="visual-feedback" id="rk-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (判斷排名)</h3>
+
+          <div class="quiz-card" data-quiz="6-2-1-21">
+            <p class="quiz-question"><strong>Q21.</strong> 下圖是三種桌遊比賽（各 \(40\) 人參加）得分的盒狀圖。小棋三種都得到 \(68\) 分（紅色虛線），她在哪一種比賽的排名<strong>一定</strong>最差？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-21" class="quiz-chart" width="440" height="280"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-21" value="A"><span class="option-text">A. 拼字</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-21" value="B"><span class="option-text">B. 卡牌</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-21" value="C"><span class="option-text">C. 三種一樣</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-21" value="D"><span class="option-text">D. 推理</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。推理的 \(Q_1 = 70\) 比 \(68\) 高，至少 \(\frac{3}{4}\)，也就是至少 \(30\) 人比她高。卡牌的 \(Q_3 = 75\) 比 \(68\) 高、\(Q_2 = 62\) 比 \(68\) 低，比她高的至少 \(10\) 人、至多 \(20\) 人；拼字的 \(Q_3 = 64\) 比 \(68\) 低，比她高的至多 \(10\) 人。推理至少 \(30\) 人，比另外兩種的上限都多，所以推理一定最差。<br>
+              A 錯：拼字是她排名最好的一種。<br>
+              B 錯：卡牌比她高的至多 \(20\) 人，少於推理。<br>
+              C 錯：分數相同，名次不一定相同，要看分數在各自盒狀圖的位置。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="6-2-1-22">
+            <p class="quiz-question"><strong>Q22.</strong> 下圖是甲、乙兩班（各 \(40\) 人）桌遊比賽得分的盒狀圖。甲班的小棋和乙班的阿骰都得到 \(80\) 分（紅色虛線）。下列敘述何者正確？</p>
+            <div class="quiz-chart-wrap"><canvas id="qf-22" class="quiz-chart" width="440" height="220"></canvas></div>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q6-2-1-22" value="A"><span class="option-text">A. 小棋在甲班的名次一定比阿骰在乙班的名次好</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-22" value="B"><span class="option-text">B. 兩人分數相同，名次一定相同</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-22" value="C"><span class="option-text">C. 阿骰在乙班的名次一定比較好</span></label>
+              <label class="option-label"><input type="radio" name="q6-2-1-22" value="D"><span class="option-text">D. 只看盒狀圖無法比較兩人的名次</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。甲班 \(Q_3 = 78\) 比 \(80\) 低，大於 \(Q_3\) 的至多 \(\frac{1}{4}\)，比小棋高的至多 \(10\) 人；乙班 \(Q_2 = 82\) 比 \(80\) 高，大於或等於 \(Q_2\) 的至少一半，比阿骰高的至少 \(20\) 人。所以小棋的名次一定比較好。<br>
+              B 錯：同分不同班，前面的人數不同，名次就不同。<br>
+              C 錯：方向反了。<br>
+              D 錯：兩個範圍（至多 \(10\) 人、至少 \(20\) 人）沒有重疊，可以確定。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           小節總結
+           ========================================== -->
+      <section class="summary-section" id="summary">
+        <h2 class="section-title">
+          <i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 小節總結與核心回顧
+        </h2>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4><i class="fa-solid fa-clipboard-list"></i> 資料分析速查表</h4>
+            <ul class="bullet-list">
+              <li><strong>四分位數</strong>：排序後令 \(N \times \frac{k}{4} = a\)；整數取第 \(a\)、\(a + 1\) 個的平均，不是整數取「整數部分 \(+ 1\)」那一個。\(Q_2\) 就是中位數。</li>
+              <li><strong>相對位置</strong>：至少 \(\frac{k}{4}\) 的資料 \(\le Q_k\)，至少 \(1 - \frac{k}{4}\) 的資料 \(\ge Q_k\)。</li>
+              <li><strong>次數分配表、直方圖</strong>：用累積次數找出第幾個人；直方圖只問在哪一組。</li>
+              <li><strong>盒狀圖</strong>：最小值、\(Q_1\)、\(Q_2\)、\(Q_3\)、最大值；盒子是 \(Q_1\) 到 \(Q_3\)。</li>
+              <li><strong>全距</strong>＝最大值－最小值；<strong>四分位距</strong>＝\(Q_3 - Q_1\)，不受極端值影響。</li>
+              <li><strong>推估</strong>：人數與排名常常只能說「至少」「至多」。</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <div class="context-story">
+              <h4><i class="fa-solid fa-dice"></i> 回到桌遊咖啡館：兩班真的一樣強嗎？</h4>
+              <h5><i class="fa-solid fa-box-open"></i> 平均一樣，盒子不一樣</h5>
+              <p>阿骰說兩班平均一樣、一樣強。小棋把兩班的得分畫成盒狀圖：甲班的盒子又短又集中，乙班的盒子很長，而且有人特別高、有人特別低——兩班的分布完全不同。</p>
+              <h5><i class="fa-solid fa-ruler-horizontal"></i> 用數字說清楚</h5>
+              <p>甲班的四分位距小，中間一半的人實力相近；乙班的全距大，強的很強、弱的很弱。要派代表隊時，看的不只是平均，還有這些描述分散程度的數。</p>
+              <h5><i class="fa-solid fa-forward"></i> 下一步</h5>
+              <p>下一節回到同一間桌遊咖啡館，擲骰子、抽卡牌——學習怎麼計算一件事發生的<strong>機率</strong>。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer>
+      <p>© 2026 國中數學教學整合網. 專為高效課堂互動設計.</p>
+    </footer>
   </div>
 
-  <!-- 共用課堂元件：課堂工具側邊欄與上下節導覽 -->
+  <!-- Main JavaScript Logic -->
+  <script src="../math-canvas.js"></script>
+  <script src="canvas.js"></script>
+
+  <!-- 共用課堂元件：課程資料、課堂工具側邊欄、上下節導覽、課堂畫筆 -->
   <script src="../../curriculum.js"></script>
   <script src="../../tools-sidebar.js" data-home="../../index.html"></script>
   <script src="../../lesson-nav.js"></script>
-
+  <script src="../../annotate.js"></script>
 </body>
 </html>

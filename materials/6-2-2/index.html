@@ -4,39 +4,1493 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
-  <title>2-2 機率 - 課堂教學資料庫</title>
-  <!-- FontAwesome for icons -->
+  <title>2-2 機率 - 互動教學網頁</title>
+
+  <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- 佔位頁共用樣式 -->
-  <link rel="stylesheet" href="../pending.css">
-  <!-- 共用課堂元件 -->
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 共用課堂元件（課堂工具側邊欄 / 上下節導覽 / 課堂畫筆） -->
   <link rel="stylesheet" href="../../tools-sidebar.css">
   <link rel="stylesheet" href="../../lesson-nav.css">
+  <link rel="stylesheet" href="../../annotate.css">
+
+  <!-- MathJax for rendering professional LaTeX equations -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
 
+  <!-- Floating animated background blobs -->
   <div class="background-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
-  <div class="card">
-    <div class="icon-container">
-      <i class="fa-solid fa-screwdriver-wrench"></i>
-    </div>
-    <div class="breadcrumb">第六冊 (3下) • 第2章 統計與機率</div>
-    <h1>2-2 機率</h1>
-    <div class="badge"><i class="fa-solid fa-person-digging" style="margin-right: 6px;"></i>教學資源待施工</div>
-    <p class="desc">此小節的教學網頁與專屬資料夾已成功建立。相關教學簡報、學習單或互動教材將陸續存入此目錄中。</p>
-    <a href="../../index.html" class="btn">
-      <i class="fa-solid fa-house"></i> 返回主網頁
-    </a>
+  <div class="container">
+    <!-- Header Navigation -->
+    <header>
+      <div class="nav-back">
+        <a href="../../index.html" class="btn-back">
+          <i class="fa-solid fa-arrow-left"></i> 返回主網頁
+        </a>
+      </div>
+      <div class="lesson-title">
+        <span class="badge">第六冊 • 第二章</span>
+        <h1>2-2 機率</h1>
+        <p>桌遊咖啡館裡，小棋和阿骰每局開始前都要擲骰子、擲硬幣、抽牌或從布袋裡摸球，決定誰先玩、誰拿點心。「誰比較有機會？」可以用一個 <strong>0 到 1 之間的數</strong>來回答，這個數就是<strong>機率</strong>。這一節先認識機率的意義，再學會一顆一顆、一支一支地<strong>數出所有可能的結果</strong>；結果太多時，就畫<strong>樹狀圖</strong>或列<strong>數對</strong>，把它們全部列出來。</p>
+      </div>
+      <!-- Progress navigation (12 points) -->
+      <nav class="lesson-nav">
+        <a href="#concept1" class="nav-item active"><i class="fa-solid fa-gauge"></i> 機率的意義</a>
+        <a href="#concept2" class="nav-item"><i class="fa-solid fa-coins"></i> 實驗與機率</a>
+        <a href="#concept3" class="nav-item"><i class="fa-solid fa-bullseye"></i> 機會相等</a>
+        <a href="#concept4" class="nav-item"><i class="fa-solid fa-bag-shopping"></i> 數個數</a>
+        <a href="#concept5" class="nav-item"><i class="fa-solid fa-hashtag"></i> 籤筒</a>
+        <a href="#concept6" class="nav-item"><i class="fa-solid fa-dice-five"></i> 擲骰換點心</a>
+        <a href="#concept7" class="nav-item"><i class="fa-solid fa-heart"></i> 撲克牌</a>
+        <a href="#concept8" class="nav-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> 不放回再抽</a>
+        <a href="#concept9" class="nav-item"><i class="fa-solid fa-sitemap"></i> 樹狀圖</a>
+        <a href="#concept10" class="nav-item"><i class="fa-solid fa-hand-scissors"></i> 比輸贏</a>
+        <a href="#concept11" class="nav-item"><i class="fa-solid fa-dice"></i> 兩顆骰子</a>
+        <a href="#concept12" class="nav-item"><i class="fa-solid fa-rotate-left"></i> 放回與不放回</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================
+           引起動機: 四格漫畫（桌遊咖啡館・羊毛氈手作公仔風）
+           ========================================== -->
+      <section class="concept-section" id="motivation-comic" style="margin-bottom: 2.5rem; border-color: rgba(227, 179, 65, 0.3);">
+        <h2 class="section-title" style="color: #e3b341; border-bottom-color: rgba(227, 179, 65, 0.2);">
+          <i class="fa-solid fa-book-open" aria-hidden="true" style="color: #e3b341; text-shadow: 0 0 10px rgba(227, 179, 65, 0.4);"></i> 課前暖身漫畫：摸到紅球的機會是一半嗎？
+        </h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+          <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; text-align: center; max-width: 800px; margin: 0 auto;">
+            桌遊咖啡館的新遊戲要決定誰先玩：布袋裡有 3 顆黃球、1 顆紅球，摸到紅球的人先開始。阿骰說「只有紅、黃兩種，所以我有<strong style="color:#e3b341">一半</strong>的機會」——小棋把球倒在桌上一字排開，請他一顆一顆數。這一節要回答的就是：機會到底該怎麼算？
+          </p>
+          <div class="illustration-container" style="max-width: 600px; width: 100%; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.4); border-radius: 20px; overflow: hidden; background: rgba(14, 22, 17, 0.5);">
+            <img src="motivation_comic.webp" alt="桌遊咖啡館・羊毛氈手作公仔風四格漫畫：小棋拿著羊毛氈布袋說摸到紅球的人先玩；阿骰得意地說只有紅黃兩種，機會是一半；小棋把 3 顆黃球和 1 顆紅球倒在桌上排成一排；阿骰看著 4 顆球裡只有 1 顆紅球，恍然大悟。" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" class="comic-img" loading="lazy" onerror="this.parentElement.style.display='none'">
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 1: 機率的意義
+           ========================================== -->
+      <section class="concept-section" id="concept1">
+        <h2 class="section-title">
+          <i class="fa-solid fa-gauge" aria-hidden="true"></i> <span>重點 1：機率——用 0 到 1 之間的數表示可能性</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>擲硬幣、擲骰子、抽籤、取球這類操作叫做<strong>實驗</strong>（或試驗）；實驗中想觀察的情況叫做<strong>事件</strong>。</li>
+              <li>用一個數表示某事件發生的可能性大小，這個數就是該事件的<strong>機率</strong>。</li>
+              <li>機率一定介於 \(0\) 和 \(1\) 之間（可以等於 \(0\) 或 \(1\)），也常寫成百分率：
+                <ul>
+                  <li><strong>不可能</strong>發生的事件，機率是 \(0\)。例：只裝紅球的袋子裡摸出白球。</li>
+                  <li><strong>一定會</strong>發生的事件，機率是 \(1\)（\(= 100\%\)）。例：只裝紅球的袋子裡摸出紅球。</li>
+                  <li>機率愈接近 \(1\)，愈容易發生；愈接近 \(0\)，愈不容易發生。</li>
+                </ul>
+              </li>
+              <li>例：摸彩時每 \(10\) 人有 \(9\) 人中獎，說中獎機率是 \(90\%\)，是很高的機率。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">機率的範圍</span>
+              \(0 \le\) 機率 \(\le 1\)：不可能 \(\to 0\)，一定會 \(\to 1\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_raffle.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：木桌上放著一個敞開的羊毛氈布袋，袋子裡只有紅色毛氈球；小棋把手伸進袋子摸球，阿骰在旁邊看。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-gauge"></i> 視覺互動探索：機率尺</h3>
+            <p class="interactive-instruction">調整袋子裡紅球、白球的數量，再選一個事件。看看機率落在 \(0\) 到 \(1\) 的哪裡；什麼時候會剛好是 \(0\) 或 \(1\)？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c1" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c1-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c1-r">紅球：<span id="c1-vr" class="val-num">4</span> 顆</label>
+                    <input type="range" id="c1-r" min="0" max="9" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c1-w">白球：<span id="c1-vw" class="val-num">3</span> 顆</label>
+                    <input type="range" id="c1-w" min="0" max="9" value="3" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">事件</span>
+                    <div class="btn-group" id="c1-ev-group">
+                      <button class="pick-btn active" data-c1-ev="red">抽到紅球</button>
+                      <button class="pick-btn" data-c1-ev="white">抽到白球</button>
+                      <button class="pick-btn" data-c1-ev="blue">抽到藍球</button>
+                      <button class="pick-btn" data-c1-ev="any">紅球或白球</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c1-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (機率的意義)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-1">
+            <p class="quiz-question"><strong>Q1.</strong> 投擲一顆公正的骰子一次，下列哪一個事件發生的機率是 \(0\)？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-1" value="A"><span class="option-text">A. 點數小於 \(7\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-1" value="B"><span class="option-text">B. 點數是偶數</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-1" value="C"><span class="option-text">C. 點數大於 \(6\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-1" value="D"><span class="option-text">D. 點數是 \(1\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。骰子的點數只有 \(1\) 到 \(6\)，不可能大於 \(6\)，是<strong>不可能事件</strong>，機率 \(0\)。<br>
+              A 錯：每一面都小於 \(7\)，是必然事件，機率 \(1\)。<br>
+              B 錯：偶數有 \(2\)、\(4\)、\(6\) 三種，機率 \(\frac{1}{2}\)。<br>
+              D 錯：點數 \(1\) 只有一種，機率 \(\frac{1}{6}\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-2">
+            <p class="quiz-question"><strong>Q2.</strong> 下列哪一個數<strong>可能</strong>是某個事件發生的機率？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-2" value="A"><span class="option-text">A. \(0.6\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-2" value="B"><span class="option-text">B. \(-0.3\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-2" value="C"><span class="option-text">C. \(\frac{7}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-2" value="D"><span class="option-text">D. \(120\%\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。機率一定介於 \(0\) 和 \(1\) 之間，\(0.6\) 符合。<br>
+              B 錯：機率不會是負數，最小是 \(0\)（不可能事件）。<br>
+              C、D 錯：\(\frac{7}{5} = 1.4\)、\(120\% = 1.2\)，都比 \(1\) 大；一定會發生的事件，機率也只是 \(1\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 2: 實驗與機率
+           ========================================== -->
+      <section class="concept-section" id="concept2">
+        <h2 class="section-title">
+          <i class="fa-solid fa-coins" aria-hidden="true"></i> <span>重點 2：實驗的次數愈多，比值愈接近機率</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>真的去擲一枚硬幣很多次，記下「正面出現次數 \(\div\) 投擲總次數」的比值：
+                <ul>
+                  <li>次數少時，比值可能離 \(\frac{1}{2}\) 很遠，甚至連續好幾次都同一面。</li>
+                  <li>次數愈多，正、反面的次數<strong>通常</strong>愈接近相等，比值愈靠近 \(\frac{1}{2}\)，但不一定剛好等於。</li>
+                </ul>
+              </li>
+              <li>為了計算，我們<strong>假設實驗是公正的</strong>：材質均勻的硬幣，出現正面、反面的機會相等，機率各是 \(\frac{1}{2}\)。</li>
+              <li>機率是「可能發生的情形」，<strong>不是保證</strong>：
+                <ul>
+                  <li>正面機率是 \(\frac{1}{2}\)，不代表擲兩次就一定一正一反。</li>
+                  <li>前面連續出現正面，下一次出現正面的機率仍然是 \(\frac{1}{2}\)，硬幣不會「記得」前面的結果。</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">實驗的比值</span>
+              次數夠多時，正面次數 \(\div\) 總次數 \(\approx \frac{1}{2}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_coinflip.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：阿骰用拇指把一枚硬幣彈向空中，小棋拿著鉛筆在小記分板上畫一道道短線，記錄正面與反面出現的次數。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-coins"></i> 視覺互動探索：擲很多次硬幣</h3>
+            <p class="interactive-instruction">按按鈕擲硬幣，折線是「到目前為止正面的比值」。先只擲 10 次，再一路擲到幾百、幾千次：折線最後停在哪裡附近？中間有沒有出現連續好幾次同一面？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c2" width="540" height="460"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c2-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">投擲</span>
+                    <div class="btn-group">
+                      <button class="pick-btn" id="c2-t1">擲 1 次</button>
+                      <button class="pick-btn" id="c2-t10">擲 10 次</button>
+                      <button class="pick-btn" id="c2-t100">擲 100 次</button>
+                      <button class="pick-btn" id="c2-reset">重來</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c2-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (實驗與機率)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-3">
+            <p class="quiz-question"><strong>Q3.</strong> 小棋連續擲一枚公正的硬幣，前 \(5\) 次都出現正面。阿骰說：「下一次一定比較容易出現反面。」第 \(6\) 次出現反面的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-3" value="A"><span class="option-text">A. \(\frac{5}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-3" value="B"><span class="option-text">B. \(1\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-3" value="C"><span class="option-text">C. \(\frac{1}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-3" value="D"><span class="option-text">D. \(\frac{1}{2}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。每一次投擲都只有正、反兩種機會相等的結果，硬幣不會「記得」前面出現什麼，第 \(6\) 次出現反面的機率仍是 \(\frac{1}{2}\)；阿骰的說法不正確。<br>
+              A、C 錯：把「6 次裡的第幾次」當成結果來數，但每一次投擲的結果只有正、反兩種。<br>
+              B 錯：機率不是保證，前面連續正面不會讓反面「一定」出現。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-4">
+            <p class="quiz-question"><strong>Q4.</strong> 阿骰把一枚公正的硬幣擲了 \(200\) 次，正面出現 \(92\) 次。下列敘述何者正確？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-4" value="A"><span class="option-text">A. 這枚硬幣出現正面的機率就是 \(\frac{23}{50}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-4" value="B"><span class="option-text">B. 繼續擲很多次，正面次數與總次數的比值通常會更接近 \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-4" value="C"><span class="option-text">C. 再擲 \(200\) 次，正面一定會出現 \(108\) 次</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-4" value="D"><span class="option-text">D. 正面不是剛好 \(100\) 次，可見這枚硬幣不公正</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。實驗的比值會隨著次數變動，次數愈多通常愈接近 \(\frac{1}{2}\)。<br>
+              A 錯：\(\frac{92}{200} = \frac{23}{50}\) 只是這 \(200\) 次的實驗比值，公正硬幣出現正面的機率是 \(\frac{1}{2}\)。<br>
+              C 錯：機率不是保證，後面的結果不會「補回」前面少的次數。<br>
+              D 錯：公正的硬幣擲 \(200\) 次，正面不剛好 \(100\) 次是很常見的事。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 3: 機會相等
+           ========================================== -->
+      <section class="concept-section" id="concept3">
+        <h2 class="section-title">
+          <i class="fa-solid fa-bullseye" aria-hidden="true"></i> <span>重點 3：每種結果機會相等，才能說機率是 \(\frac{1}{n}\)</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>一個實驗所有可能的結果共 \(n\) 種，<strong>每一種發生的機會都相等</strong>時，每一種結果的機率是 \(\frac{1}{n}\)：
+                <ul>
+                  <li>公正的硬幣：正、反 \(2\) 種，各 \(\frac{1}{2}\)。</li>
+                  <li>公正的骰子：\(1\) 到 \(6\) 點共 \(6\) 種，各 \(\frac{1}{6}\)。</li>
+                  <li>籤筒裡編號 \(1 \sim 35\) 的 \(35\) 支籤：每支被抽到的機率 \(\frac{1}{35}\)。</li>
+                </ul>
+              </li>
+              <li>如果各種結果<strong>機會不相等</strong>，就不能說每種是 \(\frac{1}{n}\)：
+                <ul>
+                  <li>投擲<strong>圖釘</strong>：針尖朝上、朝下只有 \(2\) 種，但針尖輕、針帽重，兩種機會不相等，不能各算 \(\frac{1}{2}\)。</li>
+                  <li>投擲<strong>長方體橡皮擦</strong>：\(6\) 個面大小不一樣，各面朝上的機率不相等。</li>
+                </ul>
+              </li>
+              <li>「只有兩種結果」不代表機率是 \(\frac{1}{2}\)：先問「這兩種的機會一樣嗎？」</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">先檢查</span>
+              \(n\) 種結果<strong>機會相等</strong> \(\Rightarrow\) 每種的機率是 \(\frac{1}{n}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_thumbtack.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：桌上放著一枚針尖朝上的大圖釘和一枚針尖朝下側躺的圖釘，旁邊有一塊長方體橡皮擦；小棋拿著放大鏡比較兩枚圖釘。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-bullseye"></i> 視覺互動探索：旋轉的飛鏢靶</h3>
+            <p class="interactive-instruction">飛鏢靶在旋轉，每一格被射中的機會相等。選擇等分的格數、調整紅色的格數：結果永遠只有「紅」「白」兩種，射中紅色的機率卻會跟著變。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c3" width="540" height="440"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c3-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c3-k">紅色格數：<span id="c3-vk" class="val-num">3</span> 格</label>
+                    <input type="range" id="c3-k" min="1" max="7" value="3" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">等分</span>
+                    <div class="btn-group" id="c3-n-group">
+                      <button class="pick-btn" data-c3-n="6">6 等分</button>
+                      <button class="pick-btn active" data-c3-n="8">8 等分</button>
+                      <button class="pick-btn" data-c3-n="12">12 等分</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c3-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (機會相等)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-5">
+            <p class="quiz-question"><strong>Q5.</strong> 下列哪一個實驗，可以說「每一種結果發生的機會都相等」？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-5" value="A"><span class="option-text">A. 投擲一枚圖釘，看針尖朝上或朝下</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-5" value="B"><span class="option-text">B. 投擲一個長方體橡皮擦，看哪一面朝上</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-5" value="C"><span class="option-text">C. 投擲一枚材質均勻的硬幣，看出現正面或反面</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-5" value="D"><span class="option-text">D. 射一個紅色占 \(\frac{3}{4}\)、白色占 \(\frac{1}{4}\) 的旋轉飛鏢靶，看射中紅或白</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。材質均勻的硬幣，正、反面出現的機會相等。<br>
+              A 錯：圖釘針尖輕、針帽重，兩種結果機會不相等。<br>
+              B 錯：長方體各面大小不一樣，大的面比較容易朝上。<br>
+              D 錯：紅色占的區域比較大，射中紅色的機率是 \(\frac{3}{4}\)，紅、白兩種機會不相等。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-6">
+            <p class="quiz-question"><strong>Q6.</strong> 一個旋轉的飛鏢靶分成 \(10\) 等分，其中 \(4\) 格紅色、\(6\) 格白色，每一格被射中的機會相等。小棋說：「只有紅、白兩種結果，所以射中紅色的機率是 \(\frac{1}{2}\)。」射中紅色的機率應該是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-6" value="A"><span class="option-text">A. \(\frac{2}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-6" value="B"><span class="option-text">B. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-6" value="C"><span class="option-text">C. \(\frac{2}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-6" value="D"><span class="option-text">D. \(\frac{3}{5}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。機會相等的是「每一格」，共 \(10\) 格、紅色 \(4\) 格：
+              \[\frac{4}{10} = \frac{2}{5}\]
+              B 錯：紅、白兩種結果機會不相等，不能各算 \(\frac{1}{2}\)。<br>
+              C 錯：\(\frac{4}{6}\) 是紅格數與白格數的比，分母要用全部的格數。<br>
+              D 錯：\(\frac{3}{5}\) 是射中白色的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 4: 事件的機率＝個數÷個數
+           ========================================== -->
+      <section class="concept-section" id="concept4">
+        <h2 class="section-title">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> <span>重點 4：某事件的機率——數「個數」，不是數「種類」</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>實驗所有可能的結果共 \(n\) 種、每一種機會都相等，某事件包含其中 \(m\) 種，則這個事件的機率是 \(\frac{m}{n}\)。</li>
+              <li>從袋中任取一顆球，機會相等的是<strong>每一顆球</strong>，所以要數「顆數」，不是數「顏色有幾種」。</li>
+              <li>例：盒中 \(18\) 顆黑球、\(12\) 顆黃球，共 \(30\) 顆：
+                <ul>
+                  <li>取出黑球的機率 \(\frac{18}{30} = \frac{3}{5}\)；取出黃球的機率用同樣的方法算：\(12\) 顆 \(\div 30\) 顆。</li>
+                  <li>說「只有黑、黃兩種，所以各是 \(\frac{1}{2}\)」是<strong>錯的</strong>——兩種顏色的球數不一樣，機會不相等。</li>
+                </ul>
+              </li>
+              <li>同一種東西有好幾個時，分子要把它們全部加起來（例：偶數號球 \(=\) \(2\) 號球的顆數 \(+\) \(4\) 號球的顆數）。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">某事件的機率</span>
+              \(\dfrac{\text{該事件所含結果的個數}}{\text{實驗中所有可能結果的個數}}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_bag.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：木桌上一個羊毛氈抽球袋，旁邊把紅色和黃色的毛氈球分成兩排平放，黃球那排比紅球那排長；阿骰用手指一顆一顆點著數。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-bag-shopping"></i> 視覺互動探索：看顏色還是數顆數？</h3>
+            <p class="interactive-instruction">調整三種顏色的顆數，選一個要取到的顏色。上面那行是「看顏色種類」的錯誤算法，下面是「數顆數」的正確算法——什麼時候兩者剛好一樣？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c4" width="540" height="430"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c4-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c4-r">紅球：<span id="c4-vr" class="val-num">2</span> 顆</label>
+                    <input type="range" id="c4-r" min="1" max="6" value="2" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c4-y">黃球：<span id="c4-vy" class="val-num">4</span> 顆</label>
+                    <input type="range" id="c4-y" min="1" max="6" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c4-g">綠球：<span id="c4-vg" class="val-num">1</span> 顆</label>
+                    <input type="range" id="c4-g" min="0" max="6" value="1" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">取到</span>
+                    <div class="btn-group" id="c4-ev-group">
+                      <button class="pick-btn active" data-c4-ev="r">紅球</button>
+                      <button class="pick-btn" data-c4-ev="y">黃球</button>
+                      <button class="pick-btn" data-c4-ev="g">綠球</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c4-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (數個數)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-7">
+            <p class="quiz-question"><strong>Q7.</strong> 桌遊袋裡有 \(11\) 枚紅色籌碼、\(13\) 枚黃色籌碼，大小、材質都相同。從袋中任取一枚，取到紅色籌碼的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-7" value="A"><span class="option-text">A. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-7" value="B"><span class="option-text">B. \(\frac{11}{24}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-7" value="C"><span class="option-text">C. \(\frac{11}{13}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-7" value="D"><span class="option-text">D. \(\frac{13}{24}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。共 \(11 + 13 = 24\) 枚，每一枚被取到的機會相等，紅色 \(11\) 枚，機率 \(\frac{11}{24}\)。<br>
+              A 錯：只看顏色有兩種，但兩種的枚數不一樣，機會不相等。<br>
+              C 錯：分母要用全部的枚數 \(24\)，不是黃色的 \(13\)。<br>
+              D 錯：\(\frac{13}{24}\) 是取到黃色籌碼的機率。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-8">
+            <p class="quiz-question"><strong>Q8.</strong> 袋中有大小、材質相同的號碼球：\(1\) 號 \(1\) 顆、\(2\) 號 \(3\) 顆、\(3\) 號 \(4\) 顆、\(4\) 號 \(6\) 顆。從袋中任取一顆，取到偶數號球的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-8" value="A"><span class="option-text">A. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-8" value="B"><span class="option-text">B. \(\frac{5}{14}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-8" value="C"><span class="option-text">C. \(\frac{9}{10}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-8" value="D"><span class="option-text">D. \(\frac{9}{14}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。共 \(1 + 3 + 4 + 6 = 14\) 顆，偶數號球有 \(3 + 6 = 9\) 顆，機率 \(\frac{9}{14}\)。<br>
+              A 錯：只看號碼 \(1 \sim 4\) 裡有 \(2\) 個偶數，但每個號碼的顆數不一樣。<br>
+              B 錯：\(\frac{5}{14}\) 是取到奇數號球的機率。<br>
+              C 錯：分母錯用了號碼的和 \(1 + 2 + 3 + 4 = 10\)，應該用顆數的和。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 5: 籤筒
+           ========================================== -->
+      <section class="concept-section" id="concept5">
+        <h2 class="section-title">
+          <i class="fa-solid fa-hashtag" aria-hidden="true"></i> <span>重點 5：抽籤——列出事件包含哪些號碼</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>籤筒中有編號 \(1 \sim N\) 的 \(N\) 支籤，任抽一支：所有可能的結果有 \(N\) 種、機會相等。</li>
+              <li>先把符合事件的號碼<strong>一個一個列出來</strong>再數，例：\(1 \sim 10\) 號——
+                <ul>
+                  <li>\(3\) 的倍數：\(3\)、\(6\)、\(9\)，機率 \(\frac{3}{10}\)。</li>
+                  <li>\(5\) 的倍數：\(5\)、\(10\)，機率 \(\frac{2}{10} = \frac{1}{5}\)。</li>
+                  <li>既是 \(3\) 的倍數又是 \(5\) 的倍數：一支也沒有，機率 \(0\)（不可能事件）。</li>
+                  <li>編號不是 \(4\)：只有 \(1\) 支不符合，\(10 - 1 = 9\) 支符合，機率 \(\frac{9}{10}\)。</li>
+                </ul>
+              </li>
+              <li>容易漏數的地方：\(1\) 不是質數；一個數的因數包含 \(1\) 和它自己；「既是……又是……」要同時符合兩個條件。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">抽籤的機率</span>
+              符合的支數 \(\div\) 籤的總支數
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_lots.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：羊毛氈做的竹籤筒裡插著一把細長的籤，小棋閉著眼睛抽出一支，阿骰拿著寫了號碼的小黑板等著記錄。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-hashtag"></i> 視覺互動探索：籤筒找號碼</h3>
+            <p class="interactive-instruction">調整籤的支數，再選一個事件，符合的籤會亮起來。試試「質數」「\(N\) 的因數」：哪幾個號碼最容易漏掉？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c5" width="540" height="390"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c5-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c5-n">籤的支數 \(N\)：<span id="c5-vn" class="val-num">12</span> 支</label>
+                    <input type="range" id="c5-n" min="8" max="20" value="12" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">事件</span>
+                    <div class="btn-group" id="c5-ev-group">
+                      <button class="pick-btn" data-c5-ev="even">偶數</button>
+                      <button class="pick-btn active" data-c5-ev="m3">3 的倍數</button>
+                      <button class="pick-btn" data-c5-ev="prime">質數</button>
+                      <button class="pick-btn" data-c5-ev="factor">\(N\) 的因數</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">再試</span>
+                    <div class="btn-group" id="c5-ev-group2">
+                      <button class="pick-btn" data-c5-ev="both">既是 2 又是 3 的倍數</button>
+                      <button class="pick-btn" data-c5-ev="notN">不是 \(N\)</button>
+                      <button class="pick-btn" data-c5-ev="over">大於 \(N\)</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c5-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (抽籤)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-9">
+            <p class="quiz-question"><strong>Q9.</strong> 籤筒中有 \(24\) 支籤，逐一標上 \(1 \sim 24\) 的號碼，從中任意抽出一支，每支被抽中的機會相等。抽到的號碼是 \(24\) 的因數的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-9" value="A"><span class="option-text">A. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-9" value="B"><span class="option-text">B. \(\frac{1}{4}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-9" value="C"><span class="option-text">C. \(\frac{7}{24}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-9" value="D"><span class="option-text">D. \(\frac{1}{2}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。\(24\) 的因數有 \(1\)、\(2\)、\(3\)、\(4\)、\(6\)、\(8\)、\(12\)、\(24\)，共 \(8\) 個，機率 \(\frac{8}{24} = \frac{1}{3}\)。<br>
+              B 錯：漏掉了 \(1\) 和 \(24\)，只數到 \(6\) 個，\(\frac{6}{24} = \frac{1}{4}\)。<br>
+              C 錯：漏掉了 \(1\)，只數到 \(7\) 個。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-10">
+            <p class="quiz-question"><strong>Q10.</strong> 籤筒中有 \(40\) 支籤，逐一標上 \(1 \sim 40\) 的號碼，從中任意抽出一支。抽到的號碼既是 \(4\) 的倍數、又是 \(6\) 的倍數的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-10" value="A"><span class="option-text">A. \(\frac{1}{40}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-10" value="B"><span class="option-text">B. \(\frac{2}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-10" value="C"><span class="option-text">C. \(\frac{3}{40}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-10" value="D"><span class="option-text">D. \(\frac{1}{4}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。同時是 \(4\) 和 \(6\) 的倍數，就是 \(12\) 的倍數：\(12\)、\(24\)、\(36\)，共 \(3\) 個，機率 \(\frac{3}{40}\)。<br>
+              A 錯：以為要是 \(4 \times 6 = 24\) 的倍數，只數到 \(24\)。<br>
+              B 錯：把 \(4\) 的倍數 \(10\) 個與 \(6\) 的倍數 \(6\) 個相加，那是「只要符合其中一個」還多算了重複的。<br>
+              D 錯：只數了 \(4\) 的倍數。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 6: 擲骰換點心
+           ========================================== -->
+      <section class="concept-section" id="concept6">
+        <h2 class="section-title">
+          <i class="fa-solid fa-dice-five" aria-hidden="true"></i> <span>重點 6：擲骰子——把每一面分給事件，機率加起來是 1</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>擲一顆公正的骰子：所有可能的結果是 \(1\) 到 \(6\) 點共 \(6\) 種，機會相等。</li>
+              <li>遊戲規則把 \(6\) 個面分給不同的結果時，逐條列出每種結果包含哪幾面。例（園遊會擲骰吃美食）：
+                <ul>
+                  <li>點數是偶數（\(2\)、\(4\)、\(6\)）吃臭豆腐：\(\frac{3}{6} = \frac{1}{2}\)。</li>
+                  <li>點數是比 \(5\) 小的奇數（\(1\)、\(3\)）吃炸雞排：\(\frac{2}{6} = \frac{1}{3}\)。</li>
+                  <li>點數是 \(5\) 吃烤香腸：\(\frac{1}{6}\)。</li>
+                </ul>
+              </li>
+              <li>每一面都一定會落在其中一種結果裡、而且不重複，所以這幾種結果的機率<strong>加起來是 \(1\)</strong>，可以用來檢查有沒有漏數。</li>
+              <li>骰子的面上若有<strong>重複的數字</strong>（改造骰子），要數「面數」，不是數「有幾種數字」。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">擲一顆骰子</span>
+              機率 \(=\) 分到的面數 \(\div 6\)；各種結果的機率和 \(= 1\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_dessert.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：木桌上一顆大大的奶油色羊毛氈骰子停在 5 點，旁邊排著蛋糕、鬆餅和奶茶三種點心；小棋舉手歡呼，阿骰端著托盤。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-dice-five"></i> 視覺互動探索：自己訂換點心的規則</h3>
+            <p class="interactive-instruction">點畫面上的骰子（或下方按鈕），把那一面換成另一種點心。不管怎麼分，三種點心的機率加起來都是多少？讓某種點心一面都分不到時，它的機率是多少？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c6" width="540" height="410"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c6-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">換一面</span>
+                    <div class="btn-group">
+                      <button class="pick-btn" data-c6-face="1">1 點</button>
+                      <button class="pick-btn" data-c6-face="2">2 點</button>
+                      <button class="pick-btn" data-c6-face="3">3 點</button>
+                      <button class="pick-btn" data-c6-face="4">4 點</button>
+                      <button class="pick-btn" data-c6-face="5">5 點</button>
+                      <button class="pick-btn" data-c6-face="6">6 點</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">規則</span>
+                    <div class="btn-group">
+                      <button class="pick-btn" data-c6-preset="a">偶數／小奇數／5</button>
+                      <button class="pick-btn" data-c6-preset="b">兩面一種</button>
+                      <button class="pick-btn" data-c6-preset="c">全部蛋糕</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c6-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (擲骰子)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-11">
+            <p class="quiz-question"><strong>Q11.</strong> 桌遊咖啡館擲一顆公正的骰子換點心：點數是 \(4\) 的因數換蛋糕、點數是 \(3\) 或 \(5\) 換鬆餅、點數是 \(6\) 換奶茶。換到鬆餅的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-11" value="A"><span class="option-text">A. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-11" value="B"><span class="option-text">B. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-11" value="C"><span class="option-text">C. \(\frac{1}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-11" value="D"><span class="option-text">D. \(\frac{2}{3}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。鬆餅包含 \(3\)、\(5\) 兩面，機率 \(\frac{2}{6} = \frac{1}{3}\)。<br>
+              A 錯：\(\frac{1}{2}\) 是蛋糕的機率（\(4\) 的因數 \(1\)、\(2\)、\(4\) 共 \(3\) 面）。<br>
+              C 錯：\(\frac{1}{6}\) 是奶茶的機率。<br>
+              檢查：\(\frac{3}{6} + \frac{2}{6} + \frac{1}{6} = 1\)，沒有漏數。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-12">
+            <p class="quiz-question"><strong>Q12.</strong> 阿骰做了一顆改造骰子，六個面分別標上 \(1\)、\(2\)、\(2\)、\(3\)、\(3\)、\(3\)，擲出每一面的機會相等。擲出數字 \(3\) 的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-12" value="A"><span class="option-text">A. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-12" value="B"><span class="option-text">B. \(\frac{1}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-12" value="C"><span class="option-text">C. \(\frac{5}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-12" value="D"><span class="option-text">D. \(\frac{1}{2}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。機會相等的是 \(6\) 個面，標 \(3\) 的有 \(3\) 面，機率 \(\frac{3}{6} = \frac{1}{2}\)。<br>
+              A 錯：數字只有 \(1\)、\(2\)、\(3\) 三種，但三種數字占的面數不一樣，機會不相等。<br>
+              B 錯：把 \(3\) 只算成一面。<br>
+              C 錯：\(\frac{5}{6}\) 是擲出 \(2\) 或 \(3\) 的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 7: 撲克牌
+           ========================================== -->
+      <section class="concept-section" id="concept7">
+        <h2 class="section-title">
+          <i class="fa-solid fa-heart" aria-hidden="true"></i> <span>重點 7：撲克牌——52 張 \(=\) 4 種花色 \(\times\) 13 種點數</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>一副撲克牌（不含鬼牌）共 \(52\) 張：黑桃 ♠、紅心 ♥、方塊 ♦、梅花 ♣ 各 \(13\) 張，點數是 A、K、Q、J、10、9、……、2。</li>
+              <li>紅心、方塊是<strong>紅色</strong>，黑桃、梅花是<strong>黑色</strong>，紅、黑各 \(26\) 張。</li>
+              <li>把牌排成 \(4\) 列 \(\times\) \(13\) 行的表，事件的張數＝符合的花色數 \(\times\) 符合的點數數。例：
+                <ul>
+                  <li>紅色：\(\frac{26}{52} = \frac{1}{2}\)；梅花：\(\frac{13}{52} = \frac{1}{4}\)。</li>
+                  <li>點數是 K：\(4\) 種花色各 \(1\) 張，\(\frac{4}{52} = \frac{1}{13}\)。</li>
+                  <li>英文字母（A、K、Q、J）：\(4 \times 4 = 16\) 張；數字（2～10）：\(4 \times 9 = 36\) 張。</li>
+                </ul>
+              </li>
+              <li>「或」的事件（例：紅心或 K）不能直接相加：兩邊重疊的那張要扣掉，最穩的作法是在表上直接圈出來數。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">撲克牌</span>
+              張數 \(=\) 花色數 \(\times\) 點數數，機率 \(=\) 張數 \(\div 52\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_cards.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：桌上的撲克牌背面朝上攤成一個扇形，阿骰從中間抽出一張，小棋托著下巴猜那張牌的花色。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-heart"></i> 視覺互動探索：52 張牌的表</h3>
+            <p class="interactive-instruction">選一個花色條件和一個點數條件，符合「兩個條件都成立」的牌會亮起來。對照亮起來的張數，和「花色數 \(\times\) 點數數」是不是一樣？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c7" width="540" height="410"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c7-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">花色</span>
+                    <div class="btn-group" id="c7-suit-group">
+                      <button class="pick-btn" data-c7-suit="all">任何</button>
+                      <button class="pick-btn active" data-c7-suit="red">紅色</button>
+                      <button class="pick-btn" data-c7-suit="black">黑色</button>
+                      <button class="pick-btn" data-c7-suit="S">♠</button>
+                      <button class="pick-btn" data-c7-suit="H">♥</button>
+                      <button class="pick-btn" data-c7-suit="D">♦</button>
+                      <button class="pick-btn" data-c7-suit="C">♣</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">點數</span>
+                    <div class="btn-group" id="c7-rank-group">
+                      <button class="pick-btn active" data-c7-rank="all">任何</button>
+                      <button class="pick-btn" data-c7-rank="A">A</button>
+                      <button class="pick-btn" data-c7-rank="K">K</button>
+                      <button class="pick-btn" data-c7-rank="face">J、Q、K</button>
+                      <button class="pick-btn" data-c7-rank="letter">字母</button>
+                      <button class="pick-btn" data-c7-rank="num">數字</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c7-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (撲克牌)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-13">
+            <p class="quiz-question"><strong>Q13.</strong> 從一副 \(52\) 張的撲克牌（不含鬼牌）中任意抽出一張，每張被抽中的機會相等。抽到的牌是「紅心或 K」的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-13" value="A"><span class="option-text">A. \(\frac{4}{13}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-13" value="B"><span class="option-text">B. \(\frac{17}{52}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-13" value="C"><span class="option-text">C. \(\frac{1}{52}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-13" value="D"><span class="option-text">D. \(\frac{1}{4}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。紅心 \(13\) 張，再加上另外三種花色的 K 共 \(3\) 張（紅心 K 已經算過）：\(13 + 3 = 16\) 張，機率 \(\frac{16}{52} = \frac{4}{13}\)。<br>
+              B 錯：\(13 + 4 = 17\)，把紅心 K 算了兩次。<br>
+              C 錯：\(\frac{1}{52}\) 是「紅心而且是 K」的機率。<br>
+              D 錯：只算了紅心。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-14">
+            <p class="quiz-question"><strong>Q14.</strong> 從一副 \(52\) 張的撲克牌（不含鬼牌）中任意抽出一張。抽到的牌點數是 \(3\)、\(6\) 或 \(9\) 的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-14" value="A"><span class="option-text">A. \(\frac{3}{52}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-14" value="B"><span class="option-text">B. \(\frac{1}{4}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-14" value="C"><span class="option-text">C. \(\frac{3}{13}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-14" value="D"><span class="option-text">D. \(\frac{9}{13}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(3\) 種點數 \(\times\) \(4\) 種花色 \(= 12\) 張，機率 \(\frac{12}{52} = \frac{3}{13}\)。<br>
+              A 錯：每種點數只算了一張，忘了有 \(4\) 種花色。<br>
+              B 錯：\(\frac{1}{4}\) 是抽到某一種花色的機率。<br>
+              D 錯：\(\frac{9}{13}\) 是抽到數字牌（\(2 \sim 10\)）的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 8: 不放回再抽
+           ========================================== -->
+      <section class="concept-section" id="concept8">
+        <h2 class="section-title">
+          <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> <span>重點 8：抽出後不放回——用「剩下的」重新數</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>抽出來的球<strong>不放回</strong>，袋子裡的球就變少了；下一次抽球時，機會相等的是<strong>袋子裡剩下的每一顆</strong>。</li>
+              <li>所以分子、分母<strong>都要</strong>改成剩下的數量：
+                <ul>
+                  <li>分母：原本的總數 \(-\) 已經拿走的顆數。</li>
+                  <li>分子：原本這種球的顆數 \(-\) 已經拿走的這種球。</li>
+                </ul>
+              </li>
+              <li>如果規則是「某種球放回、另一種不放回」，只有不放回的那種會變少。</li>
+              <li>例：箱內 \(50\) 顆白球、\(10\) 顆紅球，白球抽出放回、紅球不放回；前面共抽出紅球 \(4\) 次，下一次抽紅球的機率是 \(\frac{10 - 4}{60 - 4} = \frac{6}{56} = \frac{3}{28}\)。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">不放回之後</span>
+              機率 \(=\) 剩下的這種球 \(\div\) 剩下的全部的球
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_noreturn.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：小棋從羊毛氈布袋裡拿出一顆紅色毛氈球，放進桌上一個小木盤；木盤裡已經平放著兩顆抽出來的球，阿骰低頭往袋子裡看剩下幾顆。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-arrow-right-from-bracket"></i> 視覺互動探索：已經抽出去的球</h3>
+            <p class="interactive-instruction">設定袋子裡原本有幾顆紅球、白球，再設定已經抽出（不放回）幾顆。下一次抽到紅球（或白球）的機率，和一開始比起來變大還是變小？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c8" width="540" height="430"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c8-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c8-r">原本紅球：<span id="c8-vr" class="val-num">6</span> 顆</label>
+                    <input type="range" id="c8-r" min="2" max="8" value="6" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-w">原本白球：<span id="c8-vw" class="val-num">3</span> 顆</label>
+                    <input type="range" id="c8-w" min="2" max="8" value="3" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-xr">已抽出紅球：<span id="c8-vxr" class="val-num">1</span> 顆</label>
+                    <input type="range" id="c8-xr" min="0" max="8" value="1" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-xw">已抽出白球：<span id="c8-vxw" class="val-num">0</span> 顆</label>
+                    <input type="range" id="c8-xw" min="0" max="8" value="0" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">下一次</span>
+                    <div class="btn-group" id="c8-ev-group">
+                      <button class="pick-btn active" data-c8-ev="r">抽到紅球</button>
+                      <button class="pick-btn" data-c8-ev="w">抽到白球</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c8-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (不放回再抽)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-15">
+            <p class="quiz-question"><strong>Q15.</strong> 箱內有 \(40\) 顆白球和 \(12\) 顆紅球。阿骰每次從箱內抽出一顆：抽到白球就放回、抽到紅球就不放回。已知前 \(20\) 次共抽出紅球 \(5\) 次，第 \(21\) 次抽球時箱內每顆球被抽出的機會相等，這次抽到紅球的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-15" value="A"><span class="option-text">A. \(\frac{3}{13}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-15" value="B"><span class="option-text">B. \(\frac{7}{47}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-15" value="C"><span class="option-text">C. \(\frac{7}{52}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-15" value="D"><span class="option-text">D. \(\frac{5}{47}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。白球都放回了，仍是 \(40\) 顆；紅球被拿走 \(5\) 顆，剩 \(7\) 顆。箱內共 \(47\) 顆：
+              \[\frac{12 - 5}{52 - 5} = \frac{7}{47}\]
+              A 錯：\(\frac{12}{52} = \frac{3}{13}\) 是一開始的機率，沒有扣掉拿走的紅球。<br>
+              C 錯：分子扣了、分母沒扣，分母也要改成剩下的 \(47\) 顆。<br>
+              D 錯：分子用了「已經拿走的」\(5\) 顆，應該用剩下的 \(7\) 顆。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-16">
+            <p class="quiz-question"><strong>Q16.</strong> 箱子裡有號碼 \(1 \sim 5\) 的球，每個號碼各 \(2\) 顆，共 \(10\) 顆。小棋先抽出 \(4\) 顆且不放回，號碼是 \(1\)、\(1\)、\(3\)、\(4\)。阿骰再從剩下的球中任抽一顆，他抽到的號碼與小棋已抽出的任一顆號碼相同的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-16" value="A"><span class="option-text">A. \(\frac{1}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-16" value="B"><span class="option-text">B. \(\frac{3}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-16" value="C"><span class="option-text">C. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-16" value="D"><span class="option-text">D. \(\frac{1}{3}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。剩下 \(6\) 顆：\(2\)、\(2\)、\(3\)、\(4\)、\(5\)、\(5\)。小棋抽出的號碼是 \(1\)、\(3\)、\(4\)，但兩顆 \(1\) 號已經都被拿走，剩下的球裡只有 \(3\)、\(4\) 各 \(1\) 顆符合，機率 \(\frac{2}{6} = \frac{1}{3}\)。<br>
+              A 錯：分子數對了 \(2\) 顆，分母卻用了原本的 \(10\) 顆，\(\frac{2}{10} = \frac{1}{5}\)。<br>
+              B 錯：只看號碼 \(1 \sim 5\) 中有 \(3\) 種號碼被抽過，\(\frac{3}{5}\)；但兩顆 \(1\) 號都已經不在箱子裡了。<br>
+              C 錯：以為 \(1\) 號還剩一顆，數成 \(3\) 顆。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 9: 樹狀圖
+           ========================================== -->
+      <section class="concept-section" id="concept9">
+        <h2 class="section-title">
+          <i class="fa-solid fa-sitemap" aria-hidden="true"></i> <span>重點 9：樹狀圖——一層一層列出所有結果</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>結果不是一眼看得完時，用<strong>樹狀圖</strong>逐次列出：第一層畫出第一次的所有結果，每一個後面再接上第二次的所有結果。</li>
+              <li>每一個<strong>末端</strong>就是一種結果，用數對表示，例：\((\text{正}, \text{反})\) 表示第一次正面、第二次反面。</li>
+              <li>例：投擲一枚硬幣兩次（或一個家庭有兩個小孩）——
+                <ul>
+                  <li>結果有 \((\text{正}, \text{正})\)、\((\text{正}, \text{反})\)、\((\text{反}, \text{正})\)、\((\text{反}, \text{反})\) 共 \(2 \times 2 = 4\) 種。</li>
+                  <li>兩次都是反面：\(\frac{1}{4}\)；一次正面、一次反面：\((\text{正}, \text{反})\) 和 \((\text{反}, \text{正})\) 是<strong>兩種不同的結果</strong>，機率 \(\frac{2}{4} = \frac{1}{2}\)，不是 \(\frac{1}{3}\)。</li>
+                </ul>
+              </li>
+              <li>第一次有 \(a\) 種、第二次有 \(b\) 種，末端共 \(a \times b\) 個（例：動物盒玩 \(5\) 款、汽車盒玩 \(4\) 款，各買一盒共 \(20\) 種）。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">兩層樹狀圖</span>
+              末端個數 \(=\) 第一層的分支數 \(\times\) 第二層的分支數
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_tree.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：牆上用毛線和毛氈片拼成一棵往下分叉的樹狀圖，最上面一枚大硬幣分出兩條毛線，每條再分出兩條，最下面掛著四枚小硬幣；小棋踮腳指著最下面那一排。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-sitemap"></i> 視覺互動探索：點選末端畫出事件</h3>
+            <p class="interactive-instruction">選第一次和第二次要用的道具，畫出樹狀圖；點選最下面的末端，把你要的事件圈出來。試試「兩次一樣」「第一次是某一種」各有幾個末端？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c9" width="540" height="450"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c9-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">第一次</span>
+                    <div class="btn-group" id="c9-a-group">
+                      <button class="pick-btn active" data-c9-a="coin">硬幣</button>
+                      <button class="pick-btn" data-c9-a="spin">三色轉盤</button>
+                      <button class="pick-btn" data-c9-a="box">四款盒玩</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">第二次</span>
+                    <div class="btn-group" id="c9-b-group">
+                      <button class="pick-btn active" data-c9-b="coin">硬幣</button>
+                      <button class="pick-btn" data-c9-b="spin">三色轉盤</button>
+                      <button class="pick-btn" data-c9-b="box">四款盒玩</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">選取</span>
+                    <div class="btn-group">
+                      <button class="pick-btn" id="c9-clear">全部取消</button>
+                      <button class="pick-btn" id="c9-all">全部選取</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c9-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (樹狀圖)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-17">
+            <p class="quiz-question"><strong>Q17.</strong> 同時投擲一枚公正的硬幣和一顆公正的骰子。硬幣出現正面、而且骰子點數是 \(3\) 的倍數的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-17" value="A"><span class="option-text">A. \(\frac{1}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-17" value="B"><span class="option-text">B. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-17" value="C"><span class="option-text">C. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-17" value="D"><span class="option-text">D. \(\frac{1}{12}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。樹狀圖第一層是硬幣（正、反），每一個後面接骰子的 \(6\) 種點數，共 \(2 \times 6 = 12\) 種。符合的有 \((\text{正}, 3)\)、\((\text{正}, 6)\) 共 \(2\) 種，機率 \(\frac{2}{12} = \frac{1}{6}\)。<br>
+              B 錯：只算了骰子是 \(3\) 的倍數，沒有管硬幣。<br>
+              C 錯：只算了硬幣是正面。<br>
+              D 錯：只數到 \((\text{正}, 3)\) 一種，漏了 \(6\) 點。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-18">
+            <p class="quiz-question"><strong>Q18.</strong> 甲袋中有紅、白、藍三顆球，乙袋中有紅、白兩顆球，大小材質都相同。從甲、乙兩袋各任取一顆球，兩顆球顏色相同的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-18" value="A"><span class="option-text">A. \(\frac{2}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-18" value="B"><span class="option-text">B. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-18" value="C"><span class="option-text">C. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-18" value="D"><span class="option-text">D. \(\frac{2}{3}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。第一層甲袋 \(3\) 種、第二層乙袋 \(2\) 種，共 \(3 \times 2 = 6\) 種。顏色相同的有 \((\text{紅}, \text{紅})\)、\((\text{白}, \text{白})\) 共 \(2\) 種，機率 \(\frac{2}{6} = \frac{1}{3}\)。<br>
+              A 錯：分母用了兩袋球的總數 \(5\)，但結果是「一對球」，要用 \(3 \times 2\)。<br>
+              B 錯：以為「同色、不同色」兩種各占一半。<br>
+              D 錯：\(\frac{2}{3}\) 是顏色不同的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 10: 比輸贏
+           ========================================== -->
+      <section class="concept-section" id="concept10">
+        <h2 class="section-title">
+          <i class="fa-solid fa-hand-scissors" aria-hidden="true"></i> <span>重點 10：兩人比輸贏——用樹狀圖判斷公不公平</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>兩個人各做一個選擇（出拳、出牌），第一層畫第一個人的選擇、第二層畫第二個人的選擇，在每個末端寫上<strong>誰贏</strong>。</li>
+              <li>例：猜拳一次，兩人出剪刀、石頭、布的機會相同：共 \(3 \times 3 = 9\) 種，甲贏 \(3\) 種、乙贏 \(3\) 種、平手 \(3\) 種，各 \(\frac{3}{9} = \frac{1}{3}\)——<strong>公平</strong>。</li>
+              <li>例：比數字牌，小妍有 \(1\)、\(2\)、\(6\)、\(8\)，小翊有 \(3\)、\(4\)、\(5\)、\(7\)，各出一張比大小：共 \(4 \times 4 = 16\) 種，小妍贏的有 \(7\) 種，機率 \(\frac{7}{16}\)。</li>
+              <li>贏、輸、平手三種結果的機率加起來是 \(1\)；兩人贏的機率相等，遊戲才公平。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">比輸贏</span>
+              逐一標出每個末端的勝負，再數一數
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_rps.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：小棋和阿骰隔著木桌面對面，各伸出一隻手猜拳，小棋出石頭、阿骰出剪刀；桌上放著一疊數字牌等著開局。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-hand-scissors"></i> 視覺互動探索：誰比較容易贏？</h3>
+            <p class="interactive-instruction">選「數字牌」時，調整兩人各自的 3 張牌；選「猜拳」看剪刀石頭布。每個末端下面標出勝負——什麼樣的牌會讓遊戲變得公平？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c10" width="540" height="465"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c10-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">遊戲</span>
+                    <div class="btn-group" id="c10-mode-group">
+                      <button class="pick-btn active" data-c10-mode="card">數字牌</button>
+                      <button class="pick-btn" data-c10-mode="rps">猜拳</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slider-wrapper" id="c10-sliders">
+                  <div class="slider-row">
+                    <label for="c10-a1">小棋第 1 張：<span id="c10-va1" class="val-num">2</span></label>
+                    <input type="range" id="c10-a1" min="1" max="9" value="2" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-a2">小棋第 2 張：<span id="c10-va2" class="val-num">6</span></label>
+                    <input type="range" id="c10-a2" min="1" max="9" value="6" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-a3">小棋第 3 張：<span id="c10-va3" class="val-num">7</span></label>
+                    <input type="range" id="c10-a3" min="1" max="9" value="7" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-b1">阿骰第 1 張：<span id="c10-vb1" class="val-num">3</span></label>
+                    <input type="range" id="c10-b1" min="1" max="9" value="3" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-b2">阿骰第 2 張：<span id="c10-vb2" class="val-num">4</span></label>
+                    <input type="range" id="c10-b2" min="1" max="9" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-b3">阿骰第 3 張：<span id="c10-vb3" class="val-num">8</span></label>
+                    <input type="range" id="c10-b3" min="1" max="9" value="8" step="1">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c10-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (比輸贏)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-19">
+            <p class="quiz-question"><strong>Q19.</strong> 小棋有 \(4\) 張數字牌 \(3\)、\(5\)、\(6\)、\(9\)，阿骰有 \(4\) 張數字牌 \(2\)、\(4\)、\(7\)、\(8\)。兩人各從自己的牌中任意出一張比大小，數字大的贏，每張牌被出的機會相等。小棋贏的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-19" value="A"><span class="option-text">A. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-19" value="B"><span class="option-text">B. \(\frac{7}{16}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-19" value="C"><span class="option-text">C. \(\frac{1}{4}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-19" value="D"><span class="option-text">D. \(\frac{9}{16}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。共 \(4 \times 4 = 16\) 種。小棋出 \(3\) 贏 \(1\) 種（對 \(2\)）、出 \(5\) 贏 \(2\) 種、出 \(6\) 贏 \(2\) 種、出 \(9\) 贏 \(4\) 種，共 \(9\) 種，機率 \(\frac{9}{16}\)。<br>
+              A 錯：以為兩人各有 \(4\) 張牌就一定公平。<br>
+              B 錯：\(\frac{7}{16}\) 是阿骰贏的機率（本題沒有平手）。<br>
+              C 錯：只看小棋 \(4\) 張牌中只有 \(9\) 一定會贏。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-20">
+            <p class="quiz-question"><strong>Q20.</strong> 小棋有 \(4\) 張數字牌 \(2\)、\(4\)、\(6\)、\(8\)，阿骰有 \(4\) 張數字牌 \(3\)、\(4\)、\(5\)、\(6\)。兩人各從自己的牌中任意出一張，數字相同就是平手。平手的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-20" value="A"><span class="option-text">A. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-20" value="B"><span class="option-text">B. \(\frac{1}{8}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-20" value="C"><span class="option-text">C. \(\frac{1}{16}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-20" value="D"><span class="option-text">D. \(\frac{1}{2}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。共 \(4 \times 4 = 16\) 種，平手的有 \((4, 4)\)、\((6, 6)\) 共 \(2\) 種，機率 \(\frac{2}{16} = \frac{1}{8}\)。<br>
+              A 錯：以為結果只有「小棋贏、阿骰贏、平手」三種，但這三種的機會並不相等。<br>
+              C 錯：只數到一種平手。<br>
+              D 錯：\(\frac{2}{4}\) 只看了小棋這一層，沒有乘上阿骰那一層。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 11: 兩顆骰子
+           ========================================== -->
+      <section class="concept-section" id="concept11">
+        <h2 class="section-title">
+          <i class="fa-solid fa-dice" aria-hidden="true"></i> <span>重點 11：兩顆骰子——36 個數對 \((a, b)\)</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>依序擲兩顆公正的骰子（或一顆骰子擲兩次）：樹狀圖第一層 \(6\) 個、每個再接 \(6\) 個，共 \(6 \times 6 = 36\) 種結果。</li>
+              <li>結果很多時，改用<strong>數對 \((a, b)\)</strong> 排成 \(6 \times 6\) 的表：\(a\) 是第一顆的點數、\(b\) 是第二顆的點數，每一格機會相等。</li>
+              <li>\((1, 2)\) 和 \((2, 1)\) 是<strong>兩種不同</strong>的結果；\((6, 5)\) 和 \((5, 4)\) 的機率都是 \(\frac{1}{36}\)。</li>
+              <li>例：
+                <ul>
+                  <li>兩顆都出現 \(1\) 點：只有 \((1, 1)\)，機率 \(\frac{1}{36}\)。</li>
+                  <li>點數和為 \(4\)：\((1, 3)\)、\((2, 2)\)、\((3, 1)\)，機率 \(\frac{3}{36} = \frac{1}{12}\)。</li>
+                  <li>兩顆點數都是合數：\((4, 4)\)、\((4, 6)\)、\((6, 4)\)、\((6, 6)\)，機率 \(\frac{4}{36}\)。</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">兩顆骰子</span>
+              共 \(36\) 個數對，機率 \(=\) 符合的格數 \(\div 36\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_twodice.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：木桌上並排停著一顆紅色和一顆藍色的羊毛氈骰子，阿骰指著其中一顆，小棋在一張畫了方格表的紙上畫記號。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-dice"></i> 視覺互動探索：36 格數對表</h3>
+            <p class="interactive-instruction">選一個事件（點數和要先調整 \(k\)），符合的數對會亮起來。點數和是多少時格子最多？亮起來的格子排成什麼形狀？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c11" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c11-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">事件</span>
+                    <div class="btn-group" id="c11-mode-group">
+                      <button class="pick-btn active" data-c11-mode="sum">和 \(= k\)</button>
+                      <button class="pick-btn" data-c11-mode="le">和 \(\le k\)</button>
+                      <button class="pick-btn" data-c11-mode="same">兩顆相同</button>
+                      <button class="pick-btn" data-c11-mode="odd">兩顆都是奇數</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slider-wrapper" id="c11-k-row">
+                  <div class="slider-row">
+                    <label for="c11-k">\(k\)：<span id="c11-vk" class="val-num">8</span></label>
+                    <input type="range" id="c11-k" min="2" max="12" value="8" step="1">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c11-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (兩顆骰子)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-21">
+            <p class="quiz-question"><strong>Q21.</strong> 依序投擲兩顆公正的骰子，兩顆骰子點數的乘積是 \(12\) 的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-21" value="A"><span class="option-text">A. \(\frac{1}{18}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-21" value="B"><span class="option-text">B. \(\frac{1}{12}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-21" value="C"><span class="option-text">C. \(\frac{1}{9}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-21" value="D"><span class="option-text">D. \(\frac{1}{6}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。乘積為 \(12\) 的數對有 \((2, 6)\)、\((6, 2)\)、\((3, 4)\)、\((4, 3)\) 共 \(4\) 個，機率 \(\frac{4}{36} = \frac{1}{9}\)。<br>
+              A 錯：只數了 \((2, 6)\)、\((3, 4)\)，把順序相反的當成同一種。<br>
+              B 錯：漏了一個數對，只數到 \(3\) 個。<br>
+              D 錯：\(\frac{6}{36}\) 是點數和為 \(7\) 的機率。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-22">
+            <p class="quiz-question"><strong>Q22.</strong> 依序投擲兩顆公正的骰子，第一顆的點數<strong>比第二顆大</strong>的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-22" value="A"><span class="option-text">A. \(\frac{5}{12}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-22" value="B"><span class="option-text">B. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-22" value="C"><span class="option-text">C. \(\frac{7}{12}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-22" value="D"><span class="option-text">D. \(\frac{1}{3}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。\(36\) 個數對中，兩顆相同的有 \(6\) 個；其餘 \(30\) 個裡，第一顆大、第二顆大各占一半，各 \(15\) 個。機率 \(\frac{15}{36} = \frac{5}{12}\)。<br>
+              B 錯：忘了扣掉兩顆點數相同的 \(6\) 個。<br>
+              C 錯：\(\frac{21}{36}\) 是「第一顆大於或等於第二顆」的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 12: 放回與不放回
+           ========================================== -->
+      <section class="concept-section" id="concept12">
+        <h2 class="section-title">
+          <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> <span>重點 12：取後放回、取後不放回——第二層少一支</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>從 \(n\) 顆球中依序抽兩次：
+                <ul>
+                  <li><strong>取後放回</strong>：第二次又是 \(n\) 顆任取，共 \(n \times n\) 種，兩次可以抽到同一顆。</li>
+                  <li><strong>取後不放回</strong>：第二次只剩 \(n - 1\) 顆，樹狀圖每一支下面都少了「剛剛抽走的那一顆」，共 \(n \times (n - 1)\) 種。</li>
+                </ul>
+              </li>
+              <li>例：袋中 \(1 \sim 4\) 號球，取後放回抽兩次，第二次號碼比第一次大：\(\frac{6}{16} = \frac{3}{8}\)。</li>
+              <li>例：桶中 \(1 \sim 3\) 號球，取後不放回抽兩顆，號碼和是奇數：\((1, 2)\)、\((2, 1)\)、\((2, 3)\)、\((3, 2)\)，共 \(\frac{4}{6} = \frac{2}{3}\)；也可以用數對直接列出 \(6\) 種，結果相同。</li>
+              <li>取後不放回時，「兩次抽到同一顆」是不可能事件，機率 \(0\)。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">抽兩次</span>
+              放回：\(n \times n\) 種；不放回：\(n \times (n - 1)\) 種
+            </div>
+
+            <div class="illustration-container">
+              <img src="ft2_draw2.webp" alt="桌遊咖啡館・羊毛氈手作公仔風插圖：小棋一手拿著一顆寫著號碼的毛氈球、一手正要伸進布袋抽第二顆，阿骰指著桌上的小木盤，提醒她第一顆不要放回去。" class="illustration" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-rotate-left"></i> 視覺互動探索：放回去，還是不放回？</h3>
+            <p class="interactive-instruction">切換「放回」與「不放回」，看樹狀圖哪些末端消失了（紅叉）。同一個事件在兩種抽法下，機率一樣嗎？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c12" width="540" height="455"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c12-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">球數</span>
+                    <div class="btn-group" id="c12-n-group">
+                      <button class="pick-btn" data-c12-n="3">3 顆</button>
+                      <button class="pick-btn active" data-c12-n="4">4 顆</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">抽法</span>
+                    <div class="btn-group" id="c12-back-group">
+                      <button class="pick-btn" data-c12-back="yes">取後放回</button>
+                      <button class="pick-btn active" data-c12-back="no">取後不放回</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">事件</span>
+                    <div class="btn-group" id="c12-ev-group">
+                      <button class="pick-btn active" data-c12-ev="gt">第二顆較大</button>
+                      <button class="pick-btn" data-c12-ev="odd">和是奇數</button>
+                      <button class="pick-btn" data-c12-ev="same">兩顆同號</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c12-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (放回與不放回)</h3>
+
+          <div class="quiz-card" data-quiz="2-2-23">
+            <p class="quiz-question"><strong>Q23.</strong> 籤筒內有 \(6\) 支籤，分別標記號碼 \(1 \sim 6\)。小棋以「每次取一支、取後不放回」的方式抽出兩支，每一種結果發生的機會相同。兩支籤的號碼和為 \(7\) 的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-23" value="A"><span class="option-text">A. \(\frac{1}{6}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-23" value="B"><span class="option-text">B. \(\frac{1}{5}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-23" value="C"><span class="option-text">C. \(\frac{1}{10}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-23" value="D"><span class="option-text">D. \(\frac{1}{15}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。不放回共 \(6 \times 5 = 30\) 種。和為 \(7\) 的有 \((1, 6)\)、\((6, 1)\)、\((2, 5)\)、\((5, 2)\)、\((3, 4)\)、\((4, 3)\) 共 \(6\) 種，機率 \(\frac{6}{30} = \frac{1}{5}\)。<br>
+              A 錯：\(\frac{6}{36}\) 用了放回的 \(6 \times 6\)。<br>
+              C 錯：分子只數了 \(3\) 種，把順序相反的當成同一種，分母卻用了有順序的 \(30\)。<br>
+              D 錯：只數到 \(2\) 種。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="2-2-24">
+            <p class="quiz-question"><strong>Q24.</strong> 袋中有紅、黑、綠、黃四顆球，大小材質相同。阿骰從袋中依序抽兩次、取後不放回，每顆球被抽出的機會都相等。他第二次抽到紅球的機率是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q2-2-24" value="A"><span class="option-text">A. \(\frac{1}{3}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-24" value="B"><span class="option-text">B. \(\frac{1}{12}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-24" value="C"><span class="option-text">C. \(\frac{1}{2}\)</span></label>
+              <label class="option-label"><input type="radio" name="q2-2-24" value="D"><span class="option-text">D. \(\frac{1}{4}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。不放回共 \(4 \times 3 = 12\) 種。第二次是紅球的有 \((\text{黑}, \text{紅})\)、\((\text{綠}, \text{紅})\)、\((\text{黃}, \text{紅})\) 共 \(3\) 種，機率 \(\frac{3}{12} = \frac{1}{4}\)——和第一次抽到紅球的機率一樣。<br>
+              A 錯：以為第二次是「剩下 \(3\) 顆抽 \(1\) 顆」，但不知道第一次抽走的是不是紅球，要用樹狀圖把所有情形都列出來。<br>
+              B 錯：\(\frac{1}{12}\) 是「指定第一次抽到某一色、第二次抽到紅球」的機率。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           小節總結
+           ========================================== -->
+      <section class="summary-section" id="summary">
+        <h2 class="section-title">
+          <i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 小節總結與核心回顧
+        </h2>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4><i class="fa-solid fa-clipboard-list"></i> 機率速查表</h4>
+            <ul class="bullet-list">
+              <li><strong>機率的範圍</strong>：\(0 \le\) 機率 \(\le 1\)；不可能事件是 \(0\)，必然事件是 \(1\)。</li>
+              <li><strong>實驗</strong>：次數愈多，比值通常愈接近機率；機率不是保證，前面的結果不影響下一次。</li>
+              <li><strong>先檢查機會相等</strong>：\(n\) 種結果機會相等，每種才是 \(\frac{1}{n}\)；圖釘、長方體、大小不同的區域都不行。</li>
+              <li><strong>某事件的機率</strong> \(=\) 該事件所含結果的個數 \(\div\) 所有可能結果的個數——數「個數」，不數「種類」。</li>
+              <li><strong>不放回</strong>：下一次用剩下的重新數，分子、分母一起改。</li>
+              <li><strong>樹狀圖</strong>：末端個數 \(=\) 各層分支數相乘；順序不同是不同的結果；兩顆骰子用 \(36\) 個數對。</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <div class="context-story">
+              <h4><i class="fa-solid fa-book-open"></i> 回到桌遊咖啡館：誰先玩？</h4>
+              <h5><i class="fa-solid fa-bag-shopping"></i> 布袋裡的紅球</h5>
+              <p>3 顆黃球、1 顆紅球——機會相等的是每一顆球，不是每一種顏色。摸到紅球的機率是 \(\frac{1}{4}\)，不是 \(\frac{1}{2}\)。</p>
+              <h5><i class="fa-solid fa-coins"></i> 換個公平的方法</h5>
+              <p>改成擲一枚公正的硬幣：正面小棋先、反面阿骰先，兩人都是 \(\frac{1}{2}\)；或是猜拳，兩人贏的機率都是 \(\frac{1}{3}\)、平手就再猜一次。</p>
+              <h5><i class="fa-solid fa-sitemap"></i> 結果一多就畫樹</h5>
+              <p>兩個步驟以上的遊戲，先畫樹狀圖把每個末端列出來，再一個一個數——這是算機率最可靠的方法。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer>
+      <p>© 2026 國中數學教學整合網. 專為高效課堂互動設計.</p>
+    </footer>
   </div>
 
-  <!-- 共用課堂元件：課堂工具側邊欄與上下節導覽 -->
+  <!-- Main JavaScript Logic -->
+  <script src="../math-canvas.js"></script>
+  <script src="canvas.js"></script>
+
+  <!-- 共用課堂元件：課程資料、課堂工具側邊欄、上下節導覽、課堂畫筆 -->
   <script src="../../curriculum.js"></script>
   <script src="../../tools-sidebar.js" data-home="../../index.html"></script>
   <script src="../../lesson-nav.js"></script>
-
+  <script src="../../annotate.js"></script>
 </body>
 </html>

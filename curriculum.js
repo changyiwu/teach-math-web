@@ -185,14 +185,14 @@
       {
         "chapter": "第1章 二次函數",
         "sections": [
-          { "code": "1-1", "title": "二次函數的圖形與最大值、最小值" }
+          { "code": "1-1", "title": "二次函數的圖形與最大值、最小值", "status": "completed" }
         ]
       },
       {
         "chapter": "第2章 統計與機率",
         "sections": [
-          { "code": "2-1", "title": "資料的分析" },
-          { "code": "2-2", "title": "機率" }
+          { "code": "2-1", "title": "資料的分析", "status": "completed" },
+          { "code": "2-2", "title": "機率", "status": "completed" }
         ]
       },
       {
