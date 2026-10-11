@@ -4,39 +4,1834 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
-  <title>3-1 空間中的線、平面與形體 - 課堂教學資料庫</title>
-  <!-- FontAwesome for icons -->
+  <title>3-1 空間中的線、平面與形體 - 互動教學網頁</title>
+
+  <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- 佔位頁共用樣式 -->
-  <link rel="stylesheet" href="../pending.css">
-  <!-- 共用課堂元件 -->
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 共用課堂元件（課堂工具側邊欄 / 上下節導覽 / 課堂畫筆） -->
   <link rel="stylesheet" href="../../tools-sidebar.css">
   <link rel="stylesheet" href="../../lesson-nav.css">
+  <link rel="stylesheet" href="../../annotate.css">
+
+  <!-- MathJax for rendering professional LaTeX equations -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
 
+  <!-- Floating animated background blobs -->
   <div class="background-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
-  <div class="card">
-    <div class="icon-container">
-      <i class="fa-solid fa-screwdriver-wrench"></i>
-    </div>
-    <div class="breadcrumb">第六冊 (3下) • 第3章 生活中的立體圖形</div>
-    <h1>3-1 空間中的線、平面與形體</h1>
-    <div class="badge"><i class="fa-solid fa-person-digging" style="margin-right: 6px;"></i>教學資源待施工</div>
-    <p class="desc">此小節的教學網頁與專屬資料夾已成功建立。相關教學簡報、學習單或互動教材將陸續存入此目錄中。</p>
-    <a href="../../index.html" class="btn">
-      <i class="fa-solid fa-house"></i> 返回主網頁
-    </a>
+  <div class="container">
+    <!-- Header Navigation -->
+    <header>
+      <div class="nav-back">
+        <a href="../../index.html" class="btn-back">
+          <i class="fa-solid fa-arrow-left"></i> 返回主網頁
+        </a>
+      </div>
+      <div class="lesson-title">
+        <span class="badge">第六冊 • 第三章</span>
+        <h1>3-1 空間中的線、平面與形體</h1>
+        <p>冰雪節的冰雕工坊裡，小雪和阿磚每天都在和<strong>長方體冰磚</strong>打交道：冰牆有沒有立直、冰柱的影子落在哪裡、冰杯要用多少冰。七年級學過平面上的圖形，這一節走進<strong>空間</strong>：先用長方體檢驗<strong>垂直、平行與歪斜</strong>，再認識<strong>角柱、圓柱、角錐、圓錐</strong>的組成與<strong>展開圖</strong>，最後算出它們的<strong>體積</strong>與<strong>表面積</strong>。</p>
+      </div>
+      <!-- Progress navigation (15 points) -->
+      <nav class="lesson-nav">
+        <a href="#concept1" class="nav-item active"><i class="fa-solid fa-cube"></i> 垂直檢驗</a>
+        <a href="#concept2" class="nav-item"><i class="fa-solid fa-tower-observation"></i> 線垂直面</a>
+        <a href="#concept3" class="nav-item"><i class="fa-solid fa-layer-group"></i> 平行</a>
+        <a href="#concept4" class="nav-item"><i class="fa-solid fa-shuffle"></i> 歪斜</a>
+        <a href="#concept5" class="nav-item"><i class="fa-solid fa-shapes"></i> 角柱的組成</a>
+        <a href="#concept6" class="nav-item"><i class="fa-solid fa-box-open"></i> 展開圖</a>
+        <a href="#concept7" class="nav-item"><i class="fa-solid fa-cubes"></i> 角柱體積</a>
+        <a href="#concept8" class="nav-item"><i class="fa-solid fa-route"></i> 最短距離</a>
+        <a href="#concept9" class="nav-item"><i class="fa-solid fa-scroll"></i> 圓柱展開</a>
+        <a href="#concept10" class="nav-item"><i class="fa-solid fa-database"></i> 圓柱體積</a>
+        <a href="#concept11" class="nav-item"><i class="fa-solid fa-mug-hot"></i> 空心圓柱</a>
+        <a href="#concept12" class="nav-item"><i class="fa-solid fa-campground"></i> 角錐</a>
+        <a href="#concept13" class="nav-item"><i class="fa-solid fa-mountain"></i> 角錐表面積</a>
+        <a href="#concept14" class="nav-item"><i class="fa-solid fa-chart-pie"></i> 圓錐展開</a>
+        <a href="#concept15" class="nav-item"><i class="fa-solid fa-ice-cream"></i> 圓錐表面積</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ==========================================
+           引起動機: 四格漫畫（冰雪節冰雕工坊・藍白冬季繪本風）
+           ========================================== -->
+      <section class="concept-section" id="motivation-comic" style="margin-bottom: 2.5rem; border-color: rgba(125, 211, 252, 0.3);">
+        <h2 class="section-title" style="color: #7dd3fc; border-bottom-color: rgba(125, 211, 252, 0.2);">
+          <i class="fa-solid fa-book-open" aria-hidden="true" style="color: #7dd3fc; text-shadow: 0 0 10px rgba(125, 211, 252, 0.4);"></i> 課前暖身漫畫：冰牆有沒有立直？
+        </h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+          <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; text-align: center; max-width: 800px; margin: 0 auto;">
+            阿磚砌好一面冰牆，拍拍手說「看起來很直啊」。小雪沒有用眼睛看，而是拿一塊<strong style="color:#7dd3fc">長方體冰磚</strong>平放在地上、推過去貼著牆——冰磚和牆之間，露出了一道細細的縫。長方體為什麼能拿來檢查「垂直」？這一節就從這塊冰磚開始。
+          </p>
+          <div class="illustration-container" style="max-width: 600px; width: 100%; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.4); border-radius: 20px; overflow: hidden; background: rgba(8, 15, 28, 0.5);">
+            <img src="motivation_comic.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風四格漫畫：阿磚砌好一面冰牆；他覺得看起來很直；小雪把一塊長方體冰磚平放在地上推去貼著冰牆，冰磚和牆之間露出一道上寬下窄的縫；旁白說明長方體相鄰的兩面互相垂直，貼不緊就表示牆和地面不垂直。" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" class="comic-img" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 1: 用長方體檢驗垂直
+           ========================================== -->
+      <section class="concept-section" id="concept1">
+        <h2 class="section-title">
+          <i class="fa-solid fa-cube" aria-hidden="true"></i> <span>重點 1：用長方體檢驗垂直——平面、直線都能驗</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>長方體有三個好用的性質：<strong>相鄰的面互相垂直</strong>、<strong>底面與高互相垂直</strong>、<strong>相交於同一端點的邊互相垂直</strong>。空間中的垂直，就用長方體來檢驗。</li>
+              <li><strong>平面與平面</strong>：把長方體的底面平放在平面 \(S\) 上，推近平面 \(T\)：
+                <ul>
+                  <li>側面能和 \(T\) <strong>緊密貼合</strong> \(\Rightarrow\) 兩平面互相垂直，記為 \(S \perp T\)。</li>
+                  <li>貼不緊、留下空隙 \(\Rightarrow\) 兩平面不垂直。</li>
+                </ul>
+              </li>
+              <li><strong>直線與平面</strong>：長方體放在 \(S\) 上，它的一條高能和直線 \(L\) 緊密貼合 \(\Rightarrow\) \(L \perp S\)（也可記為 \(S \perp L\)）。</li>
+              <li><strong>直線與直線</strong>：兩相交直線 \(L\)、\(M\) 能分別和長方體相鄰的兩條邊完全貼合 \(\Rightarrow\) \(L \perp M\)。</li>
+              <li>例：門和地板互相垂直；埃及金字塔的側面斜靠著，和底面不垂直。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">檢驗工具</span>
+              長方體：相鄰的面 \(\perp\)、高 \(\perp\) 底面、同一端點的邊 \(\perp\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_wall.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：小雪蹲在雪地上，把一塊長方體冰磚平放在地面，推去貼著一面冰牆，冰磚的側面和冰牆整面貼緊；阿磚在旁邊看。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-cube"></i> 視覺互動探索：冰磚檢驗器</h3>
+            <p class="interactive-instruction">調整平面 \(T\)（或直線 \(L\)）和地面 \(S\) 的夾角，把長方體推過去貼貼看。什麼時候才會<strong>完全沒有空隙</strong>？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c1" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c1-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c1-ang">與地面的夾角：<span id="c1-vang" class="val-num">75</span>°</label>
+                    <input type="range" id="c1-ang" min="50" max="130" value="75" step="5">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c1-yaw">觀看角度：<span id="c1-vyaw" class="val-num">20</span>°</label>
+                    <input type="range" id="c1-yaw" min="-50" max="50" value="20" step="5">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">檢驗</span>
+                    <div class="btn-group" id="c1-mode-group">
+                      <button class="pick-btn active" data-c1-mode="plane">平面與平面</button>
+                      <button class="pick-btn" data-c1-mode="line">直線與平面</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c1-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (用長方體檢驗垂直)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-1">
+            <p class="quiz-question"><strong>Q1.</strong> 冰雕師傅刻了一座<strong>正四角錐</strong>形狀的冰金字塔。下列哪一組互相垂直？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-1" value="A"><span class="option-text">A. 一個側面與底面</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-1" value="B"><span class="option-text">B. 兩個相鄰的側面</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-1" value="C"><span class="option-text">C. 錐頂與底面中心的連線、底面</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-1" value="D"><span class="option-text">D. 一條側邊（稜）與底面</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。正角錐的錐頂與底面正方形中心的連線（角錐的高）與底面垂直：長方體平放在底面上，它的高可以和這條連線貼合。<br>
+              A 錯：側面斜斜地靠向錐頂，長方體推過去，上緣先碰到側面、下方留下空隙。<br>
+              B 錯：兩個側面都是斜的，也貼不緊長方體相鄰的兩面。<br>
+              D 錯：側邊從底面的角斜斜地伸向錐頂，和長方體的高貼不合。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-2">
+            <p class="quiz-question"><strong>Q2.</strong> 下圖是長方體 \(ABCD\)-\(EFGH\)（上底 \(ABCD\)、下底 \(EFGH\)）。下列哪一個平面與 \(\overline{AE}\) 垂直？</p>
+            <canvas class="quiz-fig" data-fig="cube" width="340" height="220" role="img" aria-label="長方體 ABCD-EFGH，上底 ABCD、下底 EFGH，AE、BF、CG、DH 是鉛直的高；前面是 ABFE"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-2" value="A"><span class="option-text">A. 平面 \(ABFE\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-2" value="B"><span class="option-text">B. 平面 \(EFGH\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-2" value="C"><span class="option-text">C. 平面 \(BCGF\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-2" value="D"><span class="option-text">D. 平面 \(ADHE\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。\(\overline{AE}\) 是長方體的高，<strong>高與底面互相垂直</strong>，所以 \(\overline{AE} \perp\) 平面 \(EFGH\)。<br>
+              A、D 錯：\(\overline{AE}\) 就在平面 \(ABFE\)、平面 \(ADHE\) 上，不是垂直。<br>
+              C 錯：\(\overline{AE}\) 和平面 \(BCGF\) 不相交，是平行（重點 3）。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 2: 直線垂直平面
+           ========================================== -->
+      <section class="concept-section" id="concept2">
+        <h2 class="section-title">
+          <i class="fa-solid fa-tower-observation" aria-hidden="true"></i> <span>重點 2：直線垂直平面——通過交點的每一條線都垂直</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>直線 \(L\) 垂直平面 \(S\)，交點為 \(P\)：可以找到一個長方體，底面貼著 \(S\)、高貼著 \(L\)。</li>
+              <li>\(S\) 上另一條通過 \(P\) 的直線 \(M\)：把長方體<strong>繞著 \(L\) 旋轉</strong>，讓底邊貼住 \(M\)；長方體通過同一頂點的邊互相垂直，所以 \(L \perp M\)。</li>
+              <li>結論：若 \(L \perp S\)、交點為 \(P\)，則<strong>平面 \(S\) 上通過 \(P\) 點的任一條直線都與 \(L\) 垂直</strong>。</li>
+              <li>例：電線杆與地面垂直，杆子的影子落在地面上、而且通過杆腳，所以影子與電線杆互相垂直。</li>
+              <li>注意：
+                <ul>
+                  <li>\(S\) 上<strong>不通過 \(P\)</strong> 的直線和 \(L\) 根本不相交，不說它們垂直。</li>
+                  <li>\(L\) 只要是斜的，\(S\) 上通過 \(P\) 的直線就不會全部和 \(L\) 垂直。</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">線垂直面</span>
+              \(L \perp S\)（交於 \(P\)）\(\Rightarrow\) \(S\) 上通過 \(P\) 的每一條直線都 \(\perp L\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_lamp_post.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：一根筆直的冰燈柱立在平坦的雪地上，低低的冬日陽光讓它在雪地上投出一道長長的影子，影子從燈柱底部延伸出去；小雪蹲在影子旁邊，阿磚扶著燈柱。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-tower-observation"></i> 視覺互動探索：繞著冰柱轉一圈</h3>
+            <p class="interactive-instruction">轉動平面上的直線 \(M\)，看它和 \(L\) 的夾角。再把 \(L\) 弄斜、或讓 \(M\) 不通過 \(P\)，結論還成立嗎？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c2" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c2-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c2-phi">直線 \(M\) 的方向：<span id="c2-vphi" class="val-num">35</span>°</label>
+                    <input type="range" id="c2-phi" min="0" max="175" value="35" step="5">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c2-tilt">\(L\) 傾斜的角度：<span id="c2-vtilt" class="val-num">0</span>°</label>
+                    <input type="range" id="c2-tilt" min="0" max="40" value="0" step="5">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">直線 \(M\)</span>
+                    <div class="btn-group" id="c2-m-group">
+                      <button class="pick-btn active" data-c2-m="on">通過 \(P\)</button>
+                      <button class="pick-btn" data-c2-m="off">不通過 \(P\)</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c2-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (直線垂直平面)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-3">
+            <p class="quiz-question"><strong>Q3.</strong> 一根旗桿垂直立在操場上，桿腳為 \(P\) 點。操場上畫了三條<strong>通過 \(P\)</strong>、方向各不相同的白線 \(X\)、\(Y\)、\(Z\)。下列敘述何者正確？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-3" value="A"><span class="option-text">A. 三條白線中只有一條與旗桿垂直</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-3" value="B"><span class="option-text">B. 只有互相垂直的兩條白線才與旗桿垂直</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-3" value="C"><span class="option-text">C. 三條白線都與旗桿垂直</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-3" value="D"><span class="option-text">D. 白線不是長方體的邊，無法判斷</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。旗桿垂直於地面，交點是 \(P\)；地面上<strong>通過 \(P\) 的任一條直線</strong>都與旗桿垂直，和白線的方向無關。<br>
+              A、B 錯：不論白線轉到哪個方向，長方體繞著旗桿轉，底邊都能貼住它。<br>
+              D 錯：白線本身不必是長方體的邊；長方體只是檢驗的工具。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-4">
+            <p class="quiz-question"><strong>Q4.</strong> 直線 \(L\) 與平面 \(S\) 垂直，交點為 \(P\)。平面 \(S\) 上另有一條直線 \(M\)，\(M\) <strong>不通過</strong> \(P\) 點。\(L\) 與 \(M\) 是什麼關係？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-4" value="A"><span class="option-text">A. 垂直相交</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-4" value="B"><span class="option-text">B. 互相平行</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-4" value="C"><span class="option-text">C. 歪斜</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-4" value="D"><span class="option-text">D. 相交於平面 \(S\) 上的另一點</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(L\) 和平面 \(S\) 只交在 \(P\) 點，\(M\) 在 \(S\) 上卻不通過 \(P\)，所以 \(L\) 與 \(M\) 不相交；\(L\) 又不會和 \(S\) 上的直線平行，兩線不在同一平面上，是<strong>歪斜</strong>關係。<br>
+              A、D 錯：兩線根本沒有交點。<br>
+              B 錯：\(L\) 垂直於 \(S\)，不可能和 \(S\) 上的直線平行。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 3: 平行
+           ========================================== -->
+      <section class="concept-section" id="concept3">
+        <h2 class="section-title">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i> <span>重點 3：平行——同時垂直於同一條直線</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>平面與平面</strong>：如果能找到一條直線同時垂直於兩個平面，就說這兩個平面<strong>互相平行</strong>。
+                <ul>
+                  <li>長方體中，\(\overline{CG}\) 同時垂直於平面 \(ABCD\) 與平面 \(EFGH\)，記為平面 \(ABCD\) \(//\) 平面 \(EFGH\)。</li>
+                  <li>這條直線夾在兩平面間的線段長，叫做兩平面的<strong>距離</strong>。</li>
+                </ul>
+              </li>
+              <li><strong>直線與平面</strong>：直線不在平面上，又和某條垂直於這個平面的直線互相垂直，就說直線與平面<strong>平行</strong>。
+                <ul>
+                  <li>長方體中，\(\overline{AB}\) 不在平面 \(EFGH\) 上，\(\overline{BF}\) 同時垂直於 \(\overline{AB}\) 與平面 \(EFGH\)，所以 \(\overline{AB}\) \(//\) 平面 \(EFGH\)。</li>
+                </ul>
+              </li>
+              <li>長方體：<strong>相對的兩個面互相平行</strong>、相鄰的兩個面互相垂直。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">平行的判斷</span>
+              同一條直線同時垂直兩平面 \(\Rightarrow\) 兩平面平行
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_ice_slab.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：工坊裡一座冰雕展示架，三片長方形的厚冰板水平地一層一層架在四根直立的冰柱上，每一層都和地面平行；阿磚正把最上面一片冰板放上去，小雪扶著冰柱。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-layer-group"></i> 視覺互動探索：長方體分類台</h3>
+            <p class="interactive-instruction">選一個參考平面，再選要看「面」還是「邊」。綠色是和它平行的、黃色是和它垂直的，看看每一個平行的例子是靠哪一條邊撐起來的。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c3" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c3-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c3-yaw">觀看角度：<span id="c3-vyaw" class="val-num">-25</span>°</label>
+                    <input type="range" id="c3-yaw" min="-60" max="60" value="-25" step="5">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">參考平面</span>
+                    <div class="btn-group" id="c3-ref-group">
+                      <button class="pick-btn active" data-c3-ref="0">平面 \(ABCD\)</button>
+                      <button class="pick-btn" data-c3-ref="2">平面 \(ABFE\)</button>
+                    </div>
+                  </div>
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">要看</span>
+                    <div class="btn-group" id="c3-kind-group">
+                      <button class="pick-btn active" data-c3-kind="face">其他的面</button>
+                      <button class="pick-btn" data-c3-kind="edge">十二條邊</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c3-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (平行)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-5">
+            <p class="quiz-question"><strong>Q5.</strong> 下圖是長方體 \(ABCD\)-\(EFGH\)。下列哪一條邊與平面 \(BCGF\) <strong>平行</strong>？</p>
+            <canvas class="quiz-fig" data-fig="cube" width="340" height="220" role="img" aria-label="長方體 ABCD-EFGH，上底 ABCD、下底 EFGH，AE、BF、CG、DH 是鉛直的高；前面是 ABFE"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-5" value="A"><span class="option-text">A. \(\overline{AB}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-5" value="B"><span class="option-text">B. \(\overline{AD}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-5" value="C"><span class="option-text">C. \(\overline{CG}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-5" value="D"><span class="option-text">D. \(\overline{EF}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。\(\overline{AD}\) 不在平面 \(BCGF\) 上；\(\overline{AB}\) 垂直於平面 \(BCGF\)，又和 \(\overline{AD}\) 互相垂直，所以 \(\overline{AD}\) \(//\) 平面 \(BCGF\)。（也可以看成：\(\overline{AD}\) 在對面的平面 \(ADHE\) 上，兩個面互相平行。）<br>
+              A、D 錯：\(\overline{AB}\)、\(\overline{EF}\) 都和平面 \(BCGF\) 垂直。<br>
+              C 錯：\(\overline{CG}\) 就在平面 \(BCGF\) 上。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-6">
+            <p class="quiz-question"><strong>Q6.</strong> 在上圖的長方體中，\(\overline{BF}\) 同時垂直於 \(\overline{FG}\) 與平面 \(ABCD\)，而 \(\overline{FG}\) 不在平面 \(ABCD\) 上。由此可以知道什麼？</p>
+            <canvas class="quiz-fig" data-fig="cube" width="340" height="220" role="img" aria-label="長方體 ABCD-EFGH，上底 ABCD、下底 EFGH，AE、BF、CG、DH 是鉛直的高；前面是 ABFE"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-6" value="A"><span class="option-text">A. \(\overline{FG} \perp\) 平面 \(ABCD\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-6" value="B"><span class="option-text">B. \(\overline{FG}\) 與平面 \(ABCD\) 相交於 \(B\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-6" value="C"><span class="option-text">C. \(\overline{FG}\) 在平面 \(ABCD\) 上</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-6" value="D"><span class="option-text">D. \(\overline{FG}\) \(//\) 平面 \(ABCD\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。直線不在平面上，又和一條垂直於這個平面的直線（\(\overline{BF}\)）互相垂直，就是直線與平面<strong>平行</strong>：下底的邊 \(\overline{FG}\) 和上底面平行。<br>
+              A 錯：垂直於平面 \(ABCD\) 的是 \(\overline{BF}\)，不是 \(\overline{FG}\)。<br>
+              B 錯：\(B\) 是 \(\overline{BF}\) 的端點，不在 \(\overline{FG}\) 上；\(\overline{FG}\) 和平面 \(ABCD\) 碰不到。<br>
+              C 錯：題目已說 \(\overline{FG}\) 不在平面 \(ABCD\) 上，它在下底 \(EFGH\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 4: 兩直線的三種關係
+           ========================================== -->
+      <section class="concept-section" id="concept4">
+        <h2 class="section-title">
+          <i class="fa-solid fa-shuffle" aria-hidden="true"></i> <span>重點 4：兩直線——相交、平行，還是歪斜？</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>空間中的兩條直線有三種關係：
+                <ul>
+                  <li><strong>相交</strong>：有一個交點（一定在同一個平面上）。</li>
+                  <li><strong>平行</strong>：<strong>不相交，而且在同一個平面上</strong>。例：長方體中 \(\overline{AB} // \overline{CD}\)；\(\overline{AB}\) 與 \(\overline{GH}\) 都在長方形 \(ABGH\) 上，所以 \(\overline{AB} // \overline{GH}\)。</li>
+                  <li><strong>歪斜</strong>：<strong>不相交，也不在同一個平面上</strong>。例：長方體中 \(\overline{BC}\) 與 \(\overline{DH}\)、\(\overline{BC}\) 與 \(\overline{EF}\)。</li>
+                </ul>
+              </li>
+              <li>平面上的兩條線「不相交就平行」；到了空間，<strong>不相交還要再看在不在同一個平面上</strong>。</li>
+              <li>四個面都是正三角形的三角錐叫做<strong>正四面體</strong>。它的六條邊沒有任何兩條平行，例如 \(\overline{BC}\) 與 \(\overline{AD}\) 是歪斜關係。</li>
+              <li>評量以長方體與正四面體為主。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">兩直線</span>
+              不相交 \(+\) 同平面 \(=\) 平行；不相交 \(+\) 不同平面 \(=\) 歪斜
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_pavilion.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：一座冰雕小亭子，四根直立的長方體冰柱撐著一片長方形的冰屋頂；小雪站在亭子裡伸手指著屋頂前緣的一根橫樑，阿磚站在亭子外摸著後方的一根柱子。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-shuffle"></i> 視覺互動探索：兩條邊配對機</h3>
+            <p class="interactive-instruction">用兩個滑桿各選一條邊（藍、粉紅），看它們是相交、平行還是歪斜。找得到「同時包含兩條邊」的平面嗎？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c4" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c4-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c4-e1">第一條邊（藍）：<span id="c4-n1" class="val-num">AB</span></label>
+                    <input type="range" id="c4-e1" min="0" max="11" value="0" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c4-e2">第二條邊（粉紅）：<span id="c4-n2" class="val-num">CG</span></label>
+                    <input type="range" id="c4-e2" min="0" max="11" value="10" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c4-yaw">觀看角度：<span id="c4-vyaw" class="val-num">-25</span>°</label>
+                    <input type="range" id="c4-yaw" min="-60" max="60" value="-25" step="5">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">立體</span>
+                    <div class="btn-group" id="c4-mode-group">
+                      <button class="pick-btn active" data-c4-mode="box">長方體</button>
+                      <button class="pick-btn" data-c4-mode="tet">正四面體</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c4-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (相交、平行與歪斜)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-7">
+            <p class="quiz-question"><strong>Q7.</strong> 下圖是一座冰雕的正四角錐 \(O\)-\(ABCD\)，底面 \(ABCD\) 是正方形。下列哪一條直線與 \(\overline{BC}\) 是<strong>歪斜</strong>關係？</p>
+            <canvas class="quiz-fig" data-fig="pyr" width="340" height="220" role="img" aria-label="正四角錐 O-ABCD，底面正方形 ABCD 平放，O 為錐頂，OA、OB、OC、OD 為側邊"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-7" value="A"><span class="option-text">A. \(\overline{AD}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-7" value="B"><span class="option-text">B. \(\overline{OB}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-7" value="C"><span class="option-text">C. \(\overline{OD}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-7" value="D"><span class="option-text">D. \(\overline{CD}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(\overline{OD}\) 和 \(\overline{BC}\) 沒有共同的點，也找不到一個平面同時包含它們，是歪斜關係。<br>
+              A 錯：\(\overline{AD}\) 和 \(\overline{BC}\) 是正方形的對邊，在同一平面上且不相交，互相平行。<br>
+              B、D 錯：\(\overline{OB}\) 和 \(\overline{BC}\) 交於 \(B\)，\(\overline{CD}\) 和 \(\overline{BC}\) 交於 \(C\)，都是相交。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-8">
+            <p class="quiz-question"><strong>Q8.</strong> 關於正四面體 \(ABCD\) 的 6 條邊，下列敘述何者正確？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-8" value="A"><span class="option-text">A. 有兩條邊互相平行</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-8" value="B"><span class="option-text">B. 每一條邊都恰好與另外一條邊歪斜</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-8" value="C"><span class="option-text">C. 任兩條邊都相交</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-8" value="D"><span class="option-text">D. 每一條邊都與另外兩條邊歪斜</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。以 \(\overline{AB}\) 為例：\(\overline{AC}\)、\(\overline{AD}\) 交於 \(A\)，\(\overline{BC}\)、\(\overline{BD}\) 交於 \(B\)，剩下的 \(\overline{CD}\) 和它沒有共同端點、也不在同一平面上，是歪斜。每一條邊都是這樣，只對到「對面」的那一條。<br>
+              A 錯：正四面體沒有平行的邊。<br>
+              C 錯：\(\overline{AB}\) 與 \(\overline{CD}\) 不相交。<br>
+              D 錯：和 \(\overline{AB}\) 歪斜的只有 \(\overline{CD}\) 一條。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 5: 角柱的組成
+           ========================================== -->
+      <section class="concept-section" id="concept5">
+        <h2 class="section-title">
+          <i class="fa-solid fa-shapes" aria-hidden="true"></i> <span>重點 5：角柱的組成——頂點 \(2n\)、面 \(n + 2\)、邊 \(3n\)</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>角柱</strong>：由上下兩個<strong>全等且平行</strong>的多邊形底面，和一些平行四邊形的側面組成。底面是 \(n\) 邊形，就叫 \(n\) 角柱。</li>
+              <li>側面與底面垂直的叫<strong>直角柱</strong>，它的側面都是長方形；直角柱的底面是正多邊形時，叫<strong>正角柱</strong>。國中只討論直角柱，沒有特別說明時，角柱都指直角柱。</li>
+              <li>兩個底面的距離叫做角柱的<strong>高</strong>；每個底面的面積叫做<strong>底面積</strong>。</li>
+              <li>數一數 \(n\) 角柱：
+                <ul>
+                  <li>頂點：上、下底各 \(n\) 個，共 \(2n\) 個。</li>
+                  <li>面：兩個底面 \(+\) \(n\) 個側面，共 \(n + 2\) 個。</li>
+                  <li>邊：上、下底各 \(n\) 條 \(+\) \(n\) 條側邊，共 \(3n\) 條。</li>
+                </ul>
+              </li>
+              <li>例：七角柱有 \(14\) 個頂點、\(9\) 個面、\(21\) 條邊。</li>
+            </ul>
+            <div class="table-scroll">
+              <table class="sign-table">
+                <thead><tr><th>角柱</th><th>頂點</th><th>面</th><th>邊</th></tr></thead>
+                <tbody>
+                  <tr><td>三角柱</td><td>\(6\)</td><td>\(5\)</td><td>\(9\)</td></tr>
+                  <tr><td>四角柱</td><td>\(8\)</td><td>\(6\)</td><td>\(12\)</td></tr>
+                  <tr><td>\(n\) 角柱</td><td>\(2n\)</td><td>\(n + 2\)</td><td>\(3n\)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_prism_lamps.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：工作檯上並排放著三盞透明的角柱形冰燈，從左到右是三角柱、四角柱、六角柱，裡面都點著暖黃色的小燭光；小雪伸出一根手指數著六角柱上方的頂點，阿磚在旁邊捧著一盞。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-shapes"></i> 視覺互動探索：角柱點名簿</h3>
+            <p class="interactive-instruction">調整底面的邊數 \(n\)，再切換要數「頂點」「面」還是「邊」。數字是怎麼跟著 \(n\) 變的？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c5" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c5-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c5-n">底面邊數 \(n\)：<span id="c5-vn" class="val-num">5</span></label>
+                    <input type="range" id="c5-n" min="3" max="10" value="5" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c5-yaw">觀看角度：<span id="c5-vyaw" class="val-num">15</span>°</label>
+                    <input type="range" id="c5-yaw" min="-60" max="60" value="15" step="5">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">數</span>
+                    <div class="btn-group" id="c5-hl-group">
+                      <button class="pick-btn active" data-c5-hl="v">頂點</button>
+                      <button class="pick-btn" data-c5-hl="f">面</button>
+                      <button class="pick-btn" data-c5-hl="e">邊</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c5-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (角柱的組成)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-9">
+            <p class="quiz-question"><strong>Q9.</strong> 某個角柱共有 \(36\) 條邊，它有幾個頂點？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-9" value="A"><span class="option-text">A. \(12\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-9" value="B"><span class="option-text">B. \(14\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-9" value="C"><span class="option-text">C. \(24\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-9" value="D"><span class="option-text">D. \(38\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。\(n\) 角柱有 \(3n\) 條邊，\(3n = 36\)，\(n = 12\)，是十二角柱，頂點有 \(2n = 24\) 個。<br>
+              A 錯：\(12\) 是底面的邊數 \(n\)。<br>
+              B 錯：\(14 = n + 2\) 是面數。<br>
+              D 錯：\(38\) 是把邊數加 \(2\)，沒有先求出 \(n\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-10">
+            <p class="quiz-question"><strong>Q10.</strong> 某個角柱的頂點數與面數加起來是 \(47\)，它有幾條邊？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-10" value="A"><span class="option-text">A. \(45\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-10" value="B"><span class="option-text">B. \(30\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-10" value="C"><span class="option-text">C. \(17\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-10" value="D"><span class="option-text">D. \(47\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。頂點 \(2n\)、面 \(n + 2\)，\(2n + (n + 2) = 3n + 2 = 47\)，\(n = 15\)，邊有 \(3n = 45\) 條。<br>
+              B 錯：\(30 = 2n\) 是頂點數。<br>
+              C 錯：\(17 = n + 2\) 是面數。<br>
+              D 錯：邊數不等於頂點數加面數，要先求出 \(n\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 6: 展開圖
+           ========================================== -->
+      <section class="concept-section" id="concept6">
+        <h2 class="section-title">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i> <span>重點 6：角柱的展開圖——摺回去會是什麼樣子？</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>沿著立體圖形的一些邊剪開、攤平，得到的平面圖形叫做<strong>展開圖</strong>。同一個立體圖形，剪法不同就有<strong>不同的展開圖</strong>。</li>
+              <li>正立方體的展開圖共有 \(11\) 種。六個正方形排成「田」字形的 \(2 \times 2\)、或一排超過四片，摺起來都會重疊，不是展開圖。</li>
+              <li>判斷時，在腦中（或動手）把每一片沿著共用的邊摺起來，看會不會剛好圍成立體、沒有重疊也沒有缺面。</li>
+              <li>角柱的展開圖：側面的長方形接成一排，兩個底面接在兩側；<strong>互相疊合的邊必須等長</strong>。例如三角柱的側面長方形寬度，要分別等於底面三角形的三邊。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">檢查展開圖</span>
+              摺回去：不重疊、不缺面、疊合的邊等長
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_box_unfold.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：桌上一個正立方體的紙盒被剪開攤平成十字形，六片正方形各塗了不同的淺色；小雪捏著其中一片往上摺，阿磚手上拿著另一個還沒拆開的正立方體紙盒對照。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-box-open"></i> 視覺互動探索：展開圖摺紙機</h3>
+            <p class="interactive-instruction">選一張展開圖（左上角的小圖），把「摺的程度」慢慢拉到 \(100\%\)。哪幾張圍得成正立方體？哪兩片會變成相對的面？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c6" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c6-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c6-net">展開圖：第 <span id="c6-vnet" class="val-num">1</span> 張</label>
+                    <input type="range" id="c6-net" min="0" max="7" value="0" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c6-t">摺的程度：<span id="c6-vt" class="val-num">60</span>%</label>
+                    <input type="range" id="c6-t" min="0" max="100" value="60" step="5">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c6-yaw">觀看角度：<span id="c6-vyaw" class="val-num">-25</span>°</label>
+                    <input type="range" id="c6-yaw" min="-60" max="60" value="-25" step="5">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c6-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (展開圖)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-11">
+            <p class="quiz-question"><strong>Q11.</strong> 把下面的展開圖摺成正立方體後，與「甲」相對（互相平行）的是哪一面？</p>
+            <canvas class="quiz-fig" data-fig="net" width="340" height="220" role="img" aria-label="正立方體展開圖：中間一排四個正方形，由左到右是乙、丙、丁、戊；甲接在乙的上方，己接在丙的下方"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-11" value="A"><span class="option-text">A. 乙</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-11" value="B"><span class="option-text">B. 丙</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-11" value="C"><span class="option-text">C. 丁</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-11" value="D"><span class="option-text">D. 己</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。中間一排的乙、丙、丁、戊捲起來圍成一圈，成為四個側面；甲接在這一圈的上緣、己接在下緣，一個當蓋子、一個當底，所以甲與己相對。<br>
+              A 錯：乙和甲共用一條邊，摺好後相鄰（垂直）。<br>
+              B、C 錯：丙、丁都在那一圈側面上，和蓋子甲都相鄰。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-12">
+            <p class="quiz-question"><strong>Q12.</strong> 一個直三角柱的展開圖中，甲、乙是兩個三角形，丙是一個長方形。把它摺成直三角柱後，下列敘述何者正確？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-12" value="A"><span class="option-text">A. 甲與乙平行，甲與丙平行</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-12" value="B"><span class="option-text">B. 甲與乙平行，甲與丙垂直</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-12" value="C"><span class="option-text">C. 甲與乙垂直，甲與丙垂直</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-12" value="D"><span class="option-text">D. 甲與乙垂直，甲與丙平行</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。三角柱的兩個三角形是上下兩個底面，<strong>兩底面互相平行</strong>；長方形是側面，直角柱的<strong>側面與底面垂直</strong>。<br>
+              A、D 錯：側面丙和底面甲相交於一條邊，不會平行。<br>
+              C 錯：甲、乙是相對的兩個底面，不相交，是平行。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 7: 角柱的體積與表面積
+           ========================================== -->
+      <section class="concept-section" id="concept7">
+        <h2 class="section-title">
+          <i class="fa-solid fa-cubes" aria-hidden="true"></i> <span>重點 7：角柱的體積與表面積</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>體積 \(=\) 底面積 \(\times\) 高</strong>：三角柱、四角柱在小學學過；五角柱、六角柱可以切成幾個三角柱，體積也是底面積 \(\times\) 高。任意角柱都適用。</li>
+              <li><strong>表面積 \(=\) 側面的面積和 \(+\) 兩底面積和</strong>，也就是展開圖的面積。</li>
+              <li>直角柱的側面攤開是一個大長方形：長 \(=\) 底面周長、寬 \(=\) 高，所以
+                \[ \text{側面積} = \text{底面周長} \times \text{高} \]
+              </li>
+              <li>例：底面是平行四邊形（底 \(9\)、高 \(5\)、另一邊 \(7\)），柱高 \(3\)：
+                \[ \begin{aligned} & \text{體積} = 9 \times 5 \times 3 = 135 \\ & \text{表面積} = 32 \times 3 + 2 \times 45 \\ &\qquad = 186 \end{aligned} \]
+                底面的高 \(5\) 用來算底面積；側面要用底面的<strong>邊長</strong> \(9\)、\(7\) 算周長 \(32\)。
+              </li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">角柱</span>
+              體積 \(=\) 底面積 \(\times\) 高；表面積 \(=\) 周長 \(\times\) 高 \(+ 2 \times\) 底面積
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_ice_brick.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：工作檯上擺著一塊直三角柱形的透明冰塊，兩個三角形的面朝左右；阿磚拿著捲尺量冰塊的長度，小雪在一旁拿著小木板記錄。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-cubes"></i> 視覺互動探索：冰柱計算台</h3>
+            <p class="interactive-instruction">選底面的形狀、調整尺寸與高。注意側面攤開的長條：它的長正好是底面的周長。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c7" width="540" height="480"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c7-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div id="c7-rect-ctl">
+                    <div class="slider-row">
+                      <label for="c7-a">底面的長：<span id="c7-va" class="val-num">5</span></label>
+                      <input type="range" id="c7-a" min="1" max="8" value="5" step="1">
+                    </div>
+                    <div class="slider-row">
+                      <label for="c7-b">底面的寬：<span id="c7-vb" class="val-num">3</span></label>
+                      <input type="range" id="c7-b" min="1" max="8" value="3" step="1">
+                    </div>
+                  </div>
+                  <div id="c7-tri-ctl" style="display:none">
+                    <div class="slider-row">
+                      <label for="c7-k">三角形的三邊：<span id="c7-vk" class="val-num">3、4、5</span></label>
+                      <input type="range" id="c7-k" min="0" max="3" value="0" step="1">
+                    </div>
+                  </div>
+                  <div class="slider-row">
+                    <label for="c7-h">角柱的高：<span id="c7-vh" class="val-num">6</span></label>
+                    <input type="range" id="c7-h" min="1" max="12" value="6" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">底面</span>
+                    <div class="btn-group" id="c7-mode-group">
+                      <button class="pick-btn active" data-c7-mode="rect">長方形</button>
+                      <button class="pick-btn" data-c7-mode="tri">直角三角形</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c7-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (角柱的體積與表面積)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-13">
+            <p class="quiz-question"><strong>Q13.</strong> 一塊直三角柱形的冰，底面是兩股 \(7\)、\(24\) 公分，斜邊 \(25\) 公分的直角三角形，柱高 \(5\) 公分。這塊冰的表面積是多少平方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-13" value="A"><span class="option-text">A. \(323\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-13" value="B"><span class="option-text">B. \(364\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-13" value="C"><span class="option-text">C. \(420\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-13" value="D"><span class="option-text">D. \(448\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。
+              \[ \begin{aligned} & \text{底面積} = 7 \times 24 \div 2 = 84 \\ & \text{側面積} = (7 + 24 + 25) \times 5 \\ &\qquad = 280 \\ & \text{表面積} = 280 + 2 \times 84 \\ &\qquad = 448 \end{aligned} \]
+              A 錯：周長漏了斜邊 \(25\)，\((7 + 24) \times 5 + 168 = 323\)。<br>
+              B 錯：只加了一個底面，\(280 + 84 = 364\)。<br>
+              C 錯：\(84 \times 5 = 420\) 是體積。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-14">
+            <p class="quiz-question"><strong>Q14.</strong> 一個直角柱的底面是梯形，上底 \(4\) 公分、下底 \(10\) 公分、高 \(6\) 公分，角柱的高是 \(8\) 公分。它的體積是多少立方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-14" value="A"><span class="option-text">A. \(336\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-14" value="B"><span class="option-text">B. \(672\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-14" value="C"><span class="option-text">C. \(480\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-14" value="D"><span class="option-text">D. \(192\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。底面積 \(= (4 + 10) \times 6 \div 2 = 42\)，體積 \(= 42 \times 8 = 336\)。<br>
+              B 錯：梯形面積忘了除以 \(2\)，\(84 \times 8 = 672\)。<br>
+              C 錯：把底面當成 \(10 \times 6\) 的長方形。<br>
+              D 錯：把底面當成 \(4 \times 6\) 的長方形。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 8: 長方體裡的最短距離
+           ========================================== -->
+      <section class="concept-section" id="concept8">
+        <h2 class="section-title">
+          <i class="fa-solid fa-route" aria-hidden="true"></i> <span>重點 8：長方體裡的最短距離——畢氏定理用兩次</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>兩點之間<strong>直線最短</strong>：在長方體裡從 \(B\) 飛到 \(H\)，最短的路線就是線段 \(\overline{BH}\)。</li>
+              <li>\(\overline{BH}\) 不在任何一個面上，要分兩步，每一步都找一個直角三角形：
+                <ul>
+                  <li>第一步：底面的直角 \(\triangle FGH\)（\(\angle FGH = 90^\circ\)），求出底面對角線 \(\overline{FH}\)。</li>
+                  <li>第二步：直立的直角 \(\triangle BFH\)（\(\overline{BF}\) 垂直底面，所以 \(\angle BFH = 90^\circ\)），求出 \(\overline{BH}\)。</li>
+                </ul>
+              </li>
+              <li>合起來：
+                \[ \overline{BH} = \sqrt{\text{長}^2 + \text{寬}^2 + \text{高}^2} \]
+              </li>
+              <li>例：長 \(6\)、寬 \(2\)、高 \(3\)：\(\overline{FH}^2 = 36 + 4 = 40\)，\(\overline{BH}^2 = 40 + 9 = 49\)，\(\overline{BH} = 7\)。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">長方體的對角線</span>
+              \(\sqrt{\text{長}^2 + \text{寬}^2 + \text{高}^2}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_firefly_box.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：一個透明的長方體冰展示櫃，櫃子裡從左上方的角到右下方的角拉著一條筆直的金色小燈串；小雪在櫃子外面指著燈串的一端，阿磚扶著櫃子另一邊。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-route"></i> 視覺互動探索：兩個直角三角形</h3>
+            <p class="interactive-instruction">調整長方體的長、寬、高。先看綠色的底面三角形，再看黃色的直立三角形：\(\overline{FH}\) 是怎麼當作第二個三角形的一股？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c8" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c8-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c8-l">長 \(\overline{GH}\)：<span id="c8-vl" class="val-num">8</span></label>
+                    <input type="range" id="c8-l" min="1" max="10" value="8" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-w">寬 \(\overline{FG}\)：<span id="c8-vw" class="val-num">4</span></label>
+                    <input type="range" id="c8-w" min="1" max="10" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-h">高 \(\overline{BF}\)：<span id="c8-vh" class="val-num">5</span></label>
+                    <input type="range" id="c8-h" min="1" max="10" value="5" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c8-yaw">觀看角度：<span id="c8-vyaw" class="val-num">-25</span>°</label>
+                    <input type="range" id="c8-yaw" min="-60" max="60" value="-25" step="5">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c8-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (長方體裡的最短距離)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-15">
+            <p class="quiz-question"><strong>Q15.</strong> 一個長方體冰盒長 \(12\)、寬 \(4\)、高 \(3\) 公分。盒內相距最遠的兩個頂點之間，直線距離是多少公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-15" value="A"><span class="option-text">A. \(13\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-15" value="B"><span class="option-text">B. \(19\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-15" value="C"><span class="option-text">C. \(4\sqrt{10}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-15" value="D"><span class="option-text">D. \(15\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。底面對角線的平方 \(= 12^2 + 4^2 = 160\)，再和高組成直角三角形：
+              \[ \sqrt{160 + 3^2} = \sqrt{169} = 13 \]
+              B 錯：\(12 + 4 + 3\) 是沿著三條邊走，不是直線。<br>
+              C 錯：\(\sqrt{160} = 4\sqrt{10}\) 只是底面的對角線。<br>
+              D 錯：\(12 + 3\) 也是沿著邊走。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-16">
+            <p class="quiz-question"><strong>Q16.</strong> 冰雕展示廳是長方體 \(ABCD\)-\(EFGH\)，地面 \(EFGH\) 長 \(16\) 公尺、寬 \(12\) 公尺，高 \(24\) 公尺；\(I\) 是天花板 \(ABCD\) 兩條對角線的交點。從 \(I\) 拉直一條燈串到地面的頂點 \(F\)，燈串長多少公尺？</p>
+            <canvas class="quiz-fig" data-fig="room" width="340" height="240" role="img" aria-label="長方體 ABCD-EFGH，天花板 ABCD 的兩條對角線以虛線畫出，交點為 I；從 I 拉到地面頂點 F 和 G 的兩條線段以黃色畫出"></canvas>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-16" value="A"><span class="option-text">A. \(34\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-16" value="B"><span class="option-text">B. \(4\sqrt{61}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-16" value="C"><span class="option-text">C. \(26\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-16" value="D"><span class="option-text">D. \(20\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。天花板的對角線長 \(\sqrt{16^2 + 12^2} = 20\)，\(I\) 是中點，所以 \(I\) 到 \(B\) 是 \(10\)。\(\overline{BF}\) 垂直地面，\(\triangle IBF\) 是直角三角形：
+              \[ \overline{IF} = \sqrt{10^2 + 24^2} = 26 \]
+              A 錯：\(10 + 24\) 是沿著兩段走，不是直線。<br>
+              B 錯：\(\sqrt{16^2 + 12^2 + 24^2} = 4\sqrt{61}\) 是整條對角線 \(\overline{AG}\) 的長，\(I\) 不在頂點上。<br>
+              D 錯：\(20\) 是天花板的對角線。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 9: 圓柱的展開圖
+           ========================================== -->
+      <section class="concept-section" id="concept9">
+        <h2 class="section-title">
+          <i class="fa-solid fa-scroll" aria-hidden="true"></i> <span>重點 9：圓柱的展開圖——長方形的長是底圓周長</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>圓柱的兩個底面是<strong>半徑相等且平行</strong>的圓。兩個底圓圓心的連線與底面垂直的，叫做<strong>直圓柱</strong>；國中只討論直圓柱。</li>
+              <li>把圓柱的側面沿著一條直的邊剪開攤平，得到一個<strong>長方形</strong>：
+                <ul>
+                  <li>長方形的長 \(=\) <strong>底圓的周長</strong> \(2\pi r\)（剛好繞底圓一圈）。</li>
+                  <li>長方形的寬 \(=\) 圓柱的高。</li>
+                </ul>
+              </li>
+              <li>所以圓柱的展開圖是「一個長方形 \(+\) 兩個圓」。判斷一張圖是不是圓柱的展開圖，要檢查長方形的那一邊<strong>是不是等於 \(2\pi r\)</strong>。</li>
+              <li>例：底圓半徑 \(2\)，側面長方形的長是 \(2\pi \times 2 = 4\pi\)；長方形的長寫成 \(3\pi\)，就圍不起來。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">圓柱的側面</span>
+              長方形：長 \(= 2\pi r\)、寬 \(= h\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_cyl_label.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：一根圓柱形的冰蠟燭立在桌上，旁邊是從它身上撕下來、攤平成長方形的藍色包裝紙；小雪拉著包裝紙的一端把它攤開，阿磚扶著蠟燭比對紙的長度。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-scroll"></i> 視覺互動探索：攤開冰蠟燭</h3>
+            <p class="interactive-instruction">「攤開」模式把側面慢慢展開；「檢查」模式改變長方形的長，看它和底圓周長配不配得上。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c9" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c9-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c9-r">底圓半徑 \(r\)：<span id="c9-vr" class="val-num">3</span></label>
+                    <input type="range" id="c9-r" min="1" max="6" value="3" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c9-h">高 \(h\)：<span id="c9-vh" class="val-num">5</span></label>
+                    <input type="range" id="c9-h" min="1" max="8" value="5" step="1">
+                  </div>
+                  <div class="slider-row" id="c9-t-row">
+                    <label for="c9-t">攤開的程度：<span id="c9-vt" class="val-num">60</span>%</label>
+                    <input type="range" id="c9-t" min="0" max="100" value="60" step="5">
+                  </div>
+                  <div class="slider-row" id="c9-k-row" style="display:none">
+                    <label for="c9-k">長方形的長：<span id="c9-vk" class="val-num">5</span>\(\pi\)</label>
+                    <input type="range" id="c9-k" min="1" max="14" value="5" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">模式</span>
+                    <div class="btn-group" id="c9-mode-group">
+                      <button class="pick-btn active" data-c9-mode="roll">攤開</button>
+                      <button class="pick-btn" data-c9-mode="check">檢查展開圖</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c9-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (圓柱的展開圖)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-17">
+            <p class="quiz-question"><strong>Q17.</strong> 一根底圓半徑 \(7\) 公分的圓柱形冰柱，把側面剪開攤平成長方形。長方形圍住底圓的那一邊長多少公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-17" value="A"><span class="option-text">A. \(7\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-17" value="B"><span class="option-text">B. \(14\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-17" value="C"><span class="option-text">C. \(49\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-17" value="D"><span class="option-text">D. \(14\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。那一邊剛好繞底圓一圈，等於底圓周長 \(2\pi \times 7 = 14\pi\)。<br>
+              A 錯：\(\pi r\) 只有半圈。<br>
+              C 錯：\(\pi r^2 = 49\pi\) 是底圓的面積。<br>
+              D 錯：\(14\) 是直徑，周長要再乘 \(\pi\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-18">
+            <p class="quiz-question"><strong>Q18.</strong> 一個圓柱的側面展開圖恰好是邊長 \(10\pi\) 的正方形。這個圓柱的高與底圓半徑的比是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-18" value="A"><span class="option-text">A. \(2\pi : 1\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-18" value="B"><span class="option-text">B. \(1 : 1\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-18" value="C"><span class="option-text">C. \(2 : 1\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-18" value="D"><span class="option-text">D. \(\pi : 1\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。正方形的一邊是底圓周長：\(2\pi r = 10\pi\)，\(r = 5\)；另一邊是高 \(10\pi\)。高 : 半徑 \(= 10\pi : 5 = 2\pi : 1\)。<br>
+              B 錯：正方形的兩邊相等，但一邊是周長、一邊是高，半徑不是 \(10\pi\)。<br>
+              C 錯：把高當成 \(10\)。<br>
+              D 錯：把直徑 \(10\) 當成半徑。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 10: 圓柱的體積與表面積
+           ========================================== -->
+      <section class="concept-section" id="concept10">
+        <h2 class="section-title">
+          <i class="fa-solid fa-database" aria-hidden="true"></i> <span>重點 10：圓柱的體積與表面積</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>把圓柱切成很多等分、重新拼起來，愈分愈細就愈接近一個四角柱，所以圓柱也是<strong>體積 \(=\) 底面積 \(\times\) 高</strong>：
+                \[ V = \pi r^2 h \]
+                任何柱體（角柱與圓柱）都是底面積 \(\times\) 高。
+              </li>
+              <li>表面積就是展開圖的面積：
+                \[ \begin{aligned} & \text{表面積} = \text{底圓周長} \times \text{高} \\ &\qquad + \text{兩底圓面積} \\ &\quad = 2\pi r h + 2\pi r^2 \end{aligned} \]
+              </li>
+              <li>把 \(\pi\) 當成一個數，\(2 \times \pi\) 簡寫成 \(2\pi\)；答案保留 \(\pi\) 就好。</li>
+              <li>例：\(r = 2\)、\(h = 7\)：體積 \(= 4\pi \times 7 = 28\pi\)，表面積 \(= 28\pi + 8\pi = 36\pi\)。</li>
+              <li>只給展開圖時，先由「長方形的長 \(= 2\pi r\)」求出半徑。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">圓柱</span>
+              \(V = \pi r^2 h\)；表面積 \(= 2\pi r h + 2\pi r^2\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_cyl_candle.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：小雪把融化的蠟倒進一個圓柱形的透明模具，模具旁放著一根已經做好的圓柱形白色蠟燭；阿磚扶著模具，兩人都戴著毛線手套。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-database"></i> 視覺互動探索：圓柱計算台</h3>
+            <p class="interactive-instruction">調整半徑與高，看體積、側面積、表面積怎麼變。切到「由展開圖」，先從長方形的長反推半徑。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c10" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c10-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row" id="c10-r-row">
+                    <label for="c10-r">底圓半徑 \(r\)：<span id="c10-vr" class="val-num">4</span></label>
+                    <input type="range" id="c10-r" min="1" max="6" value="4" step="1">
+                  </div>
+                  <div class="slider-row" id="c10-k-row" style="display:none">
+                    <label for="c10-k">側面長方形的長：<span id="c10-vk" class="val-num">10</span>\(\pi\)</label>
+                    <input type="range" id="c10-k" min="2" max="12" value="10" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c10-h">高 \(h\)：<span id="c10-vh" class="val-num">6</span></label>
+                    <input type="range" id="c10-h" min="1" max="8" value="6" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">已知</span>
+                    <div class="btn-group" id="c10-mode-group">
+                      <button class="pick-btn active" data-c10-mode="rh">半徑與高</button>
+                      <button class="pick-btn" data-c10-mode="net">由展開圖</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c10-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (圓柱的體積與表面積)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-19">
+            <p class="quiz-question"><strong>Q19.</strong> 一座圓柱形的冰燈座，底圓半徑 \(8\) 公分、高 \(5\) 公分。它的表面積是多少平方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-19" value="A"><span class="option-text">A. \(144\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-19" value="B"><span class="option-text">B. \(320\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-19" value="C"><span class="option-text">C. \(160\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-19" value="D"><span class="option-text">D. \(208\pi\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。側面積 \(= 2\pi \times 8 \times 5 = 80\pi\)，兩底圓 \(= 2 \times 64\pi = 128\pi\)，表面積 \(= 80\pi + 128\pi = 208\pi\)。<br>
+              A 錯：只加了一個底圓，\(80\pi + 64\pi\)。<br>
+              B 錯：\(64\pi \times 5 = 320\pi\) 是體積。<br>
+              C 錯：把側面積算了兩次，沒有加底圓。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-20">
+            <p class="quiz-question"><strong>Q20.</strong> 一根圓柱形冰柱的底面積是 \(16\pi\) 平方公尺、高 \(12\) 公尺。把它橫切成兩段圓柱，體積比是 \(3 : 1\)。體積較大的那一段，側面積是多少平方公尺？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-20" value="A"><span class="option-text">A. \(72\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-20" value="B"><span class="option-text">B. \(96\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-20" value="C"><span class="option-text">C. \(144\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-20" value="D"><span class="option-text">D. \(104\pi\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。底面積 \(\pi r^2 = 16\pi\)，\(r = 4\)。兩段的底面積相同，體積比就是高的比，大段的高 \(= 12 \times \frac{3}{4} = 9\)。側面積 \(= 2\pi \times 4 \times 9 = 72\pi\)。<br>
+              B 錯：\(96\pi\) 是整根冰柱的側面積。<br>
+              C 錯：\(16\pi \times 9 = 144\pi\) 是大段的體積。<br>
+              D 錯：把兩個底圓 \(32\pi\) 也加進去了，題目只問側面積。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 11: 空心與組合的圓柱
+           ========================================== -->
+      <section class="concept-section" id="concept11">
+        <h2 class="section-title">
+          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i> <span>重點 11：空心與組合的圓柱</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>空心的杯子（筆筒）</strong>：外圈半徑 \(R\)、外壁高 \(H\)，內圈半徑 \(r\)、內壁深 \(d\)。
+                <ul>
+                  <li>體積 \(=\) 外側圓柱 \(-\) 挖空的部分 \(= \pi R^2 H - \pi r^2 d\)。</li>
+                  <li>表面積包含外側面、內側面、外底面、上緣的環形、內部的底面。把內底面「搬」到上緣，剛好補成一個完整的大圓：
+                    \[ \begin{aligned} & \text{表面積} = 2\pi R H + 2\pi r d \\ &\qquad + 2 \times \pi R^2 \end{aligned} \]
+                  </li>
+                </ul>
+              </li>
+              <li><strong>中空的管子</strong>（兩端都開口）：體積 \(= \pi (R^2 - r^2) \times\) 長。</li>
+              <li><strong>兩個圓柱疊在一起</strong>：重疊的那塊不算表面積。小圓柱的上底剛好補回大圓柱被遮住的部分，所以<strong>表面積 \(=\) 大圓柱的表面積 \(+\) 小圓柱的側面積</strong>。也可以把兩個表面積加起來，再扣掉重疊的<strong>兩</strong>塊圓。
+              </li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">先拆再算</span>
+              體積：加加減減；表面積：一面一面數，重疊的不算
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_ice_cup.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：桌上一個厚厚的圓柱形冰杯，杯口看得到一圈環形的杯緣和杯內較淺的杯底；旁邊是一座由大圓柱冰塊上面疊一個較細圓柱冰塊做成的冰燈座。小雪用手指沿著杯緣畫圈，阿磚捧著冰燈座。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-mug-hot"></i> 視覺互動探索：冰杯與冰燈座</h3>
+            <p class="interactive-instruction">選「冰杯」或「冰燈座」，調整四個尺寸。表面積拆成哪幾塊？內圈比外圈大、或杯底被挖穿時會怎樣？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c11" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c11-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c11-R"><span id="c11-l1">外圈半徑 R</span>：<span id="c11-vR" class="val-num">6</span></label>
+                    <input type="range" id="c11-R" min="3" max="8" value="6" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c11-r"><span id="c11-l2">內圈半徑 r</span>：<span id="c11-vr" class="val-num">4</span></label>
+                    <input type="range" id="c11-r" min="1" max="7" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c11-H"><span id="c11-l3">外壁高 H</span>：<span id="c11-vH" class="val-num">7</span></label>
+                    <input type="range" id="c11-H" min="2" max="8" value="7" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c11-d"><span id="c11-l4">內壁深 d</span>：<span id="c11-vd" class="val-num">5</span></label>
+                    <input type="range" id="c11-d" min="1" max="8" value="5" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">形體</span>
+                    <div class="btn-group" id="c11-mode-group">
+                      <button class="pick-btn active" data-c11-mode="hollow">冰杯</button>
+                      <button class="pick-btn" data-c11-mode="stack">冰燈座</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c11-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (空心與組合的圓柱)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-21">
+            <p class="quiz-question"><strong>Q21.</strong> 一段兩端開口的空心冰管，外圈半徑 \(9\) 公分、內圈半徑 \(7\) 公分、長 \(10\) 公分。冰管本身的體積是多少立方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-21" value="A"><span class="option-text">A. \(810\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-21" value="B"><span class="option-text">B. \(1300\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-21" value="C"><span class="option-text">C. \(40\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-21" value="D"><span class="option-text">D. \(320\pi\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。冰管 \(=\) 外側圓柱 \(-\) 中空部分：
+              \[ \begin{aligned} & \pi \times 9^2 \times 10 - \pi \times 7^2 \times 10 \\ & = 810\pi - 490\pi \\ & = 320\pi \end{aligned} \]
+              A 錯：只算了外側圓柱，沒有扣掉中空的部分。<br>
+              B 錯：把中空的部分加上去了。<br>
+              C 錯：\(\pi (9 - 7)^2 \times 10\)，半徑相減再平方是錯的，要先平方再相減。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-22">
+            <p class="quiz-question"><strong>Q22.</strong> 一座冰燈座由兩個圓柱疊成：下面的大圓柱半徑 \(10\)、高 \(3\)，上面的小圓柱半徑 \(4\)、高 \(6\)，兩個圓心對齊。整座冰燈座的表面積是多少（重疊的部分不算）？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-22" value="A"><span class="option-text">A. \(340\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-22" value="B"><span class="option-text">B. \(324\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-22" value="C"><span class="option-text">C. \(308\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-22" value="D"><span class="option-text">D. \(396\pi\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 C。大圓柱的表面積 \(+\) 小圓柱的側面積：
+              \[ \begin{aligned} & 2 \times 100\pi + 2\pi \times 10 \times 3 \\ &\quad + 2\pi \times 4 \times 6 \\ & = 200\pi + 60\pi + 48\pi \\ & = 308\pi \end{aligned} \]
+              A 錯：兩個圓柱的表面積直接相加（\(260\pi + 80\pi\)），重疊的兩塊圓都沒扣。<br>
+              B 錯：只扣了一塊重疊的圓 \(16\pi\)；被遮住的大圓柱上底和小圓柱下底，兩塊都要扣。<br>
+              D 錯：\(300\pi + 96\pi = 396\pi\) 是體積。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 12: 角錐的組成與展開圖
+           ========================================== -->
+      <section class="concept-section" id="concept12">
+        <h2 class="section-title">
+          <i class="fa-solid fa-campground" aria-hidden="true"></i> <span>重點 12：角錐的組成與展開圖</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li><strong>\(n\) 角錐</strong>：以一個 \(n\) 邊形當底面，加上 \(n\) 個<strong>共頂點的三角形</strong>當側面，所圍出的立體圖形。</li>
+              <li><strong>正角錐</strong>：底面是正多邊形，側面都是全等的等腰三角形；錐頂與底面中心的連線和底面垂直。國中只討論正角錐。</li>
+              <li>數一數 \(n\) 角錐：
+                <ul>
+                  <li>頂點：底面 \(n\) 個 \(+\) 錐頂 \(1\) 個 \(= n + 1\)。</li>
+                  <li>面：底面 \(1\) 個 \(+\) 側面 \(n\) 個 \(= n + 1\)。</li>
+                  <li>邊：底面 \(n\) 條 \(+\) 側邊 \(n\) 條 \(= 2n\)。</li>
+                </ul>
+              </li>
+              <li>展開圖常見的畫法：底面放中間，側面三角形圍在四周（展開圖不只一種）。每個側面三角形的<strong>底邊要等於底面的邊長</strong>，而且三角形要夠高，摺起來頂點才會合得起來。</li>
+              <li>例：六角錐有 \(7\) 個頂點、\(7\) 個面、\(12\) 條邊。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">\(n\) 角錐</span>
+              頂點 \(n + 1\)、面 \(n + 1\)、邊 \(2n\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_pyramid_net.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：桌上攤著一張正四角錐的紙燈罩展開圖，正方形的底面在中間、四個三角形圍在四邊；小雪正把其中兩個三角形往上摺，阿磚手上拿著一個已經摺好的正四角錐紙燈罩。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-campground"></i> 視覺互動探索：角錐燈罩摺紙</h3>
+            <p class="interactive-instruction">調整底面的邊數 \(n\)，把側面三角形慢慢摺起來，看它們在哪裡會合；再數數頂點、面、邊。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c12" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c12-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c12-n">底面邊數 \(n\)：<span id="c12-vn" class="val-num">4</span></label>
+                    <input type="range" id="c12-n" min="3" max="10" value="4" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c12-t">摺的程度：<span id="c12-vt" class="val-num">50</span>%</label>
+                    <input type="range" id="c12-t" min="0" max="100" value="50" step="5">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c12-yaw">觀看角度：<span id="c12-vyaw" class="val-num">20</span>°</label>
+                    <input type="range" id="c12-yaw" min="-60" max="60" value="20" step="5">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c12-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (角錐的組成與展開圖)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-23">
+            <p class="quiz-question"><strong>Q23.</strong> 某個角錐共有 \(30\) 條邊，它有幾個面？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-23" value="A"><span class="option-text">A. \(15\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-23" value="B"><span class="option-text">B. \(16\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-23" value="C"><span class="option-text">C. \(30\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-23" value="D"><span class="option-text">D. \(32\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。\(n\) 角錐有 \(2n\) 條邊，\(2n = 30\)，\(n = 15\)；面數 \(= n + 1 = 16\)。<br>
+              A 錯：\(15\) 是側面的個數，還要加上底面。<br>
+              C 錯：把角錐當成「邊數 \(=\) 面數」。<br>
+              D 錯：\(32\) 是用角柱的「\(n + 2\)」套在 \(n = 30\)，邊數不是 \(n\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-24">
+            <p class="quiz-question"><strong>Q24.</strong> 小雪要用木片做正三角錐：底面是邊長 \(4\) 的正三角形。側面要從下列四種木片中選一種，用三片相同的圍起來：<br>
+            甲：底 \(4\)、兩腰 \(5\) 的等腰三角形；乙：底 \(5\)、兩腰 \(4\) 的等腰三角形；<br>
+            丙：邊長 \(4\) 的正三角形；丁：底 \(4\)、兩腰 \(2\) 的「三角形」。<br>
+            哪幾種木片可以和底面組成正三角錐？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-24" value="A"><span class="option-text">A. 甲、丙</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-24" value="B"><span class="option-text">B. 甲、乙</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-24" value="C"><span class="option-text">C. 只有丙</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-24" value="D"><span class="option-text">D. 甲、丙、丁</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。側面三角形的底邊要和底面的邊等長（\(4\)）。甲的底是 \(4\)、腰 \(5\) 夠長，三片立起來頂點合得起來；丙是正三角形，圍成的是正四面體，也是正三角錐。<br>
+              B 錯：乙的底是 \(5\)，和底面的邊 \(4\) 疊不起來。<br>
+              C 錯：甲也可以。<br>
+              D 錯：丁的兩腰 \(2 + 2 = 4\)，等於底，根本圍不成三角形。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 13: 角錐的表面積
+           ========================================== -->
+      <section class="concept-section" id="concept13">
+        <h2 class="section-title">
+          <i class="fa-solid fa-mountain" aria-hidden="true"></i> <span>重點 13：角錐的表面積——斜高不是錐高</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>角錐的表面積就是展開圖的面積：<strong>表面積 \(=\) 側面三角形的面積和 \(+\) 底面積</strong>。</li>
+              <li>正四角錐（底邊 \(a\)）：側面三角形的高叫做<strong>斜高</strong>，
+                \[ \begin{aligned} & \text{表面積} \\ & = a^2 + 4 \times \frac{1}{2} \times a \times \text{斜高} \end{aligned} \]
+              </li>
+              <li><strong>錐高</strong>（錐頂到底面中心）、<strong>底邊的一半</strong>、<strong>斜高</strong>圍成一個直角三角形，斜高是斜邊。題目只給錐高時，先用畢氏定理求斜高。</li>
+              <li>正三角形（邊長 \(a\)）：高 \(= \frac{\sqrt{3}}{2}a\)、面積 \(= \frac{\sqrt{3}}{4}a^2\)。四個面都是正三角形的正四面體，表面積 \(= \sqrt{3}a^2\)。</li>
+              <li>例：底邊 \(8\)、斜高 \(5\) 的正四角錐，表面積 \(= 64 + 4 \times 20 = 144\)。</li>
+              <li>角錐的體積不是這一節的學習目標。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">正四角錐</span>
+              表面積 \(= a^2 + 2a \times\) 斜高
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_pyramid_tent.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：雪地上搭著一頂正四角錐形的帳篷，正方形的底貼著地面、四個三角形的布面在頂端會合；阿磚拉著一條從帳篷頂端沿著一個布面中線垂下來的彩色繩子，小雪蹲在帳篷前面。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-mountain"></i> 視覺互動探索：角錐包裝紙計算台</h3>
+            <p class="interactive-instruction">青色線是斜高、紫色虛線是錐高。只知道錐高時，斜高要怎麼求？切到「正四面體」再看看四個全等的正三角形。</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c13" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c13-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c13-a">底邊 \(a\)：<span id="c13-va" class="val-num">6</span></label>
+                    <input type="range" id="c13-a" min="2" max="8" value="6" step="2">
+                  </div>
+                  <div class="slider-row" id="c13-s-row">
+                    <label for="c13-s">斜高：<span id="c13-vs" class="val-num">5</span></label>
+                    <input type="range" id="c13-s" min="2" max="12" value="5" step="1">
+                  </div>
+                  <div class="slider-row" id="c13-H-row" style="display:none">
+                    <label for="c13-H">錐高：<span id="c13-vH" class="val-num">4</span></label>
+                    <input type="range" id="c13-H" min="1" max="10" value="4" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">已知</span>
+                    <div class="btn-group" id="c13-mode-group">
+                      <button class="pick-btn active" data-c13-mode="slant">底邊與斜高</button>
+                      <button class="pick-btn" data-c13-mode="height">底邊與錐高</button>
+                      <button class="pick-btn" data-c13-mode="tet">正四面體</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c13-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (角錐的表面積)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-25">
+            <p class="quiz-question"><strong>Q25.</strong> 一座正四角錐形的冰雕，底面是邊長 \(12\) 公分的正方形，側面等腰三角形的高（斜高）是 \(7\) 公分。它的表面積是多少平方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-25" value="A"><span class="option-text">A. \(228\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-25" value="B"><span class="option-text">B. \(312\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-25" value="C"><span class="option-text">C. \(480\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-25" value="D"><span class="option-text">D. \(168\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。底面積 \(= 12^2 = 144\)，側面積 \(= 4 \times \frac{1}{2} \times 12 \times 7 = 168\)，表面積 \(= 144 + 168 = 312\)。<br>
+              A 錯：側面只算了兩個三角形，\(144 + 84\)。<br>
+              C 錯：三角形面積忘了乘 \(\frac{1}{2}\)，\(144 + 336\)。<br>
+              D 錯：\(168\) 只是側面積，沒有加底面。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-26">
+            <p class="quiz-question"><strong>Q26.</strong> 一頂正四角錐形的帳篷，底面是邊長 \(10\) 公尺的正方形，<strong>錐高</strong>（頂點到底面中心）是 \(12\) 公尺。帳篷連同底面的表面積是多少平方公尺？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-26" value="A"><span class="option-text">A. \(340\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-26" value="B"><span class="option-text">B. \(620\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-26" value="C"><span class="option-text">C. \(260\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-26" value="D"><span class="option-text">D. \(360\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。錐高 \(12\)、底邊的一半 \(5\)、斜高圍成直角三角形，斜高 \(= \sqrt{12^2 + 5^2} = 13\)。
+              \[ \begin{aligned} & 10^2 + 4 \times \frac{1}{2} \times 10 \times 13 \\ & = 100 + 260 = 360 \end{aligned} \]
+              A 錯：把錐高 \(12\) 當成斜高，\(100 + 240\)。<br>
+              B 錯：三角形面積忘了乘 \(\frac{1}{2}\)。<br>
+              C 錯：\(260\) 只是側面積。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 14: 圓錐展開圖
+           ========================================== -->
+      <section class="concept-section" id="concept14">
+        <h2 class="section-title">
+          <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> <span>重點 14：圓錐的展開圖——扇形的弧長是底圓周長</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>圓錐有一個圓形的底面、一個頂點和側面。頂點與底圓圓心的連線垂直於底面的，叫做<strong>直圓錐</strong>。</li>
+              <li>圓錐的展開圖是一個<strong>扇形</strong>（側面）加一個<strong>圓</strong>（底面）：
+                <ul>
+                  <li>扇形的半徑 \(R\) \(=\) 圓錐的<strong>母線</strong>（頂點到底圓周上的距離）。</li>
+                  <li><strong>扇形的弧長 \(=\) 底圓的周長 \(2\pi r\)</strong>。</li>
+                </ul>
+              </li>
+              <li>弧長是整個圓周的幾分之幾，圓心角就是 \(360^\circ\) 的幾分之幾：
+                \[ \begin{aligned} & \text{圓心角} = 360^\circ \times \frac{2\pi r}{2\pi R} \\ &\qquad = 360^\circ \times \frac{r}{R} \end{aligned} \]
+              </li>
+              <li>例：\(r = 3\)、\(R = 9\)，圓心角 \(= 360^\circ \times \frac{3}{9} = 120^\circ\)。反過來，知道圓心角與其中一個半徑，也能求另一個半徑。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">圓錐展開圖</span>
+              弧長 \(= 2\pi r\)；圓心角 \(= 360^\circ \times \frac{r}{R}\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_cone_hat.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：小雪手上拿著一張剪成扇形的紅色卡紙，正把兩條直邊捲在一起做成圓錐形的派對帽；阿磚頭上已經戴著一頂做好的藍色圓錐帽，手上拿著一個圓形的紙片要當帽底。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-chart-pie"></i> 視覺互動探索：圓錐帽裁紙機</h3>
+            <p class="interactive-instruction">調整母線（扇形半徑）\(R\) 與底圓半徑 \(r\)。黃色的弧和黃色的底圓周長一樣長；圓心角怎麼跟著 \(\frac{r}{R}\) 變？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c14" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c14-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row">
+                    <label for="c14-R">母線（扇形半徑）\(R\)：<span id="c14-vR" class="val-num">10</span></label>
+                    <input type="range" id="c14-R" min="2" max="15" value="10" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c14-r">底圓半徑 \(r\)：<span id="c14-vr" class="val-num">4</span></label>
+                    <input type="range" id="c14-r" min="1" max="9" value="4" step="1">
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c14-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (圓錐的展開圖)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-27">
+            <p class="quiz-question"><strong>Q27.</strong> 一個圓錐的底圓半徑 \(7\) 公分、母線長 \(20\) 公分。它的展開圖中，扇形的圓心角是多少度？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-27" value="A"><span class="option-text">A. \(63^\circ\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-27" value="B"><span class="option-text">B. \(126^\circ\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-27" value="C"><span class="option-text">C. \(234^\circ\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-27" value="D"><span class="option-text">D. \(252^\circ\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 B。弧長 \(= 2\pi \times 7 = 14\pi\)，占整個圓周 \(40\pi\) 的 \(\frac{7}{20}\)，圓心角 \(= 360^\circ \times \frac{7}{20} = 126^\circ\)。<br>
+              A 錯：用 \(180^\circ \times \frac{7}{20}\)，只算了半圓。<br>
+              C 錯：\(360^\circ - 126^\circ\) 是剪掉的那一塊。<br>
+              D 錯：用直徑 \(14\) 去比母線，\(360^\circ \times \frac{14}{20}\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-28">
+            <p class="quiz-question"><strong>Q28.</strong> 一個圓錐的展開圖中，扇形的圓心角是 \(260^\circ\)，底圓半徑是 \(13\) 公分。扇形的半徑（母線）是多少公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-28" value="A"><span class="option-text">A. \(18\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-28" value="B"><span class="option-text">B. \(\frac{169}{18}\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-28" value="C"><span class="option-text">C. \(26\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-28" value="D"><span class="option-text">D. \(\frac{234}{5}\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。設扇形半徑為 \(R\)，弧長 \(=\) 底圓周長：
+              \[ 2\pi R \times \frac{260}{360} = 2\pi \times 13 \]
+              \(\frac{13}{18}R = 13\)，\(R = 18\)。<br>
+              B 錯：乘反了，\(13 \times \frac{13}{18}\)。母線一定比底圓半徑長。<br>
+              C 錯：\(26\) 是底圓的直徑。<br>
+              D 錯：用了 \(100^\circ\)（剪掉的部分）去算，\(13 \times \frac{360}{100}\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           重點 15: 圓錐的表面積
+           ========================================== -->
+      <section class="concept-section" id="concept15">
+        <h2 class="section-title">
+          <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> <span>重點 15：圓錐的表面積——扇形加底圓</span>
+        </h2>
+
+        <div class="grid-content">
+          <div class="explanation-card">
+            <h3><i class="fa-solid fa-circle-info"></i> 重點整理與敘述</h3>
+            <ul class="bullet-list">
+              <li>圓錐的表面積就是展開圖的面積：
+                \[ \text{表面積} = \text{扇形面積} + \text{底圓面積} \]
+              </li>
+              <li>弧長是整個圓周的 \(\frac{r}{R}\)，扇形面積也是整個圓面積的 \(\frac{r}{R}\)：
+                \[ \text{扇形面積} = \pi R^2 \times \frac{r}{R} = \pi R r \]
+              </li>
+              <li>所以 \(\text{表面積} = \pi R r + \pi r^2\)（\(R\) 是母線、\(r\) 是底圓半徑）。</li>
+              <li>題目給的是圓錐的<strong>高</strong> \(h\) 時，高、底圓半徑、母線圍成直角三角形，先求母線 \(R = \sqrt{r^2 + h^2}\)。</li>
+              <li>例：\(r = 3\)、\(R = 5\)：扇形面積 \(= 15\pi\)，表面積 \(= 15\pi + 9\pi = 24\pi\)。</li>
+            </ul>
+            <div class="formula-box">
+              <span class="formula-label">圓錐</span>
+              表面積 \(= \pi R r + \pi r^2\)
+            </div>
+
+            <div class="illustration-container">
+              <img src="ic_cone_icecream.webp" alt="冰雪節冰雕工坊・藍白冬季繪本風插圖：冰雪節的小攤位上，小雪拿著一支尖頭朝下的圓錐形甜筒，上面是一球白色冰淇淋；阿磚拿著一張攤平的扇形甜筒包裝紙，比對甜筒的大小。" class="illustration" loading="lazy" onerror="this.closest('.illustration-container').style.display='none'">
+            </div>
+          </div>
+
+          <div class="interactive-card">
+            <h3><i class="fa-solid fa-ice-cream"></i> 視覺互動探索：甜筒包裝紙</h3>
+            <p class="interactive-instruction">調整母線與底圓半徑，看扇形面積怎麼化成 \(\pi R r\)。切到「已知高」：母線要先怎麼算？</p>
+            <div class="canvas-container">
+              <canvas id="canvas-c15" width="540" height="470"></canvas>
+              <div class="control-panel">
+                <div class="value-display">
+                  <span id="c15-formula" style="font-weight:700; font-size:1.05rem;">載入中...</span>
+                </div>
+
+                <div class="slider-wrapper">
+                  <div class="slider-row" id="c15-R-row">
+                    <label for="c15-R">母線 \(R\)：<span id="c15-vR" class="val-num">9</span></label>
+                    <input type="range" id="c15-R" min="2" max="15" value="9" step="1">
+                  </div>
+                  <div class="slider-row">
+                    <label for="c15-r">底圓半徑 \(r\)：<span id="c15-vr" class="val-num">5</span></label>
+                    <input type="range" id="c15-r" min="1" max="8" value="5" step="1">
+                  </div>
+                  <div class="slider-row" id="c15-h-row" style="display:none">
+                    <label for="c15-h">圓錐的高 \(h\)：<span id="c15-vh" class="val-num">4</span></label>
+                    <input type="range" id="c15-h" min="1" max="12" value="4" step="1">
+                  </div>
+                </div>
+
+                <div class="btn-group-wrapper">
+                  <div class="btn-group-row">
+                    <span class="btn-group-label">已知</span>
+                    <div class="btn-group" id="c15-mode-group">
+                      <button class="pick-btn active" data-c15-mode="slant">母線與半徑</button>
+                      <button class="pick-btn" data-c15-mode="height">高與半徑</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="visual-feedback" id="c15-feedback">載入中...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <h3><i class="fa-solid fa-pen-clip"></i> 形成性評量 (圓錐的表面積)</h3>
+
+          <div class="quiz-card" data-quiz="3-1-29">
+            <p class="quiz-question"><strong>Q29.</strong> 一個圓錐形的冰雕，底圓半徑 \(9\) 公分、母線長 \(20\) 公分。它的表面積是多少平方公分？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-29" value="A"><span class="option-text">A. \(180\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-29" value="B"><span class="option-text">B. \(481\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-29" value="C"><span class="option-text">C. \(360\pi\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-29" value="D"><span class="option-text">D. \(261\pi\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 D。扇形面積 \(= \pi \times 20 \times 9 = 180\pi\)，底圓面積 \(= 81\pi\)，表面積 \(= 180\pi + 81\pi = 261\pi\)。<br>
+              A 錯：\(180\pi\) 只是側面，沒有加底圓。<br>
+              B 錯：把側面當成整個半徑 \(20\) 的圓 \(400\pi\)。<br>
+              C 錯：把扇形面積算成 \(2\pi R r\)。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" data-quiz="3-1-30">
+            <p class="quiz-question"><strong>Q30.</strong> 一個圓錐的展開圖中，扇形的半徑是 \(17\)，底圓的半徑是 \(4\)。扇形面積與底圓面積的比是多少？</p>
+            <div class="options-container">
+              <label class="option-label"><input type="radio" name="q3-1-30" value="A"><span class="option-text">A. \(17 : 4\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-30" value="B"><span class="option-text">B. \(289 : 16\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-30" value="C"><span class="option-text">C. \(4 : 17\)</span></label>
+              <label class="option-label"><input type="radio" name="q3-1-30" value="D"><span class="option-text">D. \(17 : 8\)</span></label>
+            </div>
+            <button class="btn-check-ans" disabled>提交答案</button>
+            <div class="explanation-box">
+              <div class="explanation-title"></div>
+              <p class="explanation-desc"><strong>解析：</strong>答案為 A。扇形面積 \(= \pi \times 17 \times 4 = 68\pi\)，底圓面積 \(= 16\pi\)，比 \(= 68 : 16 = 17 : 4\)（就是 \(R : r\)）。<br>
+              B 錯：把整個半徑 \(17\) 的圓 \(289\pi\) 拿來比。<br>
+              C 錯：前後項寫反了。<br>
+              D 錯：\(34 : 16\) 是把扇形面積算成 \(\pi R r \div 2\)。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           小節總結
+           ========================================== -->
+      <section class="summary-section" id="summary">
+        <h2 class="section-title">
+          <i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 小節總結與核心回顧
+        </h2>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4><i class="fa-solid fa-clipboard-list"></i> 空間與形體速查表</h4>
+            <ul class="bullet-list">
+              <li><strong>垂直</strong>：用長方體檢驗；\(L \perp S\) 時，\(S\) 上通過交點的每一條直線都 \(\perp L\)。</li>
+              <li><strong>平行</strong>：同一條直線同時垂直兩平面 \(\Rightarrow\) 兩平面平行。</li>
+              <li><strong>兩直線</strong>：相交；不相交且同平面 \(\to\) 平行；不相交且不同平面 \(\to\) 歪斜。</li>
+              <li><strong>\(n\) 角柱</strong>：頂點 \(2n\)、面 \(n + 2\)、邊 \(3n\)；<strong>\(n\) 角錐</strong>：頂點 \(n + 1\)、面 \(n + 1\)、邊 \(2n\)。</li>
+              <li><strong>柱體</strong>：體積 \(=\) 底面積 \(\times\) 高；表面積 \(=\) 側面積 \(+\) 兩底面積。</li>
+              <li><strong>圓柱</strong>：側面長方形的長 \(= 2\pi r\)；<strong>圓錐</strong>：扇形弧長 \(= 2\pi r\)，表面積 \(= \pi R r + \pi r^2\)。</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <div class="context-story">
+              <h4><i class="fa-solid fa-book-open"></i> 回到冰雕工坊</h4>
+              <h5><i class="fa-solid fa-cube"></i> 冰牆立直了嗎？</h5>
+              <p>長方體冰磚相鄰的兩面互相垂直：平放在地上、推過去和冰牆整面貼緊，冰牆才和地面垂直。</p>
+              <h5><i class="fa-solid fa-route"></i> 斜著拉的燈串</h5>
+              <p>燈串從展示櫃的一角拉到最遠的另一角，不在任何一面上——先在底面找直角三角形，再立起來找第二個，畢氏定理用兩次。</p>
+              <h5><i class="fa-solid fa-ice-cream"></i> 包裝紙要剪多大？</h5>
+              <p>圓柱的包裝紙是長 \(2\pi r\) 的長方形，圓錐的是弧長 \(2\pi r\) 的扇形。先把立體「攤平」，表面積就變成平面圖形的面積。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer>
+      <p>© 2026 國中數學教學整合網. 專為高效課堂互動設計.</p>
+    </footer>
   </div>
 
-  <!-- 共用課堂元件：課堂工具側邊欄與上下節導覽 -->
+  <!-- Main JavaScript Logic -->
+  <script src="../math-canvas.js"></script>
+  <script src="canvas.js"></script>
+
+  <!-- 共用課堂元件：課程資料、課堂工具側邊欄、上下節導覽、課堂畫筆 -->
   <script src="../../curriculum.js"></script>
   <script src="../../tools-sidebar.js" data-home="../../index.html"></script>
   <script src="../../lesson-nav.js"></script>
-
+  <script src="../../annotate.js"></script>
 </body>
 </html>

@@ -198,7 +198,7 @@
       {
         "chapter": "第3章 生活中的立體圖形",
         "sections": [
-          { "code": "3-1", "title": "空間中的線、平面與形體" }
+          { "code": "3-1", "title": "空間中的線、平面與形體", "status": "completed" }
         ]
       }
     ]
