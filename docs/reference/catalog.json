@@ -1,0 +1,4262 @@
+{
+  "title": "teaching-web 各冊各章概念索引",
+  "schema_version": 2,
+  "source": "curriculum.js and materials/*/index.html",
+  "scope": "自動產生的教材標題索引；規則及章節編輯說明不在 JSON 複寫。",
+  "books": [
+    {
+      "volume": 1,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 整數的運算",
+          "sections": [
+            {
+              "folder": "1-1-1",
+              "title": "負數與數線",
+              "source": "materials/1-1-1/index.html",
+              "source_sha256": "93606cb3e9bc74d7e0a9f8fbeb8dbeb7e21869cfe852ac2b2ab2477ff3473883",
+              "concept_count": 5,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：正數與負數",
+                  "anchor": "concept1",
+                  "line": 75
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：數線的要素與標記",
+                  "anchor": "concept2",
+                  "line": 188
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：數的大小與遞移關係",
+                  "anchor": "concept3",
+                  "line": 308
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：相反數的性質",
+                  "anchor": "concept4",
+                  "line": 430
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：絕對值與距離的應用",
+                  "anchor": "concept5",
+                  "line": 542
+                }
+              ]
+            },
+            {
+              "folder": "1-1-2",
+              "title": "整數的加減",
+              "source": "materials/1-1-2/index.html",
+              "source_sha256": "1108c30431b825dcf8a56004789a57e7f1c50a0f4865a63fa2fe401231be26b3",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：整數的加法運算",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：加法運算規律",
+                  "anchor": "concept2",
+                  "line": 206
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：整數的減法運算",
+                  "anchor": "concept3",
+                  "line": 344
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：去括號規則與加減混合運算",
+                  "anchor": "concept4",
+                  "line": 483
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：含絕對值的算式運算",
+                  "anchor": "concept5",
+                  "line": 619
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：數線上兩點的距離與中點",
+                  "anchor": "concept6",
+                  "line": 758
+                }
+              ]
+            },
+            {
+              "folder": "1-1-3",
+              "title": "整數的乘除與四則運算",
+              "source": "materials/1-1-3/index.html",
+              "source_sha256": "92232a6d656631a6fce5b32b84ace5048e674c34880fc7d9247ade1de34a5418",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：整數的乘法運算",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：乘法的交換律、結合律與連乘符號",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：整數的除法運算",
+                  "anchor": "concept3",
+                  "line": 309
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：整數的四則運算順序",
+                  "anchor": "concept4",
+                  "line": 408
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：乘法對加（減）法的分配律",
+                  "anchor": "concept5",
+                  "line": 506
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：整數四則運算的生活應用",
+                  "anchor": "concept6",
+                  "line": 634
+                }
+              ]
+            },
+            {
+              "folder": "1-1-4",
+              "title": "指數記法與科學記號",
+              "source": "materials/1-1-4/index.html",
+              "source_sha256": "996f6962cb9a897f66b18be633cf1aa3f9b49e3774f1f160f4c174f5eae7e7b3",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：乘方的意義——底數與指數",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：負數的乘方與括號陷阱",
+                  "anchor": "concept2",
+                  "line": 199
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：含乘方的四則運算順序",
+                  "anchor": "concept3",
+                  "line": 311
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：10 的次方與負指數",
+                  "anchor": "concept4",
+                  "line": 416
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：科學記號的表示法",
+                  "anchor": "concept5",
+                  "line": 527
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：位數判斷與比較大小",
+                  "anchor": "concept6",
+                  "line": 650
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 分數的運算",
+          "sections": [
+            {
+              "folder": "1-2-1",
+              "title": "因數與倍數",
+              "source": "materials/1-2-1/index.html",
+              "source_sha256": "46e3ac94c307cb1cf207c8e6f121551fb5021e4998dc67e9d8a89de2ce940ac0",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：因數與倍數——一個乘式，兩種身分",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：2、5、4 的倍數判別法——只看末幾位",
+                  "anchor": "concept2",
+                  "line": 217
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：3、9 的倍數判別法——把數字加起來",
+                  "anchor": "concept3",
+                  "line": 342
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：11 的倍數判別法——奇、偶數位數字和相減",
+                  "anchor": "concept4",
+                  "line": 474
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：質數與合數——篩出數字的原子",
+                  "anchor": "concept5",
+                  "line": 598
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：質因數分解與標準分解式",
+                  "anchor": "concept6",
+                  "line": 722
+                }
+              ]
+            },
+            {
+              "folder": "1-2-2",
+              "title": "最大公因數與最小公倍數",
+              "source": "materials/1-2-2/index.html",
+              "source_sha256": "22b5489a699b4c723b4b13f67c86ee1ebb1c379a5d456d23425ed9bc0ddcb203",
+              "concept_count": 7,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：公因數與最大公因數——兩邊都有的才算",
+                  "anchor": "concept1",
+                  "line": 79
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：短除法求最大公因數——把共同的質因數一層層拆下來",
+                  "anchor": "concept2",
+                  "line": 196
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：公倍數與最小公倍數——兩條節拍第一次對上",
+                  "anchor": "concept3",
+                  "line": 326
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：短除法求最小公倍數——L 形上的數字全部相乘",
+                  "anchor": "concept4",
+                  "line": 449
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：標準分解式——共同的取小，全部的取大",
+                  "anchor": "concept5",
+                  "line": 593
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：分裝與間隔問題——把整體切小，求最大公因數",
+                  "anchor": "concept6",
+                  "line": 722
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：週期與拼合問題——把小的湊成整體，求最小公倍數",
+                  "anchor": "concept7",
+                  "line": 852
+                }
+              ]
+            },
+            {
+              "folder": "1-2-3",
+              "title": "分數的四則運算",
+              "source": "materials/1-2-3/index.html",
+              "source_sha256": "1dc76e99f511241571125f9926803b6057832f5f7e97338871e5d12834e7cdce",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：最簡分數與等值分數——切得再細，還是同一塊",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：分數的比較大小——先切成一樣的份數再比",
+                  "anchor": "concept2",
+                  "line": 199
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：分數的加減——分母先對齊，分子才能算",
+                  "anchor": "concept3",
+                  "line": 323
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：分數的乘法——分子乘分子，分母乘分母",
+                  "anchor": "concept4",
+                  "line": 493
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：倒數與分數的除法——把除數翻過來再相乘",
+                  "anchor": "concept5",
+                  "line": 640
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：數的四則運算與應用——順序對了，分配律才好用",
+                  "anchor": "concept6",
+                  "line": 771
+                }
+              ]
+            },
+            {
+              "folder": "1-2-4",
+              "title": "指數律",
+              "source": "materials/1-2-4/index.html",
+              "source_sha256": "27f24427ac64bb10d5e9b37d589b61e3469cb04fa356c1d6749b80f7d16ababb",
+              "concept_count": 7,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：分數與小數的乘方——分子分母各自乘方",
+                  "anchor": "concept1",
+                  "line": 79
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：乘方的比較大小——看底數落在 1 的哪一邊",
+                  "anchor": "concept2",
+                  "line": 201
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：含乘方的四則運算——乘方要先算",
+                  "anchor": "concept3",
+                  "line": 316
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：同底數相乘除——指數相加、指數相減",
+                  "anchor": "concept4",
+                  "line": 441
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：乘方的乘方 \\(\\left(a^m\\right)^n\\)——指數相乘",
+                  "anchor": "concept5",
+                  "line": 577
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：積的乘方 \\((a \\times b)^m\\)——底數各自乘方",
+                  "anchor": "concept6",
+                  "line": 692
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：零次方與綜合應用——為什麼 \\(a^0 = 1\\)",
+                  "anchor": "concept7",
+                  "line": 824
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 一元一次方程式",
+          "sections": [
+            {
+              "folder": "1-3-1",
+              "title": "代數式的化簡",
+              "source": "materials/1-3-1/index.html",
+              "source_sha256": "1e952bf7b91c97e7e1e3fc5762da85e757b65f6548a09c1b8996408bfcbac96f",
+              "concept_count": 7,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：以文字符號代表數——先把不知道的數記下來",
+                  "anchor": "concept1",
+                  "line": 79
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：代數式的簡記——把乘號與除號收乾淨",
+                  "anchor": "concept2",
+                  "line": 197
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：以文字符號列式——把中文翻譯成算式",
+                  "anchor": "concept3",
+                  "line": 323
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：求代數式的值——牌價公布了，代進去算",
+                  "anchor": "concept4",
+                  "line": 448
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：一元一次式——項、係數與同類項",
+                  "anchor": "concept5",
+                  "line": 569
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：加減與去括號——把一長串併成最短的樣子",
+                  "anchor": "concept6",
+                  "line": 688
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：一元一次式的四則運算——多層括號與分數形式",
+                  "anchor": "concept7",
+                  "line": 817
+                }
+              ]
+            },
+            {
+              "folder": "1-3-2",
+              "title": "一元一次方程式",
+              "source": "materials/1-3-2/index.html",
+              "source_sha256": "15406e1ceca35a1777ca94f3c537ab5f35cae9b834e54170c2ee249bb1880472",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：一元一次方程式的意義——三個條件缺一不可",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：用文字符號列式——把一句話翻成一條方程式",
+                  "anchor": "concept2",
+                  "line": 193
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：方程式的解——哪一個數能讓天平真的平起來",
+                  "anchor": "concept3",
+                  "line": 310
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：等量公理——兩邊做一樣的事，天平不會歪",
+                  "anchor": "concept4",
+                  "line": 417
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：移項法則——等量公理的快速寫法",
+                  "anchor": "concept5",
+                  "line": 540
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：括號與分數——先整理，再移項",
+                  "anchor": "concept6",
+                  "line": 644
+                }
+              ]
+            },
+            {
+              "folder": "1-3-3",
+              "title": "應用問題",
+              "source": "materials/1-3-3/index.html",
+              "source_sha256": "430b460c1201137c8d594255350a7a64a7efda40bcb0b82965c6a198416d9172",
+              "concept_count": 8,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：辦案四步驟——設、列、解、答",
+                  "anchor": "concept1",
+                  "line": 80
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：數字與費用問題——把中文逐句翻成算式",
+                  "anchor": "concept2",
+                  "line": 206
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：分配問題——同一個總數，兩種算法",
+                  "anchor": "concept3",
+                  "line": 342
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：折扣問題——把每一句話串成一條關係鏈",
+                  "anchor": "concept4",
+                  "line": 468
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：圖形問題——同一塊面積，算兩次",
+                  "anchor": "concept5",
+                  "line": 596
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：年齡問題——大家一起變老，年齡差永遠不變",
+                  "anchor": "concept6",
+                  "line": 713
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：速率問題——先問「哪一個是一樣的」",
+                  "anchor": "concept7",
+                  "line": 841
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：結案前的最後一步——這個答案合理嗎？",
+                  "anchor": "concept8",
+                  "line": 982
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "volume": 2,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 二元一次聯立方程式",
+          "sections": [
+            {
+              "folder": "2-1-1",
+              "title": "二元一次方程式",
+              "source": "materials/2-1-1/index.html",
+              "source_sha256": "4bae157587960f702f39fc8da94f19f1e724514fefca2f8a5ee1e335312875b5",
+              "concept_count": 8,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：二元一次式——兩種數量，兩個符號",
+                  "anchor": "concept1",
+                  "line": 80
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：二元一次式的值——兩個數一起代進去",
+                  "anchor": "concept2",
+                  "line": 216
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：項、係數與同類項——\\(x\\) 項和 \\(y\\) 項不能併",
+                  "anchor": "concept3",
+                  "line": 358
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：去括號與直式計算——減號括號整組翻面",
+                  "anchor": "concept4",
+                  "line": 499
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：分配律、多層括號與分數——每一項都要顧到",
+                  "anchor": "concept5",
+                  "line": 657
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：二元一次方程式——經化簡後才算數",
+                  "anchor": "concept6",
+                  "line": 805
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：方程式的解——一組 \\(x\\)、\\(y\\) 才算一個解",
+                  "anchor": "concept7",
+                  "line": 951
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：解有無限多組——除非 \\(x\\)、\\(y\\) 被限制住",
+                  "anchor": "concept8",
+                  "line": 1082
+                }
+              ]
+            },
+            {
+              "folder": "2-1-2",
+              "title": "解二元一次聯立方程式",
+              "source": "materials/2-1-2/index.html",
+              "source_sha256": "88d065a8c6477b167eff3160cee176242c7e0947b3c771cae0dcd9fe2665f9e2",
+              "concept_count": 8,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：二元一次聯立方程式——兩條式子綁在一起",
+                  "anchor": "concept1",
+                  "line": 80
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：解＝共同解——兩個等號要一起成立",
+                  "anchor": "concept2",
+                  "line": 220
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：代入消去法——把兩個未知數換成一個",
+                  "anchor": "concept3",
+                  "line": 351
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：兩式都不現成——先整理，再代入",
+                  "anchor": "concept4",
+                  "line": 480
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：加減消去法——什麼時候加、什麼時候減",
+                  "anchor": "concept5",
+                  "line": 622
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：係數不合——先乘倍數把它對齊",
+                  "anchor": "concept6",
+                  "line": 756
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：未知數散在兩邊——先化成標準式",
+                  "anchor": "concept7",
+                  "line": 868
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：係數有分數或小數——先化成整數",
+                  "anchor": "concept8",
+                  "line": 994
+                }
+              ]
+            },
+            {
+              "folder": "2-1-3",
+              "title": "應用問題",
+              "source": "materials/2-1-3/index.html",
+              "source_sha256": "303bbe634525657e4699abcb780a1ede352ac8252b68de4268bd170b8ddd001f",
+              "concept_count": 6,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：四步驟——把一段中文變成兩條式子",
+                  "anchor": "concept1",
+                  "line": 78
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：數量問題——一條數個數，一條數金額",
+                  "anchor": "concept2",
+                  "line": 211
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：看錯與弄反——把「錯的情形」也寫成式子",
+                  "anchor": "concept3",
+                  "line": 356
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：分組分裝——「剩下」用減，「不足」用加",
+                  "anchor": "concept4",
+                  "line": 498
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：題目問的，不一定是你解出來的那個數",
+                  "anchor": "concept5",
+                  "line": 646
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：解得出來，不代表題目有解",
+                  "anchor": "concept6",
+                  "line": 795
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 直角坐標與二元一次方程式的圖形",
+          "sections": [
+            {
+              "folder": "2-2-1",
+              "title": "直角坐標平面",
+              "source": "materials/2-2-1/index.html",
+              "source_sha256": "8353a533ea20d892f9bee52c11d914c4d42f7a8a743298cb0800ccd3f8b22d68",
+              "concept_count": 9,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：平面的骨架——兩條數線與一個原點",
+                  "anchor": "concept1",
+                  "line": 81
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：坐標表示法——先橫後直，來回翻譯",
+                  "anchor": "concept2",
+                  "line": 202
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：軸上的點——有一個坐標是 \\(0\\)",
+                  "anchor": "concept3",
+                  "line": 331
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：點到兩軸的距離——量的是另一個坐標",
+                  "anchor": "concept4",
+                  "line": 439
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：平移（正推）——左右改 \\(x\\)、上下改 \\(y\\)",
+                  "anchor": "concept5",
+                  "line": 567
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：平移（回推）——已知終點，反求起點",
+                  "anchor": "concept6",
+                  "line": 699
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：自訂原點——原點換了，整張圖的坐標都換",
+                  "anchor": "concept7",
+                  "line": 835
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：四個象限——光看正負號就知道在哪一區",
+                  "anchor": "concept8",
+                  "line": 971
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：由符號運算判象限——先定正負，再對照",
+                  "anchor": "concept9",
+                  "line": 1092
+                }
+              ]
+            },
+            {
+              "folder": "2-2-2",
+              "title": "二元一次方程式的圖形",
+              "source": "materials/2-2-2/index.html",
+              "source_sha256": "466a38d46b895f30dcbf99f72a29ca5416bb7be05f227c85e1d135d6912330d5",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：一組解，就是平面上的一個點",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：把解都描上去，會排成一條直線",
+                  "anchor": "concept2",
+                  "line": 206
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：兩組解就夠了——兩點作圖法",
+                  "anchor": "concept3",
+                  "line": 312
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：與兩軸的交點，以及不通過哪個象限",
+                  "anchor": "concept4",
+                  "line": 418
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：\\(y=m\\) 是水平線，\\(x=n\\) 是鉛垂線",
+                  "anchor": "concept5",
+                  "line": 532
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：點在圖形上，就是坐標代得進去",
+                  "anchor": "concept6",
+                  "line": 647
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：通過原點，就是常數項為 \\(0\\)",
+                  "anchor": "concept7",
+                  "line": 768
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：反過來，由兩個點求出方程式",
+                  "anchor": "concept8",
+                  "line": 883
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：兩條線的交點，就是聯立方程式的解",
+                  "anchor": "concept9",
+                  "line": 1004
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：兩條線與坐標軸圍成的面積",
+                  "anchor": "concept10",
+                  "line": 1113
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 比與比例式",
+          "sections": [
+            {
+              "folder": "2-3-1",
+              "title": "比例式",
+              "source": "materials/2-3-1/index.html",
+              "source_sha256": "3324145c2b3b9b156b13b55f863fb4707cd563917fbfa17490fe8b03777ef22a",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：比與比值——比值就是「幾倍」",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：負數、分數、小數也可以當比的項",
+                  "anchor": "concept2",
+                  "line": 203
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：相等的比——前後項同乘、同除",
+                  "anchor": "concept3",
+                  "line": 332
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：最簡整數比",
+                  "anchor": "concept4",
+                  "line": 457
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：比例式與性質①——外項乘積＝內項乘積",
+                  "anchor": "concept5",
+                  "line": 595
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：性質②——把比拆成「幾份」",
+                  "anchor": "concept6",
+                  "line": 730
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：由 \\(px = qy\\) 反求比，再算組合比",
+                  "anchor": "concept7",
+                  "line": 864
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：比不是數本身——加了常數就不固定了",
+                  "anchor": "concept8",
+                  "line": 1001
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：應用一——倍數問題",
+                  "anchor": "concept9",
+                  "line": 1117
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：應用二——數量變化問題",
+                  "anchor": "concept10",
+                  "line": 1241
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：應用三——比例尺",
+                  "anchor": "concept11",
+                  "line": 1375
+                }
+              ]
+            },
+            {
+              "folder": "2-3-2",
+              "title": "正比與反比",
+              "source": "materials/2-3-2/index.html",
+              "source_sha256": "cec58ebec243ce266f9abd526a0f4519de11679af834e61d02675ce879213d35",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：正比的意義——\\(x\\) 變幾倍，\\(y\\) 就變幾倍",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：判斷正比——每一組都算 \\(\\frac{y}{x}\\)",
+                  "anchor": "concept2",
+                  "line": 206
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：正比的求值——先求出 \\(k\\)",
+                  "anchor": "concept3",
+                  "line": 337
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：正比的應用問題",
+                  "anchor": "concept4",
+                  "line": 479
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：反比的意義——\\(x\\) 變幾倍，\\(y\\) 就變幾分之一",
+                  "anchor": "concept5",
+                  "line": 614
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：判斷反比——每一組都算 \\(xy\\)",
+                  "anchor": "concept6",
+                  "line": 749
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：反比的求值——\\(k\\) 是乘出來的",
+                  "anchor": "concept7",
+                  "line": 870
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：反比的應用問題",
+                  "anchor": "concept8",
+                  "line": 1005
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：「一起變大」不等於正比，「此消彼長」不等於反比",
+                  "anchor": "concept9",
+                  "line": 1137
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：同一條乘法式，固定哪一個量決定正比或反比",
+                  "anchor": "concept10",
+                  "line": 1264
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "第4章 一元一次不等式",
+          "sections": [
+            {
+              "folder": "2-4-1",
+              "title": "認識一元一次不等式",
+              "source": "materials/2-4-1/index.html",
+              "source_sha256": "91ea01836cc74a19f394358aafff087cfbd08103c4a68dd1a18656b9310b743e",
+              "concept_count": 8,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：不等號的意義——\\(\\ge\\) 是「\\(\\gt\\) 或 \\(=\\)」",
+                  "anchor": "concept1",
+                  "line": 80
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：一元一次不等式——三件事都要符合",
+                  "anchor": "concept2",
+                  "line": 203
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：習慣用語——先看方向，再看端點",
+                  "anchor": "concept3",
+                  "line": 316
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：由情境列不等式——先寫出要比的兩個量",
+                  "anchor": "concept4",
+                  "line": 439
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：有上下限的情境——兩個不等號連寫",
+                  "anchor": "concept5",
+                  "line": 565
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：判斷不等式的解——代入，算完再比",
+                  "anchor": "concept6",
+                  "line": 696
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：在數線上圖示解——空心、實心與方向",
+                  "anchor": "concept7",
+                  "line": 829
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：兩個不等號的圖示——畫一段，再數整數",
+                  "anchor": "concept8",
+                  "line": 987
+                }
+              ]
+            },
+            {
+              "folder": "2-4-2",
+              "title": "解一元一次不等式",
+              "source": "materials/2-4-2/index.html",
+              "source_sha256": "63b556a44d11669cf9bc496dd33b2ab6079a4241459ebbf58d25281859712a26",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：解不等式與加減規則——同加同減，方向不變",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：同乘同除以正數——方向不變",
+                  "anchor": "concept2",
+                  "line": 218
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：同乘同除以負數——方向要反過來",
+                  "anchor": "concept3",
+                  "line": 340
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：移項法則——×、÷ 負數移過去要變號",
+                  "anchor": "concept4",
+                  "line": 463
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：兩邊都有 \\(x\\)——移到哪一邊都可以",
+                  "anchor": "concept5",
+                  "line": 590
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：先去括號——每一項都要乘到",
+                  "anchor": "concept6",
+                  "line": 722
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：先去分母，再把解畫在數線上",
+                  "anchor": "concept7",
+                  "line": 862
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：答案要取整數——「至少」取最小、「最多」取最大",
+                  "anchor": "concept8",
+                  "line": 1022
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：價目表題——解完再回到表上逐項篩選",
+                  "anchor": "concept9",
+                  "line": 1145
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：折扣門檻——多買反而便宜",
+                  "anchor": "concept10",
+                  "line": 1286
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：兩個條件夾出範圍——各解各的，再合起來",
+                  "anchor": "concept11",
+                  "line": 1427
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "title": "第5章 統計",
+          "sections": [
+            {
+              "folder": "2-5-1",
+              "title": "統計圖表與資料分析",
+              "source": "materials/2-5-1/index.html",
+              "source_sha256": "609afcaf02c47a943389ffce6306c5c48dd9ba6490495fe89cbd1e960efaf6f1",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：長條圖與折線圖——看資料選圖，再報讀",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：圓形圖——先算百分率，再算圓心角",
+                  "anchor": "concept2",
+                  "line": 214
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：列聯表——兩種分類交叉，合計互相核對",
+                  "anchor": "concept3",
+                  "line": 345
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：次數分配表——組距、上下限，含下限不含上限",
+                  "anchor": "concept4",
+                  "line": 479
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：直方圖——長方形相連，跨組要加總",
+                  "anchor": "concept5",
+                  "line": 588
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：次數分配折線圖——點畫在組中點上方",
+                  "anchor": "concept6",
+                  "line": 717
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：平均數——總和 ÷ 個數，削高補低",
+                  "anchor": "concept7",
+                  "line": 849
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：次數表的平均數——值 × 次數，再用 M+ 累加",
+                  "anchor": "concept8",
+                  "line": 967
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：分組資料的平均數——用組中點代表每一組",
+                  "anchor": "concept9",
+                  "line": 1088
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：中位數——先排序，再取中間",
+                  "anchor": "concept10",
+                  "line": 1212
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：從次數表找中位數——一列一列累加",
+                  "anchor": "concept11",
+                  "line": 1323
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：眾數——出現最多次的值，三個代表值怎麼選",
+                  "anchor": "concept12",
+                  "line": 1450
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "title": "第6章 生活中的幾何",
+          "sections": [
+            {
+              "folder": "2-6-1",
+              "title": "垂直、線對稱與三視圖",
+              "source": "materials/2-6-1/index.html",
+              "source_sha256": "c33a5f6fe7db0da928f82b5bfaef7ef2714d7dee620e1f4d5b22071aef6703d0",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：點、直線、線段、射線——看端點與延伸方向",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：角的標示與分類——頂點的字母寫中間",
+                  "anchor": "concept2",
+                  "line": 210
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：多邊形與正多邊形——邊等長、角相等，缺一不可",
+                  "anchor": "concept3",
+                  "line": 336
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：多邊形的標示與對角線——沿著邊依序寫",
+                  "anchor": "concept4",
+                  "line": 457
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：垂直與點到直線的距離——垂直的那一條最短",
+                  "anchor": "concept5",
+                  "line": 564
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：中點與中垂線——對摺線段找出來的線",
+                  "anchor": "concept6",
+                  "line": 666
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：線對稱圖形——對摺後完全重疊",
+                  "anchor": "concept7",
+                  "line": 769
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：對稱軸是對稱點連線的中垂線",
+                  "anchor": "concept8",
+                  "line": 875
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：判斷線對稱圖形——找出所有對稱軸",
+                  "anchor": "concept9",
+                  "line": 969
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：在方格中完成線對稱圖形——先找對稱點，再依序連線",
+                  "anchor": "concept10",
+                  "line": 1093
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：摺紙剪出線對稱圖形——倒過來一層一層攤開",
+                  "anchor": "concept11",
+                  "line": 1198
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：三視圖——前視圖、右視圖、上視圖",
+                  "anchor": "concept12",
+                  "line": 1304
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：根據視圖判斷觀察方向",
+                  "anchor": "concept13",
+                  "line": 1414
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "volume": 3,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 乘法公式與多項式",
+          "sections": [
+            {
+              "folder": "3-1-1",
+              "title": "乘法公式",
+              "source": "materials/3-1-1/index.html",
+              "source_sha256": "360d40d7ba2aa361ff3cbe19ff6453c414c05a82d780779b6607db7888162d8a",
+              "concept_count": 9,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：分配律的面積模型——一塊布剪成四小塊",
+                  "anchor": "concept1",
+                  "line": 81
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：用分配律算數值——拆成整百再展開",
+                  "anchor": "concept2",
+                  "line": 219
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：和的平方公式——別忘了中間兩條布",
+                  "anchor": "concept3",
+                  "line": 326
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：差的平方公式——角落被剪了兩次",
+                  "anchor": "concept4",
+                  "line": 452
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：平方差公式——剪掉一角再拼回去",
+                  "anchor": "concept5",
+                  "line": 584
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：公式反過來用——把一長串收回去",
+                  "anchor": "concept6",
+                  "line": 716
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：常見錯誤——代數字一試就露餡",
+                  "anchor": "concept7",
+                  "line": 833
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：生活應用——先看形狀，再挑公式",
+                  "anchor": "concept8",
+                  "line": 954
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：整體代換——先化簡，再代數字",
+                  "anchor": "concept9",
+                  "line": 1081
+                }
+              ]
+            },
+            {
+              "folder": "3-1-2",
+              "title": "多項式與其加減運算",
+              "source": "materials/3-1-2/index.html",
+              "source_sha256": "676d3d7022ca0455dd00d0f6fe07a18fb93011c5ac61ea9fda479094690b0f27",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：多項式的意義——\\(x\\) 只做加法與乘法",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：項、係數與常數項——負號是係數的一部分",
+                  "anchor": "concept2",
+                  "line": 187
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：次數——看係數不是 \\(0\\) 的最高次項",
+                  "anchor": "concept3",
+                  "line": 304
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：含未知數的係數——要消失的寫「\\(= 0\\)」，要留下的寫「\\(\\ne 0\\)」",
+                  "anchor": "concept4",
+                  "line": 420
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：升冪與降冪排列——符號跟著項一起搬",
+                  "anchor": "concept5",
+                  "line": 550
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：同類項與加法——同樣大小的布才能合起來",
+                  "anchor": "concept6",
+                  "line": 652
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：直式加法與缺項——缺的那一格補 \\(0\\)",
+                  "anchor": "concept7",
+                  "line": 762
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：多項式的減法——括號前是減號，每一項都要變號",
+                  "anchor": "concept8",
+                  "line": 868
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：加減混合運算——由內而外去括號",
+                  "anchor": "concept9",
+                  "line": 975
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：反求多項式——\\(A + B = C\\)，所以 \\(A = C - B\\)",
+                  "anchor": "concept10",
+                  "line": 1082
+                }
+              ]
+            },
+            {
+              "folder": "3-1-3",
+              "title": "多項式的乘除運算",
+              "source": "materials/3-1-3/index.html",
+              "source_sha256": "0ce94701c07dbb80459a2d400f8ba430140c3aaee6a884f0c15be49e62faa3a1",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：單項式的乘法——係數相乘、次數相加",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：單項式 × 多項式——分配律，每一項都要乘到",
+                  "anchor": "concept2",
+                  "line": 208
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：多項式 × 多項式——每一項乘每一項，再合併",
+                  "anchor": "concept3",
+                  "line": 321
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：直式乘法——同類項對齊，缺項補 \\(0\\)",
+                  "anchor": "concept4",
+                  "line": 443
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：利用乘法公式——把 \\(3x\\) 整個看成 \\(a\\)",
+                  "anchor": "concept5",
+                  "line": 556
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：單項式的除法——係數相除、次數相減",
+                  "anchor": "concept6",
+                  "line": 670
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：多項式 ÷ 單項式——算到餘式的次數比除式小才停",
+                  "anchor": "concept7",
+                  "line": 781
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：除式為一次式——上減下每一項變號，缺項補 \\(0\\)",
+                  "anchor": "concept8",
+                  "line": 910
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：除式為二次式——商是常數，餘式可能是一次式",
+                  "anchor": "concept9",
+                  "line": 1030
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：求被除式——被除式 ＝ 商式 × 除式 ＋ 餘式",
+                  "anchor": "concept10",
+                  "line": 1146
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：求除式——先減掉餘式，再除以商式",
+                  "anchor": "concept11",
+                  "line": 1278
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：四則運算——先乘方、再乘除、後加減",
+                  "anchor": "concept12",
+                  "line": 1401
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：多項式的應用——面積、周長與梯形求高",
+                  "anchor": "concept13",
+                  "line": 1505
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 平方根與畢氏定理",
+          "sections": [
+            {
+              "folder": "3-2-1",
+              "title": "平方根與近似值",
+              "source": "materials/3-2-1/index.html",
+              "source_sha256": "a94a58a1f1cbbe8d4f17ad443c6019d2449ae70c144d6740c05b810654d3fd17",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：√a 的意義——面積是 a 的正方形邊長",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：根號比大小——面積大的磚，邊長也大",
+                  "anchor": "concept2",
+                  "line": 191
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：完全平方數——排得成實心正方形的數",
+                  "anchor": "concept3",
+                  "line": 313
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：用標準分解式求 √a——質因數平分成兩組",
+                  "anchor": "concept4",
+                  "line": 427
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：分數、小數、帶分數的 √——先化成分子分母都是平方",
+                  "anchor": "concept5",
+                  "line": 526
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：十分逼近法——一位一位夾出近似值",
+                  "anchor": "concept6",
+                  "line": 640
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：估整數部分與數線位置——找兩個平方數夾住它",
+                  "anchor": "concept7",
+                  "line": 754
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：計算機求近似值——按鍵順序與四捨五入",
+                  "anchor": "concept8",
+                  "line": 866
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：平方根的意義——平方之後等於 a 的數",
+                  "anchor": "concept9",
+                  "line": 981
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：由平方根求未知數——先把句子翻譯成等式",
+                  "anchor": "concept10",
+                  "line": 1078
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：「√a」與「a 的平方根」不一樣",
+                  "anchor": "concept11",
+                  "line": 1199
+                }
+              ]
+            },
+            {
+              "folder": "3-2-2",
+              "title": "根式的運算",
+              "source": "materials/3-2-2/index.html",
+              "source_sha256": "278053a240efa62541ba33aefd5ec8108e86953be6aef2934af3183971ea9279",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：根式的表示——像代數式一樣省略乘號",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：根式的乘法——根號裡的數直接相乘",
+                  "anchor": "concept2",
+                  "line": 213
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：根式的除法——根號裡的數直接相除",
+                  "anchor": "concept3",
+                  "line": 334
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：最簡根式——三個條件都要符合",
+                  "anchor": "concept4",
+                  "line": 456
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：化成最簡根式——把平方因數提到根號外",
+                  "anchor": "concept5",
+                  "line": 582
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：分母有理化——讓分母不再有根號",
+                  "anchor": "concept6",
+                  "line": 688
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：根號裡是分數或小數——兩種化法",
+                  "anchor": "concept7",
+                  "line": 804
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：同類方根——化簡後根號裡一樣",
+                  "anchor": "concept8",
+                  "line": 931
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：根式的加減——同類方根才能合併",
+                  "anchor": "concept9",
+                  "line": 1043
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：根式的四則運算——先乘除、後加減",
+                  "anchor": "concept10",
+                  "line": 1176
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：分配律——每一項都要乘到",
+                  "anchor": "concept11",
+                  "line": 1301
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：乘法公式——根式也能套",
+                  "anchor": "concept12",
+                  "line": 1431
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：分母是兩項——乘共軛，用平方差消掉根號",
+                  "anchor": "concept13",
+                  "line": 1557
+                }
+              ]
+            },
+            {
+              "folder": "3-2-3",
+              "title": "畢氏定理",
+              "source": "materials/3-2-3/index.html",
+              "source_sha256": "289d8258630b12587f2263c5b3d71641f3bd78d79e9fb9b7e15cfed5e0f61e12",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：斜邊與股——數方格發現 P + Q = R",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：畢氏定理——用四個三角形拼出來",
+                  "anchor": "concept2",
+                  "line": 198
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：已知兩股求斜邊——平方相加再開根號",
+                  "anchor": "concept3",
+                  "line": 312
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：求另一股——先確認誰是斜邊",
+                  "anchor": "concept4",
+                  "line": 425
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：兩個直角三角形接力——先求共用的那一邊",
+                  "anchor": "concept5",
+                  "line": 544
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：斜邊上的高——面積算兩次",
+                  "anchor": "concept6",
+                  "line": 669
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：等腰三角形的高與面積——中點把底邊切一半",
+                  "anchor": "concept7",
+                  "line": 770
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：正三角形的高與面積",
+                  "anchor": "concept8",
+                  "line": 865
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：複合圖形——正方形與正三角形拼起來",
+                  "anchor": "concept9",
+                  "line": 977
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：長方形的對角線——螢幕尺寸怎麼算",
+                  "anchor": "concept10",
+                  "line": 1087
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：梯子靠牆——移動前後各一個直角三角形",
+                  "anchor": "concept11",
+                  "line": 1203
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：水平線、鉛垂線上兩點的距離",
+                  "anchor": "concept12",
+                  "line": 1306
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：直角坐標平面上兩點的距離公式",
+                  "anchor": "concept13",
+                  "line": 1415
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 因式分解",
+          "sections": [
+            {
+              "folder": "3-3-1",
+              "title": "利用提公因式與乘法公式做因式分解",
+              "source": "materials/3-3-1/index.html",
+              "source_sha256": "ce883c82813640e62bb296dd9aede5ead74f38d10450a9bce794dcbedf9720d4",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：因式與倍式——用除法看能不能整除",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：從乘積讀出因式與倍式——A = B × C",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：因式分解——寫成兩個一次式的乘積",
+                  "anchor": "concept3",
+                  "line": 307
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：已知一個因式，求未知的係數",
+                  "anchor": "concept4",
+                  "line": 430
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：公因式——兩個式子共同的因式",
+                  "anchor": "concept5",
+                  "line": 543
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：提公因式——分配律倒過來用",
+                  "anchor": "concept6",
+                  "line": 651
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：先變號，再提公因式",
+                  "anchor": "concept7",
+                  "line": 779
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：平方差公式——a² − b² = (a + b)(a − b)",
+                  "anchor": "concept8",
+                  "line": 908
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：平方差公式——整組括號當成一個 a",
+                  "anchor": "concept9",
+                  "line": 1029
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：和的平方公式——拼成一個正方形",
+                  "anchor": "concept10",
+                  "line": 1140
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：差的平方公式——中間項是負的",
+                  "anchor": "concept11",
+                  "line": 1244
+                }
+              ]
+            },
+            {
+              "folder": "3-3-2",
+              "title": "利用十字交乘法做因式分解",
+              "source": "materials/3-3-2/index.html",
+              "source_sha256": "e95efc2758de21f899c41e465b0a45b1073c74d44ead1207270e35db8a04781b",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：十字交乘的由來——看兩端、湊中間",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：常數項為正——兩數同號，跟著 \\(x\\) 項係數的號",
+                  "anchor": "concept2",
+                  "line": 185
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：常數項為負——一正一負，大的跟著 \\(x\\) 項係數的號",
+                  "anchor": "concept3",
+                  "line": 307
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：列完因數對都不合，就不能分解；缺 \\(x\\) 項當作 \\(0x\\)",
+                  "anchor": "concept4",
+                  "line": 418
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：\\(x^2\\) 係數不為 \\(1\\)——左欄也要拆，右欄上下對調要分開試",
+                  "anchor": "concept5",
+                  "line": 513
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：常數項為負——中間只差一個號，就對調正負號",
+                  "anchor": "concept6",
+                  "line": 636
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：\\(x^2\\) 係數為負——先提出 \\(-1\\)，負號不能丟",
+                  "anchor": "concept7",
+                  "line": 755
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：先提出係數的公因數，再十字交乘",
+                  "anchor": "concept8",
+                  "line": 872
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：兩個多項式的公因式——各自分解再比對",
+                  "anchor": "concept9",
+                  "line": 990
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：已知分解的形式，反求係數",
+                  "anchor": "concept10",
+                  "line": 1099
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：紙片拼長方形——藍色要幾張才拼得成",
+                  "anchor": "concept11",
+                  "line": 1208
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "第4章 一元二次方程式",
+          "sections": [
+            {
+              "folder": "3-4-1",
+              "title": "因式分解解一元二次方程式",
+              "source": "materials/3-4-1/index.html",
+              "source_sha256": "e8b0d05a6797d3f6b44cc2d8a7b9513f93798959fc5b28033a33a8ef1cfab9ae",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：一元二次方程式的意義——先化簡，再判斷",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：解的意義——代入後兩邊相等",
+                  "anchor": "concept2",
+                  "line": 199
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：若 \\(A \\times B = 0\\)，則 \\(A = 0\\) 或 \\(B = 0\\)",
+                  "anchor": "concept3",
+                  "line": 312
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：提公因式 \\(x\\)——\\(x = 0\\) 一定是一個解",
+                  "anchor": "concept4",
+                  "line": 426
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：提整組公因式——括號當成一個數",
+                  "anchor": "concept5",
+                  "line": 543
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：兩邊有相同因式——先移項，不可以同除",
+                  "anchor": "concept6",
+                  "line": 652
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：十字交乘法——先整理，再分解",
+                  "anchor": "concept7",
+                  "line": 759
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：平方差公式——兩根互為相反數",
+                  "anchor": "concept8",
+                  "line": 873
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：完全平方式——兩個解一樣，稱為重根",
+                  "anchor": "concept9",
+                  "line": 989
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：右邊不是 \\(0\\)——先展開、移項再分解",
+                  "anchor": "concept10",
+                  "line": 1096
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：已知一根——代入求係數，再求另一根",
+                  "anchor": "concept11",
+                  "line": 1203
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：已知兩根——反求方程式的係數",
+                  "anchor": "concept12",
+                  "line": 1308
+                }
+              ]
+            },
+            {
+              "folder": "3-4-2",
+              "title": "配方法與公式解",
+              "source": "materials/3-4-2/index.html",
+              "source_sha256": "e6c5a30f77ee2c9c7f461505e3c2a8dd622de399561ca7bbd9dece6ee5729d8c",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：平方根概念——開平方要取「±」",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：先移項，再開平方——\\((ax + b)^2 = c\\)",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：完全平方式——\\(x^2 \\pm px\\) 補上 \\(\\left(\\frac{p}{2}\\right)^2\\)",
+                  "anchor": "concept3",
+                  "line": 301
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：配方法——\\(x^2\\) 係數為 1 的方程式",
+                  "anchor": "concept4",
+                  "line": 408
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：常數項很大——配方法比十字交乘快",
+                  "anchor": "concept5",
+                  "line": 532
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：\\(x^2\\) 係數不為 1——先同除以係數，再配方",
+                  "anchor": "concept6",
+                  "line": 630
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：配方後右邊是 0 或負數——重根與無解",
+                  "anchor": "concept7",
+                  "line": 753
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：公式解——讀出 \\(a\\)、\\(b\\)、\\(c\\)，代入公式",
+                  "anchor": "concept8",
+                  "line": 856
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：判別式 \\(b^2 - 4ac\\)——不必解，先看正負",
+                  "anchor": "concept9",
+                  "line": 980
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：\\(x^2\\) 係數為負數——也能直接用公式解",
+                  "anchor": "concept10",
+                  "line": 1098
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：已知解的情形，反求係數",
+                  "anchor": "concept11",
+                  "line": 1206
+                }
+              ]
+            },
+            {
+              "folder": "3-4-3",
+              "title": "應用問題",
+              "source": "materials/3-4-3/index.html",
+              "source_sha256": "ebc81da647f44896dc0023b591f542a468679300b20366d5a281c65f2db65641",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：解應用問題的四個步驟——設、列、解、驗",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：數字問題——和是 \\(S\\)，另一數就寫成 \\(S - x\\)",
+                  "anchor": "concept2",
+                  "line": 199
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：解出 \\(x\\) 之後——題目問的不一定是 \\(x\\)",
+                  "anchor": "concept3",
+                  "line": 308
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：價格問題——單價 × 數量 ＝ 總價",
+                  "anchor": "concept4",
+                  "line": 417
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：面積問題——內部四周留邊，長、寬各少 \\(2x\\)",
+                  "anchor": "concept5",
+                  "line": 530
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：十字走道——平移拼成一塊長方形",
+                  "anchor": "concept6",
+                  "line": 632
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：幾何關係列式——畢氏定理",
+                  "anchor": "concept7",
+                  "line": 750
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：收費問題——每多一人，每人便宜",
+                  "anchor": "concept8",
+                  "line": 852
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：解都不合情境——此題無解",
+                  "anchor": "concept9",
+                  "line": 963
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：判別式小於 \\(0\\)——不必解就知道做不到",
+                  "anchor": "concept10",
+                  "line": 1078
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "title": "第5章 統計資料處理",
+          "sections": [
+            {
+              "folder": "3-5-1",
+              "title": "資料整理與統計圖表",
+              "source": "materials/3-5-1/index.html",
+              "source_sha256": "62e70774c29d91fa01f617abb23ae072cf8a57cf3b6215dd17335a1f88e0c7cc",
+              "concept_count": 9,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：累積次數分配表——一組一組往上加",
+                  "anchor": "concept1",
+                  "line": 81
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：累積次數分配折線圖——從 0 開始、點在組上限",
+                  "anchor": "concept2",
+                  "line": 225
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：報讀累積次數分配折線圖",
+                  "anchor": "concept3",
+                  "line": 341
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：相對次數的意義——人數不同，比百分比才公平",
+                  "anchor": "concept4",
+                  "line": 457
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：相對次數分配表與相對次數分配折線圖",
+                  "anchor": "concept5",
+                  "line": 577
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：相對次數與人數互換——乘或除以百分比",
+                  "anchor": "concept6",
+                  "line": 705
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：累積相對次數分配表——兩條路，同一個答案",
+                  "anchor": "concept7",
+                  "line": 815
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：累積相對次數分配折線圖——我贏過多少人？",
+                  "anchor": "concept8",
+                  "line": 970
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：用累積相對次數折線圖比較兩群資料",
+                  "anchor": "concept9",
+                  "line": 1083
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "volume": 4,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 數列與級數",
+          "sections": [
+            {
+              "folder": "4-1-1",
+              "title": "等差數列",
+              "source": "materials/4-1-1/index.html",
+              "source_sha256": "879d066852117a966f18e20b654b6e3b0635f283be8cc05f759c15ff3c9f7127",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：數列的名詞——項、項數、首項 \\(a_1\\)、第 \\(n\\) 項 \\(a_n\\)、末項",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：找出數列的規律，求出空格",
+                  "anchor": "concept2",
+                  "line": 191
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：只看前幾項，規律不一定唯一",
+                  "anchor": "concept3",
+                  "line": 303
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：等差數列與公差——後項減前項都相等",
+                  "anchor": "concept4",
+                  "line": 411
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：由首項與公差列出各項",
+                  "anchor": "concept5",
+                  "line": 512
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：由相鄰兩項求公差，往後加、往前減",
+                  "anchor": "concept6",
+                  "line": 623
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：第 \\(n\\) 項公式 \\(a_n = a_1 + (n - 1)d\\)",
+                  "anchor": "concept7",
+                  "line": 747
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：已知末項，求項數",
+                  "anchor": "concept8",
+                  "line": 866
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：圖形的規律——數量排成等差數列",
+                  "anchor": "concept9",
+                  "line": 997
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：等差中項——前後兩項和的一半",
+                  "anchor": "concept10",
+                  "line": 1102
+                }
+              ]
+            },
+            {
+              "folder": "4-1-2",
+              "title": "等差級數",
+              "source": "materials/4-1-2/index.html",
+              "source_sha256": "078d289fcebb9456d35005ab63c88de49e1f461c685c29cf5e90d3b3206e5811",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：級數與等差級數——用「\\(+\\)」連起來，而且要依序",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：倒序相加——高斯的方法",
+                  "anchor": "concept2",
+                  "line": 193
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：等差級數的和 \\(S_n = \\frac{n(a_1 + a_n)}{2}\\)",
+                  "anchor": "concept3",
+                  "line": 307
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：只給首項、公差、末項——先求項數再求和",
+                  "anchor": "concept4",
+                  "line": 412
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：不知道末項——\\(S_n = \\frac{n[2a_1 + (n-1)d]}{2}\\)",
+                  "anchor": "concept5",
+                  "line": 530
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：已知和，倒過來求公差或項數",
+                  "anchor": "concept6",
+                  "line": 640
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：數量問題——層層堆疊，讀出首項、末項、層數",
+                  "anchor": "concept7",
+                  "line": 762
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：座位問題——設第一排為 \\(x\\)，解一元一次方程式",
+                  "anchor": "concept8",
+                  "line": 873
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：計數問題——求項數，列出一元二次方程式",
+                  "anchor": "concept9",
+                  "line": 992
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：級數和的判斷——項數多，和不一定大",
+                  "anchor": "concept10",
+                  "line": 1112
+                }
+              ]
+            },
+            {
+              "folder": "4-1-3",
+              "title": "等比數列",
+              "source": "materials/4-1-3/index.html",
+              "source_sha256": "edb4a8fd1b7a116234980a26de6f1a183d084ada2ba08250b3b06c470ff09029",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：等比數列——相鄰兩項「後項 ÷ 前項」都相等",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：由首項與公比寫出各項——一項接一項乘 \\(r\\)",
+                  "anchor": "concept2",
+                  "line": 196
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：補空格——先求公比，往後乘 \\(r\\)、往前除以 \\(r\\)",
+                  "anchor": "concept3",
+                  "line": 310
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：第 \\(n\\) 項——\\(a_n = a_1 \\times r^{n-1}\\)",
+                  "anchor": "concept4",
+                  "line": 427
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：先求公比——再求第 \\(n\\) 項，或反求首項",
+                  "anchor": "concept5",
+                  "line": 542
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：倒過來寫、跳著取——新的公比是多少？",
+                  "anchor": "concept6",
+                  "line": 660
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：應用問題——第幾項會達到目標？",
+                  "anchor": "concept7",
+                  "line": 778
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：應用問題——數列的第 1 項是哪一個？",
+                  "anchor": "concept8",
+                  "line": 887
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：等比中項——\\(b^2 = ac\\)，\\(b = \\pm\\sqrt{ac}\\)",
+                  "anchor": "concept9",
+                  "line": 999
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：三個式子成等比——用「中項² ＝ 前 × 後」列方程式",
+                  "anchor": "concept10",
+                  "line": 1097
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：以中間項為中心——對稱的兩項乘積都相同",
+                  "anchor": "concept11",
+                  "line": 1200
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：既是等差又是等比——每一項都相同（但不能是 \\(0\\)）",
+                  "anchor": "concept12",
+                  "line": 1310
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 函數",
+          "sections": [
+            {
+              "folder": "4-2-1",
+              "title": "函數與函數圖形",
+              "source": "materials/4-2-1/index.html",
+              "source_sha256": "cd01942dbdc488dc03fe47b419163197d39ab00053955bdb830e186732418b4f",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：函數的意義——給定每一個 \\(x\\)，都恰有一個 \\(y\\) 與它對應",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：不是函數——有一個 \\(x\\) 對到不只一個 \\(y\\)",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：一次函數 \\(y = ax + b\\)（\\(a \\ne 0\\)）與常數函數 \\(y = b\\)",
+                  "anchor": "concept3",
+                  "line": 304
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：函數值——把 \\(x\\) 代入，求對應的 \\(y\\)",
+                  "anchor": "concept4",
+                  "line": 400
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：函數值相等——代入 \\(x = a\\)，列方程式解 \\(a\\)",
+                  "anchor": "concept5",
+                  "line": 503
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：由兩組對應值（圖形上的兩點）求一次函數",
+                  "anchor": "concept6",
+                  "line": 619
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：函數值的應用——列出關係式，再代入",
+                  "anchor": "concept7",
+                  "line": 736
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：函數圖形——把每一組 \\((x, y)\\) 描成坐標平面上的點",
+                  "anchor": "concept8",
+                  "line": 841
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：線型函數——一次函數是斜直線，常數函數是水平線",
+                  "anchor": "concept9",
+                  "line": 978
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：圖形平行 \\(x\\) 軸 \\(\\Rightarrow\\) 常數函數；鉛垂線不是函數",
+                  "anchor": "concept10",
+                  "line": 1085
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：線型函數的應用——讀圖找兩點，求函數再回答問題",
+                  "anchor": "concept11",
+                  "line": 1197
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：兩個線型函數的比較——圖形的交點就是函數值相等",
+                  "anchor": "concept12",
+                  "line": 1306
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 三角形的基本性質",
+          "sections": [
+            {
+              "folder": "4-3-1",
+              "title": "三角形與多邊形的內角與外角",
+              "source": "materials/4-3-1/index.html",
+              "source_sha256": "21fddfe21cdf5aecba2d5e76ef6276dc94fe1fc8b4b66a6d799392b619e953ad",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：角的分類，餘角與補角",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：兩直線相交——對頂角相等",
+                  "anchor": "concept2",
+                  "line": 205
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：三角形內角和定理——任意三角形的內角和是 \\(180^\\circ\\)",
+                  "anchor": "concept3",
+                  "line": 320
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：外角——內角與它的外角互補，外角就是轉彎角",
+                  "anchor": "concept4",
+                  "line": 420
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：三角形外角和定理——一組外角和是 \\(360^\\circ\\)",
+                  "anchor": "concept5",
+                  "line": 527
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：三角形外角定理——外角等於不相鄰兩內角的和",
+                  "anchor": "concept6",
+                  "line": 631
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：8 字形——\\(\\angle A + \\angle B = \\angle C + \\angle D\\)",
+                  "anchor": "concept7",
+                  "line": 747
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：鏢形——\\(\\angle BCD = \\angle A + \\angle B + \\angle D\\)，認識輔助線",
+                  "anchor": "concept8",
+                  "line": 854
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：凸多邊形與 \\(n\\) 邊形內角和 \\((n - 2) \\times 180^\\circ\\)",
+                  "anchor": "concept9",
+                  "line": 973
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：正 \\(n\\) 邊形的每一個內角與每一個外角",
+                  "anchor": "concept10",
+                  "line": 1089
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：已知角度，反求正 \\(n\\) 邊形的 \\(n\\)",
+                  "anchor": "concept11",
+                  "line": 1197
+                }
+              ]
+            },
+            {
+              "folder": "4-3-2",
+              "title": "尺規作圖",
+              "source": "materials/4-3-2/index.html",
+              "source_sha256": "caab644d7bbd28f5e8c3d7daddf9d0a981dfd4f360f1b1d7349319c55fe681db",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：尺規作圖的規則——圓規是「搬長度」的工具",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：等線段作圖——把一條線段複製到直線上",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：線段的和與差——第二個弧往外接，還是往回切",
+                  "anchor": "concept3",
+                  "line": 308
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：兩弧的交點——已知三邊作三角形",
+                  "anchor": "concept4",
+                  "line": 435
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：等角作圖——複製一個角",
+                  "anchor": "concept5",
+                  "line": 557
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：角的和與差——第二個角作在哪一側",
+                  "anchor": "concept6",
+                  "line": 670
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：中垂線作圖——畫出一個菱形",
+                  "anchor": "concept7",
+                  "line": 787
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：用中垂線找中點——對半、再對半",
+                  "anchor": "concept8",
+                  "line": 903
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：角平分線作圖——畫出一個箏形",
+                  "anchor": "concept9",
+                  "line": 1004
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：角平分線的應用——再平分與角度計算",
+                  "anchor": "concept10",
+                  "line": 1118
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：過線上一點作垂線——畫出一個等腰三角形",
+                  "anchor": "concept11",
+                  "line": 1229
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：過線外一點作垂線——又是一個箏形",
+                  "anchor": "concept12",
+                  "line": 1346
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：三角形的高——鈍角要先延長，痕跡要會判讀",
+                  "anchor": "concept13",
+                  "line": 1461
+                }
+              ]
+            },
+            {
+              "folder": "4-3-3",
+              "title": "三角形的全等性質",
+              "source": "materials/4-3-3/index.html",
+              "source_sha256": "1c8f979ecda6cf565c5d3b0b5da8cc597e06c6f857b1e341ee77d503c62cc626",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：全等的意義——搬過去能完全疊合",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：依記號的順序找對應，求出邊與角",
+                  "anchor": "concept2",
+                  "line": 193
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：SSS——三組邊對應相等就全等",
+                  "anchor": "concept3",
+                  "line": 314
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：SAS——兩邊和它們的夾角",
+                  "anchor": "concept4",
+                  "line": 442
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：SSA 不能當全等性質——弧可能交出兩個點",
+                  "anchor": "concept5",
+                  "line": 563
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：RHS——直角三角形的斜邊與一股",
+                  "anchor": "concept6",
+                  "line": 680
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：ASA——兩角和它們的夾邊",
+                  "anchor": "concept7",
+                  "line": 794
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：AAS——兩角和其中一角的對邊",
+                  "anchor": "concept8",
+                  "line": 916
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：AAA 不能當全等性質——形狀一樣，大小可以不同",
+                  "anchor": "concept9",
+                  "line": 1028
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：判別該用哪一個全等性質",
+                  "anchor": "concept10",
+                  "line": 1129
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：找出圖裡藏起來的條件",
+                  "anchor": "concept11",
+                  "line": 1263
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：全等的應用——先證全等，再求邊、角、面積",
+                  "anchor": "concept12",
+                  "line": 1383
+                }
+              ]
+            },
+            {
+              "folder": "4-3-4",
+              "title": "中垂線與角平分線的性質",
+              "source": "materials/4-3-4/index.html",
+              "source_sha256": "c85c5c1fabefdff228a4ff419d6064217bb310091f289076fc4791856b6d2c09",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：中垂線性質——中垂線上任一點到兩端點等距",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：中垂線的判別性質——到兩端點等距，就在中垂線上",
+                  "anchor": "concept2",
+                  "line": 190
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：角平分線性質——角平分線上任一點到兩邊等距",
+                  "anchor": "concept3",
+                  "line": 315
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：角平分線的判別性質——到兩邊等距，就在角平分線上",
+                  "anchor": "concept4",
+                  "line": 435
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：綜合應用——把等長搬進直角三角形，用畢氏定理列方程式",
+                  "anchor": "concept5",
+                  "line": 539
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：同時滿足兩個條件——找兩條線的交點",
+                  "anchor": "concept6",
+                  "line": 657
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：等腰三角形——頂角平分線就是底邊的中垂線",
+                  "anchor": "concept7",
+                  "line": 784
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：用「兩底角相等」一路推角度",
+                  "anchor": "concept8",
+                  "line": 890
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：中垂線造出等腰三角形——由等長得等角",
+                  "anchor": "concept9",
+                  "line": 1007
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：等腰三角形的判別性質——兩角相等，對邊就相等",
+                  "anchor": "concept10",
+                  "line": 1110
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：判別性質的應用——由等角推出等腰，再把等長搬過去",
+                  "anchor": "concept11",
+                  "line": 1221
+                }
+              ]
+            },
+            {
+              "folder": "4-3-5",
+              "title": "三角形的邊角關係",
+              "source": "materials/4-3-5/index.html",
+              "source_sha256": "dff74092c989cfcbdc43a374c289ab3a7293c31ead6897e7dfbdd0d11112371a",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：兩邊的和大於第三邊，兩邊的差小於第三邊",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：三條線段能不能圍成三角形",
+                  "anchor": "concept2",
+                  "line": 195
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：等腰三角形——兩種長度，哪一種當腰？",
+                  "anchor": "concept3",
+                  "line": 308
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：已知兩邊，求第三邊的範圍",
+                  "anchor": "concept4",
+                  "line": 417
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：共用的邊——兩個範圍取交集",
+                  "anchor": "concept5",
+                  "line": 520
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：大邊對大角，等邊對等角",
+                  "anchor": "concept6",
+                  "line": 634
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：先找出哪條邊比較大，再比角",
+                  "anchor": "concept7",
+                  "line": 735
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：大角對大邊——先把第三個角算出來",
+                  "anchor": "concept8",
+                  "line": 851
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：兩個三角形共用一邊——把比較串起來",
+                  "anchor": "concept9",
+                  "line": 951
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：邊角關係只在同一個三角形裡成立",
+                  "anchor": "concept10",
+                  "line": 1061
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：由邊的大小順序，夾出角的範圍",
+                  "anchor": "concept11",
+                  "line": 1167
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：三邊滿足畢氏定理，就是直角三角形",
+                  "anchor": "concept12",
+                  "line": 1275
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "第4章 平行與四邊形",
+          "sections": [
+            {
+              "folder": "4-4-1",
+              "title": "平行",
+              "source": "materials/4-4-1/index.html",
+              "source_sha256": "5096d9b03544798a88b7e13310cf8091ba97ddef3e7bd4ec715ada762380f7fb",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：平行的意義——有一條共同的垂直線",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：垂直一條就垂直另一條，平行可以遞移",
+                  "anchor": "concept2",
+                  "line": 182
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：兩平行線的距離處處相等",
+                  "anchor": "concept3",
+                  "line": 293
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：截線與截角——同位角、內錯角、同側內角",
+                  "anchor": "concept4",
+                  "line": 397
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：平行線的截角性質——同位角、內錯角相等，同側內角互補",
+                  "anchor": "concept5",
+                  "line": 527
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：截角用 \\(x\\) 表示——先判斷關係，再列方程式",
+                  "anchor": "concept6",
+                  "line": 646
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：好幾條截線、兩組平行線——一步只用一組",
+                  "anchor": "concept7",
+                  "line": 768
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：兩平行線之間的拐角——作一條平行線",
+                  "anchor": "concept8",
+                  "line": 879
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：平行線的判別——由角度推出平行",
+                  "anchor": "concept9",
+                  "line": 997
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：平分兩個截角——平分線平不平行？",
+                  "anchor": "concept10",
+                  "line": 1112
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：過線外一點作平行線",
+                  "anchor": "concept11",
+                  "line": 1219
+                }
+              ]
+            },
+            {
+              "folder": "4-4-2",
+              "title": "平行四邊形",
+              "source": "materials/4-4-2/index.html",
+              "source_sha256": "44dc86859ee7bfc795771ced2c0dadf7f0662e49bc2dda8f4474593fb85aed96",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：平行四邊形的意義，對角相等、鄰角互補",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：好幾個平行四邊形拼在一起：一塊一塊追角",
+                  "anchor": "concept2",
+                  "line": 192
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：一條對角線分出兩個全等三角形，對邊相等",
+                  "anchor": "concept3",
+                  "line": 293
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：兩條對角線互相平分（但不一定等長）",
+                  "anchor": "concept4",
+                  "line": 402
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：兩條對角線把面積四等分",
+                  "anchor": "concept5",
+                  "line": 504
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：判別①② 兩雙對角、兩雙對邊分別相等",
+                  "anchor": "concept6",
+                  "line": 624
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：判別③ 一雙對邊平行且相等",
+                  "anchor": "concept7",
+                  "line": 765
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：判別④ 兩對角線互相平分",
+                  "anchor": "concept8",
+                  "line": 890
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：條件不夠的陷阱——用反例說「不一定」",
+                  "anchor": "concept9",
+                  "line": 996
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：用尺規畫出平行四邊形，說出依據",
+                  "anchor": "concept10",
+                  "line": 1107
+                }
+              ]
+            },
+            {
+              "folder": "4-4-3",
+              "title": "特殊四邊形的性質",
+              "source": "materials/4-4-3/index.html",
+              "source_sha256": "29e33d766c0adaedbb2fa0f2195d6b34f92f5875fd01f6d83e21b46fc4db156e",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：長方形的兩條對角線等長且互相平分",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：菱形的兩條對角線互相垂直平分",
+                  "anchor": "concept2",
+                  "line": 197
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：對角線互相垂直，面積是兩對角線乘積的一半",
+                  "anchor": "concept3",
+                  "line": 313
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：箏形的一條對角線垂直平分另一條",
+                  "anchor": "concept4",
+                  "line": 420
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：正方形的對角線等長且互相垂直平分",
+                  "anchor": "concept5",
+                  "line": 536
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：只看對角線，判別長方形、菱形、箏形",
+                  "anchor": "concept6",
+                  "line": 636
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：特殊四邊形的包含關係",
+                  "anchor": "concept7",
+                  "line": 758
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：梯形兩腰中點的連線段",
+                  "anchor": "concept8",
+                  "line": 880
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：梯形面積 = 兩腰中點的連線段 × 高",
+                  "anchor": "concept9",
+                  "line": 995
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：等腰梯形的兩底角相等",
+                  "anchor": "concept10",
+                  "line": 1112
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：等腰梯形的兩條對角線等長",
+                  "anchor": "concept11",
+                  "line": 1225
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：兩底角相等的梯形是等腰梯形",
+                  "anchor": "concept12",
+                  "line": 1340
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "volume": 5,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 相似形",
+          "sections": [
+            {
+              "folder": "5-1-1",
+              "title": "連比例",
+              "source": "materials/5-1-1/index.html",
+              "source_sha256": "c2acc9466c68477761b1d690e697d9f62a80629d6f93fd83ea08346ff5d17934",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：連比的意義——三個量一起比",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：同乘同除，連比不變——化成最簡整數比",
+                  "anchor": "concept2",
+                  "line": 193
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：由兩個比求連比——把共同項對齊",
+                  "anchor": "concept3",
+                  "line": 315
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：由 \\(ax = by\\) 求比——係數交叉對調",
+                  "anchor": "concept4",
+                  "line": 428
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：連比例式——設每一份是 \\(r\\)",
+                  "anchor": "concept5",
+                  "line": 542
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：求連比例式的未知項——拆成兩個比例式",
+                  "anchor": "concept6",
+                  "line": 658
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：\\(ax = by = cz\\) 與連比不是同一回事",
+                  "anchor": "concept7",
+                  "line": 777
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：設 \\(r\\) 代入，求新的連比",
+                  "anchor": "concept8",
+                  "line": 886
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：應用（一）依連比分配總量",
+                  "anchor": "concept9",
+                  "line": 1001
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：應用（二）兩根桿子重疊——以重疊的那段為共同項",
+                  "anchor": "concept10",
+                  "line": 1119
+                }
+              ]
+            },
+            {
+              "folder": "5-1-2",
+              "title": "比例線段",
+              "source": "materials/5-1-2/index.html",
+              "source_sha256": "9531afcb2563087dc2b80afbe4425c3a904b48f78e99693d81d3c52e35e0aee3",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：高相等的兩個三角形，面積比 = 底邊比",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：平行線截比例線段性質①——兩邊截成相同的比",
+                  "anchor": "concept2",
+                  "line": 194
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：平行線截比例線段性質②——DE : BC = AD : AB",
+                  "anchor": "concept3",
+                  "line": 313
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：兩邊截成相同的比 ⇒ 平行",
+                  "anchor": "concept4",
+                  "line": 426
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：「平行邊的比」不能反過來判斷平行",
+                  "anchor": "concept5",
+                  "line": 533
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：兩邊中點連線段——平行第三邊、長度是一半",
+                  "anchor": "concept6",
+                  "line": 638
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：過一邊中點、平行另一邊，會通過第三邊的中點",
+                  "anchor": "concept7",
+                  "line": 751
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：三條平行線截兩條截線，截出的線段成比例",
+                  "anchor": "concept8",
+                  "line": 846
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：梯形中平行兩底的線段",
+                  "anchor": "concept9",
+                  "line": 962
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：落在平行線上的線段，先平移再列比例",
+                  "anchor": "concept10",
+                  "line": 1081
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：利用尺規作圖，把線段按比例分割",
+                  "anchor": "concept11",
+                  "line": 1195
+                }
+              ]
+            },
+            {
+              "folder": "5-1-3",
+              "title": "縮放與相似",
+              "source": "materials/5-1-3/index.html",
+              "source_sha256": "ac77ec00e54862464f05a0e1be8e0719bed2f971f454e4d7e2bc6245a4e2b167",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：縮放中心、縮放倍率與線段的縮放",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：角經過縮放，度數不變",
+                  "anchor": "concept2",
+                  "line": 189
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：多邊形的縮放——中心在哪裡都一樣",
+                  "anchor": "concept3",
+                  "line": 294
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：正 \\(n\\) 邊形縮放後仍是正 \\(n\\) 邊形",
+                  "anchor": "concept4",
+                  "line": 404
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：相似多邊形——寫的順序就是對應關係",
+                  "anchor": "concept5",
+                  "line": 502
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：只有邊成比例、或只有角相等，不一定相似",
+                  "anchor": "concept6",
+                  "line": 606
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：已知相似，求邊長與角度",
+                  "anchor": "concept7",
+                  "line": 715
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：AAA（AA）相似性質",
+                  "anchor": "concept8",
+                  "line": 835
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：SAS 相似性質——角要夾在兩組邊中間",
+                  "anchor": "concept9",
+                  "line": 961
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：SSS 相似性質——短對短、長對長",
+                  "anchor": "concept10",
+                  "line": 1081
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：判別相似，該用哪一個性質？",
+                  "anchor": "concept11",
+                  "line": 1192
+                }
+              ]
+            },
+            {
+              "folder": "5-1-4",
+              "title": "相似三角形的應用",
+              "source": "materials/5-1-4/index.html",
+              "source_sha256": "d2dc498b4145cd2668b67f0eb0eb8163d749049741991ba3fbdb10772725a1d7",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：利用影子測高（陽光與路燈）",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：在岸邊造一個小三角形，量出河寬",
+                  "anchor": "concept2",
+                  "line": 204
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：未知數藏在「一段和」裡",
+                  "anchor": "concept3",
+                  "line": 305
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：對應高的比 = 對應邊的比",
+                  "anchor": "concept4",
+                  "line": 423
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：面積的比 = 對應邊長平方的比",
+                  "anchor": "concept5",
+                  "line": 535
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：先找對應邊，再算面積比",
+                  "anchor": "concept6",
+                  "line": 659
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：三角形各邊中點連線段",
+                  "anchor": "concept7",
+                  "line": 773
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：角度固定，任兩邊的比就固定",
+                  "anchor": "concept8",
+                  "line": 878
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：對邊、鄰邊、斜邊與 sin、cos、tan",
+                  "anchor": "concept9",
+                  "line": 983
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：用三角比的近似值解生活問題",
+                  "anchor": "concept10",
+                  "line": 1107
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：特殊直角三角形的邊長比",
+                  "anchor": "concept11",
+                  "line": 1216
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：特殊直角三角形的生活問題",
+                  "anchor": "concept12",
+                  "line": 1334
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：在兩個地方測仰角，求山高",
+                  "anchor": "concept13",
+                  "line": 1438
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 圓",
+          "sections": [
+            {
+              "folder": "5-2-1",
+              "title": "點、直線與圓之間的位置關係",
+              "source": "materials/5-2-1/index.html",
+              "source_sha256": "6958cf3cb187c319d9a72d772bc7e6dc52d363c51c9a8b453cf9a1eef6456933",
+              "concept_count": 13,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：圓、弦、弧、弓形、圓心角與扇形",
+                  "anchor": "concept1",
+                  "line": 85
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：弧長、扇形周長與扇形面積",
+                  "anchor": "concept2",
+                  "line": 192
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：由扇形面積或弧長反求圓心角",
+                  "anchor": "concept3",
+                  "line": 291
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：弓形的面積與周長",
+                  "anchor": "concept4",
+                  "line": 397
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：點與圓的位置關係",
+                  "anchor": "concept5",
+                  "line": 508
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：直線與圓的位置關係",
+                  "anchor": "concept6",
+                  "line": 616
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：切線的性質——半徑垂直切線",
+                  "anchor": "concept7",
+                  "line": 729
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：求切線段長——連半徑、用畢氏定理",
+                  "anchor": "concept8",
+                  "line": 836
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：圓外一點的兩條切線段",
+                  "anchor": "concept9",
+                  "line": 945
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：弦的中垂線通過圓心——找回圓心",
+                  "anchor": "concept10",
+                  "line": 1061
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：弦心距——半弦、弦心距、半徑的直角三角形",
+                  "anchor": "concept11",
+                  "line": 1171
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：弦愈長、弦心距愈小",
+                  "anchor": "concept12",
+                  "line": 1287
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：設半徑為 \\(x\\)——隧道與下水道",
+                  "anchor": "concept13",
+                  "line": 1400
+                }
+              ]
+            },
+            {
+              "folder": "5-2-2",
+              "title": "圓心角、圓周角與弧的關係",
+              "source": "materials/5-2-2/index.html",
+              "source_sha256": "463a66c20e39e5fffdc6cced744635c679bb0a5d7467124d0ed2b0f70ed9018d",
+              "concept_count": 10,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：弧的度數等於圓心角",
+                  "anchor": "concept1",
+                  "line": 82
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：等弧對等弦、等弦對等弧",
+                  "anchor": "concept2",
+                  "line": 189
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：圓周角是所對弧的一半",
+                  "anchor": "concept3",
+                  "line": 305
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：同弧所對的圓周角相等",
+                  "anchor": "concept4",
+                  "line": 423
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：圓周角是圓心角的一半",
+                  "anchor": "concept5",
+                  "line": 522
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：把弧加起來求圓周角",
+                  "anchor": "concept6",
+                  "line": 643
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：半圓的圓周角是直角",
+                  "anchor": "concept7",
+                  "line": 759
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：平行弦截出相等的弧",
+                  "anchor": "concept8",
+                  "line": 867
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：圓內接四邊形的對角互補",
+                  "anchor": "concept9",
+                  "line": 969
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：圓內接四邊形的外角等於內對角",
+                  "anchor": "concept10",
+                  "line": 1083
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 幾何與證明",
+          "sections": [
+            {
+              "folder": "5-3-1",
+              "title": "證明與推理",
+              "source": "materials/5-3-1/index.html",
+              "source_sha256": "667c7dbb0a1cba673018a3e025ea829e796e1f18d18276e02dc85e10c5594bbc",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：證明的意義——已知、求證、證明",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：從求證往回找，再從已知往前寫",
+                  "anchor": "concept2",
+                  "line": 188
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：找出全等三角形，用對應邊（角）相等證明",
+                  "anchor": "concept3",
+                  "line": 298
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：先用等量加減湊出條件，再證全等",
+                  "anchor": "concept4",
+                  "line": 414
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：用 AA 相似性質證明——找出相等的角",
+                  "anchor": "concept5",
+                  "line": 531
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：用面積推出等邊，判別平行四邊形",
+                  "anchor": "concept6",
+                  "line": 636
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：摺紙裡的 30°、60°、90° 三角形",
+                  "anchor": "concept7",
+                  "line": 750
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：用 2k、2k + 1 表示偶數與奇數",
+                  "anchor": "concept8",
+                  "line": 849
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：證明奇偶性質——兩個任意的數要用不同的字母",
+                  "anchor": "concept9",
+                  "line": 955
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：舉例不是證明，一個反例就能推翻",
+                  "anchor": "concept10",
+                  "line": 1069
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：用乘法公式證明「是某數的倍數」",
+                  "anchor": "concept11",
+                  "line": 1182
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：用平方差比較平方的大小",
+                  "anchor": "concept12",
+                  "line": 1282
+                }
+              ]
+            },
+            {
+              "folder": "5-3-2",
+              "title": "三角形的外心、內心與重心",
+              "source": "materials/5-3-2/index.html",
+              "source_sha256": "9c7cd46d8c68ff2ac0fae0ad0453e9d9d9ea88287a8b6d1fb072448bcb0d1dfa",
+              "concept_count": 17,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：外心——三邊中垂線的交點",
+                  "anchor": "concept1",
+                  "line": 89
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：銳角、直角、鈍角三角形的外心位置",
+                  "anchor": "concept2",
+                  "line": 202
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：直角三角形的外接圓半徑＝斜邊的一半",
+                  "anchor": "concept3",
+                  "line": 301
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：外心與角度——\\(\\angle BOC\\) 和 \\(\\angle A\\)",
+                  "anchor": "concept4",
+                  "line": 401
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：等腰三角形的外接圓半徑——設 \\(r\\) 列方程式",
+                  "anchor": "concept5",
+                  "line": 511
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：內心——三內角平分線的交點",
+                  "anchor": "concept6",
+                  "line": 608
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：到三「點」等距，還是到三「線」等距？",
+                  "anchor": "concept7",
+                  "line": 717
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：內心與角度——\\(\\angle BIC = 90^\\circ + \\frac{1}{2}\\angle A\\)",
+                  "anchor": "concept8",
+                  "line": 828
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：內心分出的三塊面積比＝邊長比",
+                  "anchor": "concept9",
+                  "line": 925
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：三角形面積＝\\(\\frac{1}{2}\\) × 內切圓半徑 × 周長",
+                  "anchor": "concept10",
+                  "line": 1028
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：直角三角形的內切圓半徑",
+                  "anchor": "concept11",
+                  "line": 1126
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：過內心作平行線——小三角形的周長",
+                  "anchor": "concept12",
+                  "line": 1225
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：重心——三條中線的交點",
+                  "anchor": "concept13",
+                  "line": 1322
+                },
+                {
+                  "order": 14,
+                  "title": "重點 14：重心把中線分成 \\(2 : 1\\)",
+                  "anchor": "concept14",
+                  "line": 1443
+                },
+                {
+                  "order": 15,
+                  "title": "重點 15：重心把面積三等分、三中線把面積六等分",
+                  "anchor": "concept15",
+                  "line": 1550
+                },
+                {
+                  "order": 16,
+                  "title": "重點 16：藏在平行四邊形裡的重心",
+                  "anchor": "concept16",
+                  "line": 1647
+                },
+                {
+                  "order": 17,
+                  "title": "重點 17：直角三角形——外心接重心",
+                  "anchor": "concept17",
+                  "line": 1761
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "volume": 6,
+      "chapters": [
+        {
+          "number": 1,
+          "title": "第1章 二次函數",
+          "sections": [
+            {
+              "folder": "6-1-1",
+              "title": "二次函數的圖形與最大值、最小值",
+              "source": "materials/6-1-1/index.html",
+              "source_sha256": "f0430a3e55992f722a4af50db0808a3b0cbf627565a85f937ab102bdb108830f",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：二次函數的意義——化簡後 \\(x\\) 的最高次數是二次",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：生活中的二次函數——由情境列出關係式",
+                  "anchor": "concept2",
+                  "line": 189
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：\\(y = ax^2\\) 的圖形——\\(a\\) 的正負決定開口方向",
+                  "anchor": "concept3",
+                  "line": 295
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：開口大小——\\(|a|\\) 愈大，開口愈小",
+                  "anchor": "concept4",
+                  "line": 405
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：\\(y = ax^2 + k\\)——上下平移，頂點 \\((0, k)\\)",
+                  "anchor": "concept5",
+                  "line": 500
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：\\(y = a(x - h)^2\\)——左右平移，頂點 \\((h, 0)\\)",
+                  "anchor": "concept6",
+                  "line": 596
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：\\(y = a(x - h)^2 + k\\)——拋物線與頂點 \\((h, k)\\)",
+                  "anchor": "concept7",
+                  "line": 696
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：與 \\(x\\) 軸的交點個數——看開口與頂點",
+                  "anchor": "concept8",
+                  "line": 806
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：最大值與最小值——就是頂點的 \\(y\\) 坐標",
+                  "anchor": "concept9",
+                  "line": 909
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：由頂點與另一點，求二次函數",
+                  "anchor": "concept10",
+                  "line": 1018
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：平移的應用——平移不改變 \\(a\\)",
+                  "anchor": "concept11",
+                  "line": 1124
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：對稱性的應用——看離對稱軸多遠",
+                  "anchor": "concept12",
+                  "line": 1226
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "第2章 統計與機率",
+          "sections": [
+            {
+              "folder": "6-2-1",
+              "title": "資料的分析",
+              "source": "materials/6-2-1/index.html",
+              "source_sha256": "067c9ec1c71909843c11a6b2ebb00b42fb797283e98fd7050dfca595ce398233",
+              "concept_count": 11,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：中位數——用 \\(N \\times \\frac{1}{2}\\) 找位置",
+                  "anchor": "concept1",
+                  "line": 83
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：四分位數——把資料切成四等分",
+                  "anchor": "concept2",
+                  "line": 187
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：四分位數的相對位置——「至少」\\(\\frac{k}{4}\\)",
+                  "anchor": "concept3",
+                  "line": 300
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：次數分配表求四分位數——累積次數找位置",
+                  "anchor": "concept4",
+                  "line": 406
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：次數分配直方圖——四分位數在哪一組",
+                  "anchor": "concept5",
+                  "line": 521
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：盒狀圖——用五個數畫出分布",
+                  "anchor": "concept6",
+                  "line": 622
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：全距與四分位距——資料有多分散",
+                  "anchor": "concept7",
+                  "line": 731
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：一個極端值——全距與四分位距誰比較穩",
+                  "anchor": "concept8",
+                  "line": 845
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：用盒狀圖比較兩群資料",
+                  "anchor": "concept9",
+                  "line": 937
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：由盒狀圖推估人數——「至少」與「至多」",
+                  "anchor": "concept10",
+                  "line": 1040
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：同一個分數，在哪裡排名比較好",
+                  "anchor": "concept11",
+                  "line": 1152
+                }
+              ]
+            },
+            {
+              "folder": "6-2-2",
+              "title": "機率",
+              "source": "materials/6-2-2/index.html",
+              "source_sha256": "e03c5c52c2e448da4afb68bdb32f4d22289cb1f20eea5d38828e92827dab736f",
+              "concept_count": 12,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：機率——用 0 到 1 之間的數表示可能性",
+                  "anchor": "concept1",
+                  "line": 84
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：實驗的次數愈多，比值愈接近機率",
+                  "anchor": "concept2",
+                  "line": 196
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：每種結果機會相等，才能說機率是 \\(\\frac{1}{n}\\)",
+                  "anchor": "concept3",
+                  "line": 300
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：某事件的機率——數「個數」，不是數「種類」",
+                  "anchor": "concept4",
+                  "line": 413
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：抽籤——列出事件包含哪些號碼",
+                  "anchor": "concept5",
+                  "line": 528
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：擲骰子——把每一面分給事件，機率加起來是 1",
+                  "anchor": "concept6",
+                  "line": 644
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：撲克牌——52 張 \\(=\\) 4 種花色 \\(\\times\\) 13 種點數",
+                  "anchor": "concept7",
+                  "line": 756
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：抽出後不放回——用「剩下的」重新數",
+                  "anchor": "concept8",
+                  "line": 872
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：樹狀圖——一層一層列出所有結果",
+                  "anchor": "concept9",
+                  "line": 991
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：兩人比輸贏——用樹狀圖判斷公不公平",
+                  "anchor": "concept10",
+                  "line": 1106
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：兩顆骰子——36 個數對 \\((a, b)\\)",
+                  "anchor": "concept11",
+                  "line": 1227
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：取後放回、取後不放回——第二層少一支",
+                  "anchor": "concept12",
+                  "line": 1335
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "第3章 生活中的立體圖形",
+          "sections": [
+            {
+              "folder": "6-3-1",
+              "title": "空間中的線、平面與形體",
+              "source": "materials/6-3-1/index.html",
+              "source_sha256": "a15869faa1b52bc7b082f534038794379883dc1b74e8870ece2b45565ae4464e",
+              "concept_count": 15,
+              "concepts": [
+                {
+                  "order": 1,
+                  "title": "重點 1：用長方體檢驗垂直——平面、直線都能驗",
+                  "anchor": "concept1",
+                  "line": 87
+                },
+                {
+                  "order": 2,
+                  "title": "重點 2：直線垂直平面——通過交點的每一條線都垂直",
+                  "anchor": "concept2",
+                  "line": 198
+                },
+                {
+                  "order": 3,
+                  "title": "重點 3：平行——同時垂直於同一條直線",
+                  "anchor": "concept3",
+                  "line": 307
+                },
+                {
+                  "order": 4,
+                  "title": "重點 4：兩直線——相交、平行，還是歪斜？",
+                  "anchor": "concept4",
+                  "line": 424
+                },
+                {
+                  "order": 5,
+                  "title": "重點 5：角柱的組成——頂點 \\(2n\\)、面 \\(n + 2\\)、邊 \\(3n\\)",
+                  "anchor": "concept5",
+                  "line": 539
+                },
+                {
+                  "order": 6,
+                  "title": "重點 6：角柱的展開圖——摺回去會是什麼樣子？",
+                  "anchor": "concept6",
+                  "line": 658
+                },
+                {
+                  "order": 7,
+                  "title": "重點 7：角柱的體積與表面積",
+                  "anchor": "concept7",
+                  "line": 756
+                },
+                {
+                  "order": 8,
+                  "title": "重點 8：長方體裡的最短距離——畢氏定理用兩次",
+                  "anchor": "concept8",
+                  "line": 879
+                },
+                {
+                  "order": 9,
+                  "title": "重點 9：圓柱的展開圖——長方形的長是底圓周長",
+                  "anchor": "concept9",
+                  "line": 992
+                },
+                {
+                  "order": 10,
+                  "title": "重點 10：圓柱的體積與表面積",
+                  "anchor": "concept10",
+                  "line": 1110
+                },
+                {
+                  "order": 11,
+                  "title": "重點 11：空心與組合的圓柱",
+                  "anchor": "concept11",
+                  "line": 1225
+                },
+                {
+                  "order": 12,
+                  "title": "重點 12：角錐的組成與展開圖",
+                  "anchor": "concept12",
+                  "line": 1347
+                },
+                {
+                  "order": 13,
+                  "title": "重點 13：角錐的表面積——斜高不是錐高",
+                  "anchor": "concept13",
+                  "line": 1456
+                },
+                {
+                  "order": 14,
+                  "title": "重點 14：圓錐的展開圖——扇形的弧長是底圓周長",
+                  "anchor": "concept14",
+                  "line": 1571
+                },
+                {
+                  "order": 15,
+                  "title": "重點 15：圓錐的表面積——扇形加底圓",
+                  "anchor": "concept15",
+                  "line": 1675
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "books": 6,
+    "chapters": 24,
+    "sections": 58,
+    "concepts": 592
+  }
+}

@@ -3,225 +3,30 @@ name: math-interactive-material
 description: 當使用者提供國中/高中數學教材、PDF、Word 檔，或要求針對特定章節/小節製作教學網頁、互動 Canvas 元件、隨堂評量時，觸發此技能。
 ---
 
-# 互動數學教材網頁建置指引
+# 互動數學教材網頁建置流程
 
-本技能指引旨在自動化將數學教材（如 PDF、Word）轉化為高質感、具備 HTML5 Canvas 視覺互動探索、以及即時回饋隨堂評量的線上教學網頁。
+此技能是 teaching-web 專案內的流程入口。相對路徑以本 SKILL.md 為基準，專案根目錄為 `../../..`；在其他工作目錄執行時先解析成實際路徑。規格的唯一正文由 [參考手冊](../../../docs/reference/README.md) 管理，不在本技能重述數值或教學規則。
 
-## 1. 觸發條件與準備工作
-* **觸發語境**：當使用者提及「針對這份教材做一個教學網頁」、「分析教材」、「製作小節網頁」並附上 PDF/Word 檔案路徑，或提供章節代號（如 `1-1-1`）時。
-* **準備工作**：
-  1. 確認教材檔案格式（`.pdf`, `.doc`, `.docx`）與目標輸出資料夾（預設為 `/materials/V-C-S/`）。
-  2. 確保專案具備全域的 `index.html` 入口及 `background.png` 資源。
+## 1. 定位與讀取
 
-## 2. 檔案解析與文本提取工作流
+確認目標教材版本、小節及專案位置；讀 [AGENTS.md](../../../AGENTS.md) 與 [handoff.md](../../../handoff.md)。再讀手冊指定的「網頁製作」「數學與命題」及目標冊別，這些是製作教材的必讀規範，不是選讀摘要。
 
-**一律用 `tools/extract_material_text.py`，不要自己現寫抽取程式碼。**
-三種格式（`.pdf`／`.docx`／`.doc`）走同一個入口，輸出一律是 UTF-8 文字檔。
+## 2. 解析與規劃
 
-```powershell
-$PY = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure_env.ps1') | Select-Object -Last 1
-& $PY tools/extract_material_text.py "<教材檔路徑>" --out "<輸出>.txt"
-```
+按 [W1](../../../docs/reference/web-production.md#w1-教材分析與頁面結構) 的抽字入口取得教材文字，依 [M1](../../../docs/reference/mathematics.md#m1-先定概念與範圍再決定呈現或配題) 建立有依據的概念清單，列給使用者過目。據此規劃本頁結構、互動與評量，不套用過往小節的重點數。
 
-腳本內部已處理掉三個會咬人的點，不必在這裡重述做法：
+## 3. 建置與命題
 
-* **輸出寫檔、訊息只用 ASCII**——Windows 主控台是 cp950，中文 `print` 會爛掉
-  （同〈工作約定〉那三條）。
-* **先把檔案複製到本機暫存再處理**——雲端硬碟是網路串流掛載，直接開上面的
-  檔案會卡死。
-* **`.doc`（Word 97-2003 二進位格式）依平台分流**：Windows 用 win32com 驅動
-  桌面版 Word 另存 `.docx`；**macOS 用系統內建的 `textutil`**，不必裝 Word
-  for Mac、也不必裝任何東西。兩者皆無時腳本會明確報錯並說明缺什麼，**不會
-  靜默降級**。
+依 [W2](../../../docs/reference/web-production.md#w2-互動的教學語意與狀態)、[W3](../../../docs/reference/web-production.md#w3-前端架構共用工具與操作)、[W4](../../../docs/reference/web-production.md#w4-版面與數學排版) 實作頁面。數學及評量按 M2–M7 審查；需要重構時才讀手冊的相應附錄。
 
-> **刻意不用 LibreOffice 轉檔。** `cross-device-agent-skills/platform.md`
-> 把這條列為明文規則：`soffice` 在 Windows 會因 `socket.AF_UNIX` 直接
-> `AttributeError`，而且它替換字型。這個理由在 macOS 一樣成立。
+## 4. 製作圖片與暖身漫畫
 
-掃描型 PDF 抽不到文字時腳本會報錯而不是回空字串；要先做 OCR，見 `file-toolkit` 技能。
+依 [W5](../../../docs/reference/web-production.md#w5-圖片與漫畫製作) 確認角色、風格、稿件位置及投影規格。暖身漫畫必須調用 W5 指定的 teaching-comic 技能，按其正式流程操作；不要自行另寫生成／排字流程。工具定位或後製遇問題時，只讀 W5 連到的對應附錄。
 
-## 3. 引起動機與重點概念結構化
-分析提取出的教材文字，將其規劃為**課前引起動機**與數個**概念重點區塊**：
+## 5. 驗收與整合
 
-* **課前引起動機 (Pre-class Motivation Comic)**：
-  - 於教材網頁的最上方（所有重點區塊之前）插入一個「課前暖身漫畫」區塊，用於引導與激發學生的學習興趣。
-  - **此漫畫一律改由 `teaching-comic` 專案的 `comic-generator` 技能產生，流程與規格見下方第 3.1 節，本技能不得自行另寫生圖或加字流程。**
-  - **內容與情境**：以教材中的素養扉頁或生活情境為藍本（例如冰箱設定負溫度代表什麼意思、玉山最低溫等）。
-  - **數學正確性**：若漫畫中繪有數線，必須嚴格確保**僅在右側（正向）有單向箭頭**，左側（負向）則為無箭頭的平直直線，符合國中數學數線三要素的標準定義；此條在生圖提示與最終驗收皆須檢查。
+依 [W6](../../../docs/reference/web-production.md#w6-成品驗收) 完成對應檢查，按 [W7](../../../docs/reference/web-production.md#w7-整合與發布) 整合頁面與索引。網站技術結果與數學檢查分別記錄，未驗證項目明列。
 
-* **重點區塊拆解**：
+## 6. 交付
 
-  **重點數量必須是「本節概念清單」推導出來的結果，不可以先定數字再找東西填。** 動筆前先做一份概念清單並列給使用者過目，每一條都要寫出依據——課本小標、例題群、或課後自我評量的題型。清單有幾個**彼此獨立的新觀念**，就拆幾個重點。
-
-  判準是**新觀念的數量**，不是版面整齊。兩條實務準則：
-
-  - 同一個觀念的不同呈現方式（例如「短除法」與「標準分解式」）若解題動作不同、學生會分別出錯，可以各佔一格；若只是同一件事換個寫法，就併成一格。
-  - 某個東西在課本只佔幾行、但在課後自我評量單獨佔一題，那它是獨立觀念，應該獨立成一個重點（`1-3-3` 的「解與情境的合理性」就是這樣從 6 變成 7 的）。
-
-  **實作區間目前是 4～7 個**（第一冊實績：`1-1-1` 五個、`1-1-2`～`1-3-2` 六個、`1-3-3` 七個），但這是結果不是規格。內容真的只有 3 個獨立觀念就做 3 個，有 8 個就做 8 個。
-
-  ⚠️ **「上一節做了幾個」不是依據。** 第一冊連續九節都落在 6 個，那是各節內容碰巧接近，不是規則；照抄前一節的數字等於讓格式決定教材的資訊密度。
-
-  互動與題數跟著重點數走：**每個重點各配 1 個視覺互動探索、2 題隨堂評量**（所以 6 重點 → 6 互動 → 12 題）。每重點 2 題是預設值，某個重點的題型明顯需要三種變化時可以放到 3 題，但要在交付時說明為什麼。
-
-  每個重點區塊必須包含以下三個要素：
-  1. **重點整理敘述 (Explanation Card)**：
-     * 用簡明扼要的清單或表格條列出該概念的核心定理、定義及運算性質。
-  2. **視覺互動探索 (Interactive Canvas Card)**：
-     * 評估該概念是否適合進行 Canvas 視覺化（例如溫度計、數線坐標、相反數對稱、絕對值距離等）。
-     * 於 HTML 中建立 `<canvas>` 容器、動態數值標籤（如 `temp-val`）及控制滑桿（`input[type="range"]`）。
-  3. **隨堂形成性評量 (Formative Assessment Quiz)**：
-     * 針對該重點設計 2 題單選題（預設；必要時 3 題，見上方「重點區塊拆解」）。
-     * **題目數字差異化規範（防止死記）**：評量題目的數字與數值必須與原始 PDF/Word 教材例題中的數字**有所區隔**（可對數值進行微調或使用同類型的不同數字），以防止學生藉由直接死記教科書解答來作答，強迫學生理解其運算原理。
-     * 題目使用 `<label class="option-label">` 包裹 `radio` 按鈕。
-     * 提供「提交答案」按鈕，並實作解鎖與反饋邏輯。作答完畢後顯示正確/錯誤狀態樣式，並平滑展開（`slideDown`）詳細的數學原理解析。
-
-## 3.1 課前暖身漫畫：固定調用 teaching-comic 技能（強制）
-
-製作任何小節教材時，最上方的四格漫畫**必須**依下列方式產生，不得以其他臨時做法取代。
-
-* **技能來源（唯一指定）**：
-  * 技能檔：`C:\Users\chang\我的雲端硬碟\agents\teaching-comic\skills\comic-generator\SKILL.md`
-  * 後製腳本與技能檔同目錄（技能已自足化，腳本不再放在 `teaching-comic\scripts\`）：
-    * `...\skills\comic-generator\scripts\normalize_comic.ps1`
-    * `...\skills\comic-generator\scripts\add_captions_json.ps1`
-  * 也可能是各 Agent 的全域副本（`~\.claude\skills\`、`~\.agents\skills\` 等）；一律照 `comic-generator`
-    的「第 0 步：定位技能目錄」自動找出 `<SKILL_DIR>`，不要在本專案硬寫腳本路徑。
-  * 開始製作前先確認找得到 `scripts\normalize_comic.ps1`；若找不到，**停下來詢問使用者**，不可退回舊的自製加字流程（本專案已無 `add_captions.ps1`）。
-
-* **執行步驟**：
-  1. 讀取 `comic-generator` 的 `SKILL.md`，並完整遵循其「執行流程」第 0～7 步。
-  2. 重點數量：課前暖身漫畫固定取**該小節的 1 個核心引起動機重點**，只產出 1 張四格漫畫。
-  3. 風格**依小節指定**（例如 1-1-1 為卡皮巴拉水豚風、1-1-2 為日式動漫風）：
-     * 使用者已指定風格就直接照用；未指定時依 `comic-generator` 的做法提出風格選單，等使用者選定再生圖。
-     * **同一小節內必須維持同一風格與同一主角設定**：課前漫畫與該頁所有插圖（第 4 節）要看起來像同一套教材。
-     * 不同小節之間可以各自不同，不需要全站統一。
-  4. 三階段檔案不可省略、不可互相覆寫：`_raw` → `_normalized` → `_final`。
-  5. **對話泡由生圖階段畫出，後製腳本只負責排字**（2026-08-07 起）：
-     * 生圖提示要求畫出**空白**對話泡並禁止文字：
-       `empty blank speech balloons with clean white interior, no text, no letters, no lettering, no captions, no labels, no watermark`。
-       **不要再寫 `no speech bubbles`**——那是舊規格，會讓底圖沒有泡可用。
-     * 逐格指定泡的型式（一般／思考／低語／大聲／旁白）、位置與尾巴指向，關鍵字照 `comic-generator`
-       〈對話泡由生圖階段畫出〉那張表。
-     * 中文對白仍一律走 `*_bubbles.json` + `add_captions_json.ps1`，**不加任何旗標**（預設就是只排字）。
-     * 泡太小、內部有雜訊或型式不對時**回去重生原圖**，不要用 `-DrawBubbles` 補框；補框會在底圖的泡外
-       再畫一層，變成「框中框」。
-
-* **規格對齊（教室投影用）**：
-  * 版面：直式 4:5、`1080x1350`、2x2 四格，每格 `540x675`（由 `normalize_comic.ps1` 保證）。
-  * 對白可讀性：智慧白板投影距離較遠，`font_size` 建議 `24`～`28`、`min_font_size` 不低於 `18`。
-  * 因為字級不得低於 18，生圖時要把泡畫得比 `comic-generator` 的通則更寬鬆：每個泡的內部空白
-    **至少 240×110 像素**（單格 540×675 為基準，`shout` 鋸齒泡再大一圈），否則後製會因為塞不下而報錯。
-  * 每格最多 2 個泡；泡不得遮住主角臉部或數線、溫度計等核心數學元素。
-
-* **四格對齊與座標量測（重要）**：
-  * `add_captions_json.ps1` 是把畫面「等分成四個象限」來定位文字，所以四格的中線要落在畫布中線上，
-    否則對白會跑到隔壁格。
-  * **不要為了湊比例去裁切四格內容**；比例不合時走 `normalize_comic.ps1 -fit letterbox` 補等量白邊
-    （預設的置中裁切會切掉邊緣角色），四格中線自然仍在中線。
-  * 若另有前處理，另存為 `_prepped.png`，不可覆寫 `_raw.png`。
-  * 對白座標一律從**實際的 `_normalized.png` 量測泡的內緣**，不要憑假設的格線或生圖參數推算；
-    `x`、`y`、`w`、`h` 要略小於泡的內緣，避免文字壓到鋸齒或虛線邊。
-  * `position`、`speaker_x`、`speaker_y`、`draw_bubble` 這些欄位在本流程一律不使用。
-
-* **成品搬入教材資料夾**：
-  1. 於 `teaching-comic/output/` 完成 `_final.png` 後，壓成 WebP 複製到 `materials/V-C-S/`。
-  2. 檔名統一為 `motivation_comic.webp`（寬 1080、品質 88，約 120～150KB）。
-  3. 網頁以相對路徑 `<img src="motivation_comic.webp">` 引用，**不得**跨專案連到 `teaching-comic` 的絕對路徑。
-  4. 中介檔（`_raw`、`_prepped`、`_normalized`、`_bubbles.json`）留在 `teaching-comic/output/`，不要複製進 `teaching-web`。
-  5. 檔名可加上小節代號避免互相覆寫，例如 `comic_1-1-1_point_1_raw.png`。
-
-## 4. UI 視覺設計與美學規範 (Aesthetics & Theme)
-* **主題風格**：與主入口網站風格保持一致，採用極致質感的暗黑科技感（Glassmorphism，磨砂玻璃風）。
-* **背景與光暈**：
-  * 背景圖：使用 `linear-gradient(rgba(10, 8, 28, 0.8), rgba(10, 8, 28, 0.8)), url('../../background.png')`。
-  * 背景光暈：加入 3 個使用 `filter: blur(120px)` 的彩色浮動 Blob 圓球，設定無限循環的漂浮動畫（`blob-float`）。
-* **重點區塊主題配色 (Themed Concept Colors)**：
-  * 每個重點區塊應分配其獨有的主題配色（例如：玫瑰紅、水青綠、魔法紫、香檳金、天空藍等不同的亮色系），以區分各重點的主題。
-  * 標題（`.section-title`）應設計為對應的主題漸層文字，並將核心數學專有名詞（`strong`）染上對應主題亮色，打破單調色調。
-* **評量選項統一主題色與雙欄響應式排版 (Uniform Theme & Responsive Double Columns for Quiz Options)**：
-  * 題目中的 A、B、C、D 四個選項應採用**一致的主題色彩**（而非多色混雜）。預設文字為灰白色 (`#cbd5e1`)，Hover 與 Selected 狀態時統一轉為對應小節的精緻主題色（如第一冊的紫色 `#8b5cf6`），且文字高亮為純白色。
-  * **排版寬度與響應式**：選項容器（`.options-container`）在電腦或平板開啟時，應採用雙欄排版（一列 2 個選項，如 `grid-template-columns: repeat(2, 1fr)`）；在手機等小螢幕（如小於 640px）則以媒體查詢回退為單欄（一列 1 個選項），兼顧平板操作與手機閱讀。
-* **總結與情境配色 (Summary & Context Styling)**：
-  * 網頁末尾的「小節總結與核心回顧」應使用獨特的漸層標題，且左右回顧卡片與情境段落應著上不同的主題色彩（如回顧搭配薄荷綠、生活故事搭配亮藍色），提升完課視覺體驗。
-* **插圖生成與關聯性規範 (Illustration Quantity & Relevancy)**：
-  * **豐富的插圖張數**：為了充實網頁的視覺豐富度與趣味性，每個教學網頁應至少生成並放置 **4 至 6 張** 專屬插圖（包含課前引起動機漫畫、各重點說明卡片、特定評量題目或結尾總結卡片）。
-  * **高度內容關聯性**：插圖絕對不能是通用的裝飾，必須與所處的**教材內容、重點概念或題目情境緊密相關**。
-    以下範例以該小節選定的主角代入（水豚小節就是水豚，動漫小節就是該角色）：
-    * *例*：若重點為「指數記法（細胞分裂）」，應生成「主角科學家拿著放大鏡觀察分裂細胞」的插圖。
-    * *例*：若題目為「太空中的天文距離」，應生成「主角穿太空裝在太空漫步」的插圖。
-    * *例*：若題目為「溫度升降」，應生成「主角在雪地裡泡溫泉」或「主角吃冰棒」的插圖。
-  * **插圖風格與規格**：
-    * 風格**跟隨該小節課前漫畫所選定的風格**（見第 3.1 節），同一頁的漫畫與插圖必須是同一套視覺；
-      生圖時把該風格關鍵字固定寫進提示，再加上與主旨相符的主題描述。
-    * 目前既有小節：`1-1-1` 為呆萌卡通水豚貼紙風（Capybara Sticker Style）、`1-1-2` 為日式動漫風。
-    * 插圖規格：網頁內的插圖寬度限制為 `220px`，並設定卡片邊框、投射陰影與 Hover Zoom 特效，置於說明區塊或題目卡片底部的合適位置。
-
-## 5. Canvas 互動開發與定位修正
-* **事件對齊公式（極重要）**：
-  * 為防止 Canvas 經 CSS 縮放或在 Retina 高解析度螢幕上出現「滑鼠/手指位置與畫布元件對不起來」的偏移 Bug，**必須**在計算座標時乘上縮放比率：
-    ```javascript
-    function getMouseX(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = (e.touches && e.touches.length > 0) 
-        ? e.touches[0].clientX 
-        : ((e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : e.clientX);
-      const relativeX = clientX - rect.left;
-      return relativeX * (canvas.width / rect.width);
-    }
-    ```
-* **繪圖優化**：
-  * 使用 `ctx.shadowBlur` 與亮色（如 `var(--accent)`、`var(--secondary)`）繪製發光點。
-  * 加入反光高光線，提升幾何元素的立體感與精緻感。
-  * 同步綁定 `mousedown/mousemove/mouseup` 以及 `touchstart/touchmove/touchend` 以支援觸控平板。
-* **相反數鏡像命名與標記一致性 (Opposite Point Naming Consistency)**：
-  * 在開發相反數的視覺鏡像對稱時，點 A 在原點另一側的對稱點**必須統一命名為 A'**（A Prime）。
-  * 確保 HTML 引導說明、數值顯示面板（即使內部 id 為了代碼安全保留為 `opp-b`）、Canvas 繪圖文字 (`ctx.fillText("A'", ...)`) 以及下方詳解所出現的稱呼完全一致為 `A'`，不得混用「點 B」與「點 A'」造成教學困擾。
-
-## 6. 整合與部署
-* **資料夾配置**：將 HTML、CSS、JS 與插圖存放在 `/materials/V-C-S/` 子目錄下。
-* **更新主入口**：
-  * 在根目錄的 `curriculum.js` 中，把該小節加上 `"status": "completed"`，首頁即會顯示「已完成」並可點入。
-  * 不要再去改 `script.js` 的判斷式；完成狀態一律只寫在 `curriculum.js` 的資料裡。
-* **教材頁必掛的共用元件**（相對路徑一律 `../../`）：
-  ```html
-  <link rel="stylesheet" href="../../tools-sidebar.css">
-  <link rel="stylesheet" href="../../lesson-nav.css">
-  <link rel="stylesheet" href="../../annotate.css">
-  <script src="../../curriculum.js"></script>
-  <script src="../../tools-sidebar.js" data-home="../../index.html"></script>
-  <script src="../../lesson-nav.js"></script>
-  <script src="../../annotate.js"></script>
-  ```
-  依序提供：課堂工具側邊欄、上一節／下一節導覽、課堂畫筆標註。
-* **圖片最佳化（一律使用 WebP）**：
-  * 課前漫畫：寬 `1080`、WebP 品質 `88`，檔名 `motivation_comic.webp`。
-  * 其餘插圖：網頁顯示寬度為 `220px`，存檔統一縮到寬 `640`、WebP 品質 `85`（單張約 30～100KB）。
-  * 不要把生圖模型輸出的原始 PNG（常常 0.5～2MB）直接放進教材資料夾。
-  * 網頁內 `<img>` 一律加上 `loading="lazy"`（首屏的課前漫畫除外）與 `alt` 文字。
-* **驗證機制**：
-  * 寫入檔案後，執行完整性檢查，確保相對路徑（如 `../../index.html`）正確，網頁跳轉順暢。
-  * 確認課前漫畫確實來自第 3.1 節的 `comic-generator` 流程（`teaching-comic/output/` 應留有對應的 `_raw`／`_prepped`／`_normalized`／`_bubbles.json` 檔案）。
-  * 確認教材頁沒有殘留未轉檔的 `.png` 引用，且四格漫畫在 1080 寬下對白清晰可讀。
-  * 檢查對話泡：文字都落在泡的內部沒有溢出或壓邊、泡的型式與語氣相符、沒有出現「框中框」
-    （出現框中框代表誤用了 `-DrawBubbles`）。
-
-## 7. 數學符號與 LaTeX (MathJax) 格式規範
-* **MathJax 載入**：在 HTML `<head>` 中引入：
-  `<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>`。
-* **基本格式與字元清理**：
-  * 所有變數（如 \(a, b, x\)）、坐標（如 \(A(a)\)）、負數與算式，統一包裹在行內定界符 `\( ... \)` 中，以顯示為精美斜體。
-  * **嚴禁**在 LaTeX `\( ... \)` 內部使用全形中文運算子（如 `＋`、`－`），必須全面轉換為半形標準符號 `+`、`-`，以防止渲染間距異常。
-* **去除冗餘括號**：
-  * 除了為避免運算子相鄰的括號（如 `+ (-5)`）外，算式開頭首項與最終結果絕不加上括號。
-  * 正確寫法：`-5 + (-3) = -8`。錯誤寫法：`(-5) + (-3) = (-8)`。
-* **線段記法**：線段與其長度一律加上橫線，寫為 `\(\overline{AB}\)`、`\(\overline{AC}\)`，不可只寫 `AB`、`AC`（那是兩個字母相乘）。
-* **JavaScript 動態字串轉義（極重要）**：
-  * 在 JS 模板字串（反單引號 `\`...\``）中動態寫入 `innerHTML` 時，單反斜線 `\` 會被 JS 吞掉。
-  * **必須使用雙反斜線轉義**：寫成 `\\(`, `\\)`, `\\frac`。否則會造成 HTML 輸出為一般括號與 `rac` 換頁亂碼。
-* **Hex 顏色渲染防錯**：
-  * **嚴禁**在 LaTeX 內部使用 `\color{#hex}`（`#` 在 LaTeX 模式下會觸發巨集參數報錯）。
-  * 必須將 HTML 著色標籤寫在 LaTeX 外部：`<span style="color: #fda4af">\(a\)</span>`，這能 100% 正常顯色。
-* **Flexbox 對齊排版防錯**：
-  * 對於動態寫入的說明回饋區（如 `.visual-feedback`，帶有 `display: flex`），將 `innerHTML` 的內容整體包裹在單一 block 容器 `<div style="width: 100%; text-align: center; line-height: 1.6; font-size: 0.95rem;">...</div>` 內，防止行內標籤與 `br` 被 flex 拆分橫向排列。
-
+回報檔案、完成內容、驗收結果及未決事項。若教材重點有調整，依手冊維護流程更新概念目錄。Git 與收工動作依 AGENTS 的協作約定執行。
