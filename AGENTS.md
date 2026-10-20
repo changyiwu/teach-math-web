@@ -48,6 +48,7 @@
 - 收工必更新 handoff，檢查 API key、Token、學生姓名等敏感資料；只 stage 本次相關檔案，不使用無差別的 `git add .`。commit／push 必須有使用者明確授權。
 - 若任務已授權並行 agent，暫存檔帶小節前綴，頁面與截圖服務的埠都各自分配；瀏覽器分頁共用，每次量測先核對 pathname。遇 429 保留成果，恢復後接續，不重開整批。
 - 雲端 Git 權限錯誤先以 `git -c core.fsmonitor=false` 重試；仍受限時依工具權限流程重試同一操作，不修復／重建 repo 或自行 pull。
+- **產出一律放 `output/`**：本專案產生的檔案或資料夾（成品、匯出、報表、生成圖、渲染等）預設放專案根目錄的 `output/`，不另開 `outputs/`、`exports/`、`generated/`、`out/` 之類的資料夾，方便找；`output/` 不進 git。部署工具指定的建置目錄（`dist/`、`build/`）不在此限
 
 ## Obsidian 第二大腦
 

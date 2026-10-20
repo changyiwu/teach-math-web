@@ -40,3 +40,6 @@ comfyui/
 # Python 位元碼快取（本機產物）
 __pycache__/
 *.pyc
+
+# 產出一律放 output/，不進 git
+output/
