@@ -45,7 +45,7 @@
 2. 課本版本／範圍改動時更新目標冊別的人工編輯區，再核對實際教材；不要拿舊頁標題作為新版本課綱。
 3. 修改教材重點標題或課程結構後，執行 `python tools/update_reference_catalog.py`；檢查使用 `python tools/update_reference_catalog.py --check`。新增章節時先在相應冊別加章名、章內提醒及對應 BEGIN／END LESSONS 標記。
 4. 工具或上游技能的操作方式，以該工具的實際介面為準；本手冊只維護本站的規格。生圖／排字時才載入所指定的外部技能，不必日常全文閱讀。
-5. 歷史變更查 [里程碑](../history/project-milestones.md)、Git 或 Obsidian 的 teaching-web/專案工作流程.md；個別生成證據查 ignored 的 comfyui/<小節>/。跨機前先確認該批素材已同步。
+5. 歷史變更查 [里程碑](../history/project-milestones.md)、Git 或 Obsidian 的 teach-math-web/專案工作流程.md；個別生成證據查 ignored 的 comfyui/<小節>/。跨機前先確認該批素材已同步。
 6. 跨專案引用可直接提供本目錄的完整位置，選讀對應正文；移到獨立專案時另處理教材頁來源連結與所需工具。Word／PDF、紙張、認知層次、題數及配分依目標專案規範。
 
 出卷引用範本：

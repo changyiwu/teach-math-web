@@ -17,7 +17,7 @@ def build_outputs() -> tuple[dict[Path, str], dict[str, int]]:
     start = raw.index('{', raw.index('const CURRICULUM_DATA'))
     curriculum, _ = json.JSONDecoder().raw_decode(raw[start:])
     catalog = {
-        'title': 'teaching-web 各冊各章概念索引',
+        'title': 'teach-math-web 各冊各章概念索引',
         'schema_version': 2,
         'source': 'curriculum.js and materials/*/index.html',
         'scope': '自動產生的教材標題索引；規則及章節編輯說明不在 JSON 複寫。',

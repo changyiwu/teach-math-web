@@ -43,7 +43,7 @@
 ## 📂 檔案結構
 
 ```text
-teaching-web/
+teach-math-web/
 ├── index.html          # 主網頁結構與版面佈局
 ├── style.css           # 設計系統、磨砂玻璃樣式與響應式 CSS
 ├── script.js           # 時鐘、分頁、搜尋篩選、自訂書籤與課程渲染邏輯
@@ -70,7 +70,7 @@ teaching-web/
 ### 線上網址（GitHub Pages）
 本專案已啟用 GitHub Pages 分支部署，**push 到 `main` 分支即自動發布**，約 1 分鐘後生效：
 
-- 網址：<https://changyiwu.github.io/teaching-web/>
+- 網址：<https://changyiwu.github.io/teach-math-web/>
 - 部署來源：`main` 分支根目錄（Settings → Pages 設定，採 classic 分支部署，因此沒有 `.github/workflows` 檔案）
 
 > 備忘錄與自訂連結存在瀏覽器的 `localStorage`，屬於「該裝置該瀏覽器」的資料，不會跨裝置同步；換電腦或換瀏覽器要重新設定。

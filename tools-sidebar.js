@@ -18,21 +18,21 @@
     {
       cls: 'tools',
       icon: 'fa-toolbox',
-      href: 'https://changyiwu.github.io/class-tools-2',
+      href: 'https://changyiwu.github.io/teach-class-tools',
       title: '班級工具',
       desc: '課堂計時器、隨機抽籤、搶答器等互動教學輔助工具箱。'
     },
     {
       cls: 'score',
       icon: 'fa-clipboard-list',
-      href: 'https://changyiwu.github.io/class-score',
+      href: 'https://changyiwu.github.io/teach-class-score',
       title: '課堂表現登記系統',
       desc: '即時記錄學生課堂表現與參與度，登入後也可開啟考卷檢討。'
     },
     {
       cls: 'wordcloud',
       icon: 'fa-cloud',
-      href: 'https://changyiwu.github.io/teaching-web/wordcloud.html',
+      href: 'https://changyiwu.github.io/teach-math-web/wordcloud.html',
       title: '課堂即時文字雲',
       desc: '老師，我想對您說。'
     }

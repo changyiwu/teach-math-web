@@ -74,5 +74,5 @@ $materialPython = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure
 - 選圖放大四角看淡色字跡／浮水印，修正不得侵入身體或教學內容；修後重驗全張。
 - gpt-image-2 的 mask 曾破壞四格，該既有流程不依賴 mask 修漫畫，改整張編修／重生；其他工具依當前能力驗收，不宣稱有同一限制。
 - 提示需要寫數字時採少位數，要求各數字只印一次、置中、不鏡像、不被橫桿遮住，避免翻牌式重複兩排。生成的刻度與端點需放大核對，不以提示已寫清楚代替驗收。
-- 本機 ComfyUI 按 agent-comfyui；清單沒有時可讀同級 agents-lazy-guide/skills/07-comfyui/SKILL.md。API 啟動、PNG 工作流程擷取按該技能。
+- 本機 ComfyUI 按 comfyui；清單沒有時可讀同級 agent-setup-guide/skills/07-comfyui/SKILL.md。API 啟動、PNG 工作流程擷取按該技能。
 - Z-Image 歷史經驗：中文提示、負面提示效果有限；角色位置及單人衣色具體寫出，同道具不重複描述。計算器寫「口袋型電子計算器」避免被讀成電腦；地面線可引導量測方向但終點仍需驗收。只在使用該模型時參考。

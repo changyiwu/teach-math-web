@@ -1,5 +1,5 @@
 {
-  "title": "teaching-web 各冊各章概念索引",
+  "title": "teach-math-web 各冊各章概念索引",
   "schema_version": 2,
   "source": "curriculum.js and materials/*/index.html",
   "scope": "自動產生的教材標題索引；規則及章節編輯說明不在 JSON 複寫。",

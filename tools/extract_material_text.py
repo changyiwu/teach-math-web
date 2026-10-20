@@ -13,9 +13,9 @@
     macOS    系統內建的 textutil（Apple 第一方，不必裝任何東西）
     其他     明確報錯並說明缺什麼
 
-**刻意不用 LibreOffice。** `share-report/AGENTS.md` 驗證過 `soffice` 在
+**刻意不用 LibreOffice。** `slides-staff-share/AGENTS.md` 驗證過 `soffice` 在
 Windows 會因 socket.AF_UNIX 直接 AttributeError，而且它替換字型；
-`cross-device-agent-skills/platform.md` 把「不要為了跨平台改用 LibreOffice」
+`agent-project-flow/platform.md` 把「不要為了跨平台改用 LibreOffice」
 列為明文規則，兩個平台都適用。
 """
 

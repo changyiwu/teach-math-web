@@ -2,7 +2,7 @@
 
 [回手冊索引](README.md) · [數學規則](mathematics.md)
 
-本檔是網頁製作規則的唯一正文。數學、命題與精確圖形只在 mathematics.md 維護；本檔引用其章節，不另寫一份。尺寸、元件、配色及部署參數屬 teaching-web，移用到別站時替換成該站設定。
+本檔是網頁製作規則的唯一正文。數學、命題與精確圖形只在 mathematics.md 維護；本檔引用其章節，不另寫一份。尺寸、元件、配色及部署參數屬 teach-math-web，移用到別站時替換成該站設定。
 
 ## W1 教材分析與頁面結構
 
@@ -97,7 +97,7 @@
 
 ### 暖身漫畫的本專案規格
 
-上游為 `C:\Users\chang\我的雲端硬碟\agents\teaching-comic\skills\comic-generator\SKILL.md`。實作時讀它的完整流程，按其第 0 步定位 SKILL_DIR；確認 scripts/normalize_comic.ps1 存在後才操作。找不到時說明缺項並請使用者提供位置，不退回自行加字流程。
+上游為 `C:\Users\chang\我的雲端硬碟\agents\teach-comic\skills\comic-generator\SKILL.md`。實作時讀它的完整流程，按其第 0 步定位 SKILL_DIR；確認 scripts/normalize_comic.ps1 存在後才操作。找不到時說明缺項並請使用者提供位置，不退回自行加字流程。
 
 | 項目 | 規格 |
 |---|---|
@@ -132,7 +132,7 @@
 | 容器 | value-display、explanation-card／explanation-desc／explanation-box、visual-feedback、summary-card／context-story 四類均查；頁面與圖片零水平溢出。 |
 | 字型 | 字型到齊、MathJax 完成後重複量到穩定；靜態掃描間隔約 3 秒兩次相同才記錄。另清空 Canvas、觸發未載字型的 loadingdone，確認會重畫。 |
 | 內容載入 | 全圖自然尺寸非零；console 零警告／錯誤、MathJax 零錯誤。 |
-| 預覽 | HTTP 使用 tools/nostore.py，不以 file:// 快照或一般快取服務驗收本站；服務根目錄固定為 teaching-web。 |
+| 預覽 | HTTP 使用 tools/nostore.py，不以 file:// 快照或一般快取服務驗收本站；服務根目錄固定為 teach-math-web。 |
 | 變更風險 | 共用工具或版面變更需要時做 [O4](operations.md#o4-共用工具與重構比對)；有差異須說明範圍。 |
 
 驗收若遭遇零尺寸、假捲軸、隱藏圖、逾時或排版佇列問題，才查 [O2](operations.md#o2-瀏覽器量測與假溢出) 與 [O3](operations.md#o3-狀態掃描與排版排程)。
@@ -143,7 +143,7 @@
 - 本站 main 根目錄採 GitHub Pages classic 分支部署，沒有 .github/workflows 屬正常。發布須依 AGENTS 的協作授權；完成後確認 built，並比對正式線上資產與提交版本的雜湊。
 - 不硬編碼帳密、Token；不將學生或本機自訂資料送分析平台。外連使用 target="_blank" rel="noopener noreferrer"。
 - 正式 Firebase 互動頁由使用者一般瀏覽器實測或查看 App Check Metrics，不以自動化瀏覽器的低可信拒絕判定故障。
-- wordcloud.html 固定由全域 word-cloud-page 技能模板管理；CLOUD_ID 為 teaching_web，資料在 clouds/teaching_web/words/，同步模板保留 background.png 客製化。
+- wordcloud.html 固定由全域 audience-wordcloud 技能模板管理；CLOUD_ID 為 teaching_web，資料在 clouds/teaching_web/words/，同步模板保留 background.png 客製化。
 - 修改重點清單後，依 [手冊維護流程](README.md#維護與引用) 更新冊別目錄。
 
 ## W8 交付檢查入口
