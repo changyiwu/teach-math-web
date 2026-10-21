@@ -97,7 +97,7 @@
 
 ### 暖身漫畫的本專案規格
 
-上游為 `C:\Users\chang\我的雲端硬碟\agents\teach-comic\skills\comic-generator\SKILL.md`。實作時讀它的完整流程，按其第 0 步定位 SKILL_DIR；確認 scripts/normalize_comic.ps1 存在後才操作。找不到時說明缺項並請使用者提供位置，不退回自行加字流程。
+上游為 `C:\Users\chang\我的雲端硬碟\agents\teach-comic\skills\comic\SKILL.md`。實作時讀它的完整流程，按其第 0 步定位 SKILL_DIR；確認 scripts/normalize_comic.ps1 存在後才操作。找不到時說明缺項並請使用者提供位置，不退回自行加字流程。
 
 | 項目 | 規格 |
 |---|---|
