@@ -366,7 +366,13 @@
       open: () => activate(true),
       close: () => activate(false),
       clear: clearAll,
-      undo: undo
+      undo: undo,
+      // 供 concept-tabs.js 依分頁分開保存筆跡
+      getStrokes: () => state.strokes.slice(),
+      setStrokes: strokes => {
+        state.strokes = strokes ? strokes.slice() : [];
+        render();
+      }
     };
   }
 

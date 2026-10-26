@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Concept Tabs - 教材頁重點切換（搭配 concept-tabs.js）
+   1400px 以上：左側直排重點按鈕（黏住不隨捲動消失）；以下：頂端橫排、可左右滑。
+   ========================================================================== */
+
+/* 側欄佔掉寬度，容器放寬，右側內容仍維持接近原本的寬度 */
+.ct-on .container {
+  max-width: 1480px;
+}
+
+.ct-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.ct-aside {
+  position: sticky;
+  top: 1.25rem;
+  z-index: 20;
+}
+
+.ct-layout .lesson-nav.ct-nav {
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow: visible;
+}
+
+.ct-nav .nav-item {
+  gap: 12px;
+  padding: 0.8rem 1rem;
+  white-space: normal;
+  line-height: 1.3;
+  font-size: 1rem;
+}
+
+.ct-nav .nav-item > i {
+  width: 1.25em;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.ct-text small,
+.ct-pager-btn small {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.75;
+  letter-spacing: 0.04em;
+}
+
+.ct-panel.ct-hidden {
+  display: none;
+}
+
+/* 一次只顯示一個分頁，不需要原本分隔各段的大間距 */
+.ct-layout .ct-panel {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
+/* 分頁底部：上一個／下一個 */
+.ct-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ct-pager-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 48%;
+  padding: 0.85rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: all 0.25s ease;
+}
+
+.ct-pager-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.ct-pager-btn:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.45);
+  color: #fff;
+}
+
+.ct-pager-empty {
+  visibility: hidden;
+}
+
+/* 1400px 以下側欄會把雙欄的 Canvas 擠到原尺寸一半左右：
+   重點按鈕回到頂端橫排，捲動時黏在畫面上方 */
+@media (max-width: 1399px) {
+  .ct-on .container {
+    max-width: 1200px;
+  }
+
+  .ct-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .ct-aside {
+    top: 0;
+    margin-inline: -0.25rem;
+  }
+
+  .ct-layout .lesson-nav.ct-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    background: rgba(15, 12, 35, 0.85);
+  }
+
+  .ct-nav .nav-item {
+    white-space: nowrap;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .ct-pager {
+    flex-direction: column;
+  }
+
+  .ct-pager-btn {
+    max-width: none;
+  }
+}
