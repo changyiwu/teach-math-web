@@ -47,6 +47,18 @@
   flex-shrink: 0;
 }
 
+/* 各節 --primary-gradient 有不少含淺色段（米白、亮黃、淺藍），白字壓不住：
+   疊一層深色再加文字陰影，保留各節色調但讓目前重點的字讀得清楚 */
+.ct-nav .nav-item.active {
+  background: linear-gradient(rgba(12, 10, 24, 0.55), rgba(12, 10, 24, 0.55)), var(--primary-gradient);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.ct-nav .nav-item.active small {
+  opacity: 0.9;
+}
+
 .ct-text small,
 .ct-pager-btn small {
   display: block;
