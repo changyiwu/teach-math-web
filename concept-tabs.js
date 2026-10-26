@@ -104,11 +104,20 @@
       // 原本隱藏時量不到尺寸的元件（Canvas、MathJax）在顯示後重新排版
       window.dispatchEvent(new Event('resize'));
 
-      if (opts && opts.scroll) {
-        const navActive = nav.querySelector('.nav-item.active');
-        if (navActive) navActive.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-        if (layout.getBoundingClientRect().top < 0) layout.scrollIntoView({ block: 'start' });
-      }
+      revealNavItem(nav.querySelector('.nav-item.active'));
+      if (opts && opts.scroll && layout.getBoundingClientRect().top < 0) layout.scrollIntoView({ block: 'start' });
+    }
+
+    // 只捲動重點選單本身（側欄直捲或頂端橫捲），讓目前重點露出，不帶動整頁
+    function revealNavItem(item) {
+      if (!item) return;
+      [aside, nav].forEach(box => {
+        const b = box.getBoundingClientRect(), r = item.getBoundingClientRect();
+        if (r.top < b.top) box.scrollTop -= b.top - r.top;
+        else if (r.bottom > b.bottom) box.scrollTop += r.bottom - b.bottom;
+        if (r.left < b.left) box.scrollLeft -= b.left - r.left + 8;
+        else if (r.right > b.right) box.scrollLeft += r.right - b.right + 8;
+      });
     }
 
     layout.addEventListener('click', e => {
@@ -120,6 +129,19 @@
 
     window.addEventListener('hashchange', () => show(location.hash.slice(1), { scroll: true }));
 
+    // 側欄還沒黏住時（頁面頂端）會往下超出畫面、被左下角的上一節／下一節列蓋住：
+    // 依側欄目前的實際位置限高，讓所有重點按鈕都能在畫面內捲到
+    const wide = window.matchMedia('(min-width: 1400px)');
+    function fitAside() {
+      if (!wide.matches) { aside.style.maxHeight = ''; return; }
+      const top = Math.max(aside.getBoundingClientRect().top, 20);
+      aside.style.maxHeight = Math.max(240, window.innerHeight - top - 110) + 'px';
+    }
+    // 側欄自己捲動也會冒出 scroll 事件（capture），只理會頁面捲動
+    document.addEventListener('scroll', e => { if (e.target !== aside) fitAside(); }, { capture: true, passive: true });
+    window.addEventListener('resize', fitAside);
+
+    fitAside();
     show(location.hash.slice(1));
   }
 
