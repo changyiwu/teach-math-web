@@ -27,7 +27,7 @@
 | 架構 | HTML5、Vanilla CSS／JavaScript；未明確要求不引入 Tailwind 等 CSS 框架。一般自訂資料留 localStorage；獨立即時互動頁可依指定技能使用 Firebase。 |
 | 課程資料 | 小節資料夾使用 V-C-S；完成狀態只寫 curriculum.js 的 status，不在 script.js 加條件。 |
 | 共用引擎 | 新頁載入 ../math-canvas.js；不要複製共用工具。使用前讀實際函式簽章、回傳形狀與適用範圍。 |
-| 導覽元件 | 使用下方相對路徑載入工具側欄、前後節導覽與課堂畫筆。 |
+| 導覽元件 | 使用下方相對路徑載入工具側欄、前後節導覽、課堂畫筆與重點分頁。重點分頁依頁首 .lesson-nav 的 #conceptN 連結，把 main 直屬的暖身漫畫、各重點 section 與 summary-section 切成一次一段；新頁維持這個結構即可，不另寫切換程式。 |
 | 輸入座標 | X、Y 分別以 canvas.width/rect.width、canvas.height/rect.height 換算 client 座標；touches／changedTouches 及滑鼠輸入都要支援。 |
 | 捲動 | 本站教材頁由 body 捲動；相關功能同時處理 body 與文件捲動來源。 |
 | 字型重畫 | 每個互動 init 最後使用 drawWithFonts(draw)，評量附圖使用 drawWithFonts(initQuizFigs)。draw 只按當前狀態重畫，不生成亂數、累加狀態或重複註冊事件。 |
@@ -40,10 +40,12 @@
 <link rel="stylesheet" href="../../tools-sidebar.css">
 <link rel="stylesheet" href="../../lesson-nav.css">
 <link rel="stylesheet" href="../../annotate.css">
+<link rel="stylesheet" href="../../concept-tabs.css">
 <script src="../../curriculum.js"></script>
 <script src="../../tools-sidebar.js" data-home="../../index.html"></script>
 <script src="../../lesson-nav.js"></script>
 <script src="../../annotate.js"></script>
+<script src="../../concept-tabs.js"></script>
 ```
 
 改動或抽取共用工具時，讀 [O4](operations.md#o4-共用工具與重構比對)；平常不必載入重構程序。
