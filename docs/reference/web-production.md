@@ -143,7 +143,6 @@
 - 本站 main 根目錄採 GitHub Pages classic 分支部署，沒有 .github/workflows 屬正常。發布須依 AGENTS 的協作授權；完成後確認 built，並比對正式線上資產與提交版本的雜湊。
 - 不硬編碼帳密、Token；不將學生或本機自訂資料送分析平台。外連使用 target="_blank" rel="noopener noreferrer"。
 - 正式 Firebase 互動頁由使用者一般瀏覽器實測或查看 App Check Metrics，不以自動化瀏覽器的低可信拒絕判定故障。
-- wordcloud.html 固定由全域 audience-wordcloud 技能模板管理；CLOUD_ID 為 teaching_web，資料在 clouds/teaching_web/words/，同步模板保留 background.png 客製化。
 - 修改重點清單後，依 [手冊維護流程](README.md#維護與引用) 更新冊別目錄。
 
 ## W8 交付檢查入口

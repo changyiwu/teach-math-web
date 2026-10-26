@@ -172,9 +172,9 @@
 .tsb-card.score .tsb-card-title { color: #fbcfe8; }
 .tsb-card.score:hover { background: rgba(236, 72, 153, 0.08); }
 
-.tsb-card.wordcloud .tsb-icon { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
-.tsb-card.wordcloud .tsb-card-title { color: #e9d5ff; }
-.tsb-card.wordcloud:hover { background: rgba(168, 85, 247, 0.08); }
+.tsb-card.youtube .tsb-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.tsb-card.youtube .tsb-card-title { color: #fecaca; }
+.tsb-card.youtube:hover { background: rgba(239, 68, 68, 0.08); }
 
 .tsb-card.home .tsb-icon { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
 .tsb-card.home .tsb-card-title { color: #ddd6fe; }

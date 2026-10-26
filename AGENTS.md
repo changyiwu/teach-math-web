@@ -31,7 +31,6 @@
 | materials/<冊-章-節>/ | 各節 HTML、CSS、canvas.js 與正式圖片 |
 | materials/math-canvas.js | 各節共用 Canvas 工具 |
 | tools-sidebar、lesson-nav、annotate 的 CSS／JS | 工具側欄、前後節導覽與課堂畫筆 |
-| wordcloud.html | 依手冊 W7 管理的獨立即時文字雲 |
 | docs/reference/ | 現行教材規則、各冊索引與按需操作附錄 |
 | docs/history/ | 保留原文的歷史里程碑 |
 | tools/ | 抽字、HTTP 預覽、Canvas 擷取、索引更新等工具 |

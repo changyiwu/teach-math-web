@@ -30,11 +30,12 @@
       desc: '即時記錄學生課堂表現與參與度，登入後也可開啟考卷檢討。'
     },
     {
-      cls: 'wordcloud',
-      icon: 'fa-cloud',
-      href: 'https://changyiwu.github.io/teach-math-web/wordcloud.html',
-      title: '課堂即時文字雲',
-      desc: '老師，我想對您說。'
+      cls: 'youtube',
+      icon: 'fa-youtube',
+      iconStyle: 'fa-brands',
+      href: 'https://www.youtube.com/channel/UCJSu-tJVglBSUfduuF4iLww',
+      title: 'YouTube 頻道',
+      desc: '老師的 YouTube 頻道，課後複習與補充影片。'
     }
   ];
 
@@ -48,7 +49,7 @@
     return `
       <a href="${t.href}"${attrs} class="tsb-card ${t.cls}">
         <div class="tsb-card-header">
-          <div class="tsb-icon"><i class="fa-solid ${t.icon}"></i></div>
+          <div class="tsb-icon"><i class="${t.iconStyle || 'fa-solid'} ${t.icon}"></i></div>
           ${cornerIcon}
         </div>
         <div class="tsb-card-body">

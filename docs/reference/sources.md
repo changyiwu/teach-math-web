@@ -92,7 +92,7 @@
 | [原工作約定 L186](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L186) | 量版面時「顯示型」與「行內」算式要分兩輪量 | [O2](operations.md#o2-瀏覽器量測與假溢出) |
 | [原工作約定 L187](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L187) | `curl ... &#124; python` 在 Windows 會用 cp950 讀 stdin | [O1](operations.md#o1-文件處理與編碼) |
 | [原工作約定 L188](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L188) | 幾百個狀態的「邏輯」掃描要先 stub 掉 `MathJax.typesetPromise` | [O3](operations.md#o3-狀態掃描與排版排程) |
-| [原工作約定 L189](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L189) | 不要用截圖判斷「文字雲上某個詞有沒有畫出來」 | [O3](operations.md#o3-狀態掃描與排版排程) |
+| [原工作約定 L189](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L189) | 不要用截圖判斷「文字雲上某個詞有沒有畫出來」 | 已退場：2026-10-26 刪除 wordcloud.html，側欄改放 YouTube 頻道連結。 |
 | [原工作約定 L190](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L190) | 瀏覽器分頁未在前景時渲染會被節流，大量 canvas 迴圈驗證會逾時 | [O3](operations.md#o3-狀態掃描與排版排程) |
 | [原工作約定 L191](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L191) | 用 `subprocess` 接外部指令（生圖腳本等）的輸出時不要直接 `print` | [O1](operations.md#o1-文件處理與編碼) |
 | [原工作約定 L192](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L192) | `print` 出去的字串本身也不能含非 cp950 字元 | [O1](operations.md#o1-文件處理與編碼) |
@@ -182,8 +182,8 @@
 | [原跨專案依賴 L334](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L334) | 四格後期物件數量減少時，提示需強調「維持原小尺寸、盤面留白、絕不放大」 | [W5](web-production.md#w5-圖片與漫畫製作) |
 | [原跨專案依賴 L335](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L335) | 生圖提示應簡化背景與微小機件，避免密集小齒輪或複雜鐘錶機構 | [W5](web-production.md#w5-圖片與漫畫製作) |
 | [原跨專案依賴 L336](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L336) | 「考卷檢討」不在本 repo | [專案範圍](../../AGENTS.md#專案與範圍) |
-| [原跨專案依賴 L337](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L337) | `wordcloud.html` **固定由全域 `audience-wordcloud` 技能模板產生／同步** | [W7](web-production.md#w7-整合與發布) |
-| [原跨專案依賴 L338](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L338) | 文字雲固定使用 `CLOUD_ID = teaching_web`，資料位於 `clouds/teaching_web/words/` | [W7](web-production.md#w7-整合與發布) |
+| [原跨專案依賴 L337](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L337) | `wordcloud.html` **固定由全域 `audience-wordcloud` 技能模板產生／同步** | 已退場：2026-10-26 刪除 wordcloud.html。 |
+| [原跨專案依賴 L338](https://github.com/changyiwu/teach-math-web/blob/ad61a5ad5b8704cb03df18233c8328d3e0de6f83/AGENTS.md#L338) | 文字雲固定使用 `CLOUD_ID = teaching_web`，資料位於 `clouds/teaching_web/words/` | 已退場：2026-10-26 刪除 wordcloud.html。 |
 
 ### 原技能章節
 

@@ -40,7 +40,6 @@ $materialPython = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure
 - 長掃描將計數與結果存 window 狀態；工具逾時先讀進度，避免重跑已完成批次。固定種子用於可重現比較。
 - 解析 LaTeX 先移除 wbr、wbrEq 插入的空 `{}`，處理 text 括號及 left/right；整批案例全失敗先查 parser。
 - 洩題掃描抓 no-store 原始 HTML 經 DOMParser，不用 MathJax 排版後 textContent。移除 input 屬性，數字比對加完整邊界，以免將 min/max 或 4 與 45 誤命中；審查範圍依 [M5](mathematics.md#m5-防止示範或提示洩漏答案)。
-- 文字雲繪出確認用 wordclouddrawn 事件的 detail.drawn，不憑截圖沒看見小字就判失敗。
 
 ## O4 共用工具與重構比對
 
