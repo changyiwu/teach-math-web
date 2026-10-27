@@ -43,3 +43,6 @@ __pycache__/
 
 # 產出一律放 output/，不進 git
 output/
+
+# Claude Code 本機預覽設定（launch.json），只留在本機
+.claude/
