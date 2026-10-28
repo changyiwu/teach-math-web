@@ -323,6 +323,39 @@
 
     .learn-link:hover { border-color: var(--cyan); }
 
+    /* 限時調整：開始與結果畫面各一組，數值同步 */
+    .limit-ctl {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      white-space: nowrap;
+    }
+
+    .limit-ctl .label { padding-left: 8px; color: var(--muted); }
+    .limit-ctl b { min-width: 2ch; color: var(--accent-2); font-size: 1.3em; font-variant-numeric: tabular-nums; }
+
+    .limit-ctl button {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(30, 41, 75, 0.9);
+      color: var(--text);
+      font: inherit;
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .limit-ctl button:hover:not(:disabled) { border-color: var(--cyan); color: var(--cyan); }
+    .limit-ctl button:disabled { opacity: 0.35; cursor: default; }
+
     @keyframes breathe {
       50% { box-shadow: 0 8px 0 #b45309, 0 14px 44px rgba(251, 191, 36, 0.7); }
     }
@@ -631,7 +664,8 @@
 
     <section class="screen" id="screen-start">
       <h1 class="title">次方大挑戰</h1>
-      <p class="hint">按下按鈕，從 29 題次方中隨機挑一題，<br>10 秒內答出來就挑戰成功！</p>
+      <p class="hint">按下按鈕，從 29 題次方中隨機挑一題，<br><span class="limit-val">10</span> 秒內答出來就挑戰成功！</p>
+      <div class="limit-ctl"><span class="label">⏱ 限時</span><button type="button" data-step="-1" aria-label="減少 1 秒">−</button><b class="limit-val">10</b>秒<button type="button" data-step="1" aria-label="增加 1 秒">＋</button></div>
       <button type="button" class="big-btn" id="pick">🎲 隨機挑題</button>
       <a class="learn-link" href="learn.html">📖 先看次方教學</a>
     </section>
@@ -671,6 +705,7 @@
       <p class="equation later" id="equation"></p>
       <div class="tip later" id="tip" hidden></div>
       <button type="button" class="big-btn later" id="again">🎲 再挑一題</button>
+      <div class="limit-ctl later" id="limit-again"><span class="label">⏱ 限時</span><button type="button" data-step="-1" aria-label="減少 1 秒">−</button><b class="limit-val">10</b>秒<button type="button" data-step="1" aria-label="增加 1 秒">＋</button></div>
     </section>
   </main>
 
@@ -686,7 +721,14 @@
     ];
     const power = p => p.b ** p.e;
     const expr = p => `${p.b}<sup>${p.e}</sup>`;
-    const LIMIT = 10;
+    // 限時預設 10 秒，可在開始／結果畫面加減，記在這台瀏覽器
+    const LIMIT_MIN = 3;
+    const LIMIT_MAX = 60;
+    let LIMIT = 10;
+    try {
+      const saved = parseInt(localStorage.getItem('power-challenge-limit'), 10);
+      if (saved >= LIMIT_MIN && saved <= LIMIT_MAX) LIMIT = saved;
+    } catch (e) { /* 無痕模式等讀不到就用預設 */ }
     const INTRO_SECONDS = 7;
 
     const $ = id => document.getElementById(id);
@@ -1332,6 +1374,24 @@
 
     window.addEventListener('resize', fitScreen);
 
+    function renderLimit() {
+      document.querySelectorAll('.limit-val').forEach(el => { el.textContent = LIMIT; });
+      document.querySelectorAll('.limit-ctl button').forEach(btn => {
+        btn.disabled = btn.dataset.step < 0 ? LIMIT <= LIMIT_MIN : LIMIT >= LIMIT_MAX;
+      });
+    }
+
+    document.querySelectorAll('.limit-ctl button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        LIMIT = Math.min(LIMIT_MAX, Math.max(LIMIT_MIN, LIMIT + Number(btn.dataset.step)));
+        try { localStorage.setItem('power-challenge-limit', LIMIT); } catch (e) { /* 存不了也沒關係 */ }
+        renderLimit();
+        fitScreen();
+      });
+    });
+
+    renderLimit();
+
     function startQuestion() {
       audio();
       sfx.pick();
@@ -1480,7 +1540,7 @@
       tip.innerHTML = win ? '' : tipFor(current);
       tip.hidden = !tip.innerHTML;
 
-      const later = ['reason', 'equation', 'tip', 'again'].map($);
+      const later = ['reason', 'equation', 'tip', 'again', 'limit-again'].map($);
       later.forEach(el => el.classList.remove('in'));
       show('screen-result');
 
