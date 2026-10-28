@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>平方數教學 - 平方數大挑戰</title>
+  <title>次方教學 - 次方大挑戰</title>
   <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
-  <meta name="description" content="11² 到 20²，以及 15²、25²…105² 的平方數表。">
+  <meta name="description" content="11² 到 20²、15²、25²…105²，以及 2¹ 到 2¹⁰ 的次方表。">
   <style>
     :root {
       --bg: #0b1020;
@@ -92,7 +92,7 @@
       color: transparent;
     }
 
-    /* 分 2 頁：第 1 頁 11²～20²，第 2 頁 15²～105² */
+    /* 分 3 頁：第 1 頁 11²～20²，第 2 頁 15²～105²，第 3 頁 2¹～2¹⁰ */
     section {
       margin-top: 20px;
       padding: clamp(14px, 3vw, 28px);
@@ -198,7 +198,7 @@
       </div>
     </header>
 
-    <h1>平方數教學</h1>
+    <h1>次方教學</h1>
 
     <section class="page">
       <h2>11² ～ 20²</h2>
@@ -210,9 +210,14 @@
       <div class="grid" id="grid-fives"></div>
     </section>
 
+    <section class="page" hidden>
+      <h2>2¹ ～ 2¹⁰</h2>
+      <div class="grid" id="grid-twos"></div>
+    </section>
+
     <nav class="pager" aria-label="換頁">
       <button type="button" class="btn" id="prev">◀ 上一頁</button>
-      <span class="page-no" id="page-no">1 / 2</span>
+      <span class="page-no" id="page-no">1 / 3</span>
       <button type="button" class="btn" id="next">下一頁 ▶</button>
     </nav>
   </div>
@@ -224,17 +229,20 @@
     const TEENS = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     const FIVES = [15, 25, 35, 45, 55, 65, 75, 85, 95, 105];
 
-    function card(n) {
+    const TWOS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    function card(b, e) {
       return `
         <button type="button" class="card">
-          <span class="expr">${n}<sup>2</sup></span>
+          <span class="expr">${b}<sup>${e}</sup></span>
           <span class="eq">=</span>
-          <span class="value">${n * n}</span>
+          <span class="value">${b ** e}</span>
         </button>`;
     }
 
-    document.getElementById('grid-teens').innerHTML = TEENS.map(card).join('');
-    document.getElementById('grid-fives').innerHTML = FIVES.map(card).join('');
+    document.getElementById('grid-teens').innerHTML = TEENS.map(n => card(n, 2)).join('');
+    document.getElementById('grid-fives').innerHTML = FIVES.map(n => card(n, 2)).join('');
+    document.getElementById('grid-twos').innerHTML = TWOS.map(e => card(2, e)).join('');
 
     const toggle = document.getElementById('quiz-toggle');
     toggle.addEventListener('click', () => {
@@ -246,7 +254,8 @@
 
     // 換頁：按鈕、鍵盤方向鍵或簡報筆的上下頁都可以
     const pages = [...document.querySelectorAll('.page')];
-    let page = location.hash === '#2' ? 1 : 0;
+    const pageFromHash = () => Math.max(0, (parseInt(location.hash.slice(1), 10) || 1) - 1);
+    let page = pageFromHash();
 
     function showPage(i) {
       page = Math.max(0, Math.min(pages.length - 1, i));
@@ -254,7 +263,7 @@
       document.getElementById('page-no').textContent = `${page + 1} / ${pages.length}`;
       document.getElementById('prev').disabled = page === 0;
       document.getElementById('next').disabled = page === pages.length - 1;
-      history.replaceState(null, '', page ? '#2' : location.pathname);
+      history.replaceState(null, '', page ? `#${page + 1}` : location.pathname);
     }
 
     document.getElementById('prev').addEventListener('click', () => showPage(page - 1));
@@ -263,7 +272,7 @@
       if (['ArrowRight', 'PageDown'].includes(e.key)) showPage(page + 1);
       if (['ArrowLeft', 'PageUp'].includes(e.key)) showPage(page - 1);
     });
-    window.addEventListener('hashchange', () => showPage(location.hash === '#2' ? 1 : 0));
+    window.addEventListener('hashchange', () => showPage(pageFromHash()));
     showPage(page);
 
     // 遮答案模式下點卡片翻開／蓋回

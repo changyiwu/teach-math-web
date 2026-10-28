@@ -42,9 +42,9 @@
     {
       cls: 'game',
       icon: 'fa-gamepad',
-      href: siteBase + 'games/square-challenge/',
-      title: '平方數大挑戰',
-      desc: '隨機挑一題平方數，10 秒內答出來就挑戰成功！'
+      href: siteBase + 'games/power-challenge/',
+      title: '次方大挑戰',
+      desc: '隨機挑一題次方，10 秒內答出來就挑戰成功！'
     }
   ];
 

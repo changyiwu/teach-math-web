@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>平方數大挑戰 - 國中數學教學整合網</title>
+  <title>次方大挑戰 - 國中數學教學整合網</title>
   <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
-  <meta name="description" content="從 19 題平方數中隨機挑一題，10 秒內答出來就挑戰成功！">
+  <meta name="description" content="從 29 題次方中隨機挑一題，10 秒內答出來就挑戰成功！">
   <style>
     :root {
       --bg: #0b1020;
@@ -256,10 +256,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* safe：內容比畫面高時從上方開始排，不會把頂端擠出去 */
+      justify-content: safe center;
       text-align: center;
       padding: 0 16px 48px;
       gap: clamp(16px, 3vh, 28px);
+      min-height: 0;
+      overflow-y: auto;
     }
 
     .screen[hidden] { display: none; }
@@ -613,9 +616,9 @@
   <div class="intro" id="intro">
     <!-- 瀏覽器規定要先點一下才能播音效，所以開場前先按「開始」 -->
     <button type="button" class="start-gate" id="start">▶ 開始</button>
-    <p class="gate-hint">平方數大挑戰 · 請開啟喇叭 🔊</p>
-    <h1 class="intro-title"><span>平方數</span><span>大挑戰</span></h1>
-    <p class="intro-sub">n² 速算對決</p>
+    <p class="gate-hint">次方大挑戰 · 請開啟喇叭 🔊</p>
+    <h1 class="intro-title"><span>次方</span><span>大挑戰</span></h1>
+    <p class="intro-sub">aⁿ 速算對決</p>
     <button type="button" class="skip" id="skip">跳過 ▸</button>
   </div>
 
@@ -627,10 +630,10 @@
     </header>
 
     <section class="screen" id="screen-start">
-      <h1 class="title">平方數大挑戰</h1>
-      <p class="hint">按下按鈕，從 19 題平方數中隨機挑一題，<br>10 秒內答出來就挑戰成功！</p>
+      <h1 class="title">次方大挑戰</h1>
+      <p class="hint">按下按鈕，從 29 題次方中隨機挑一題，<br>10 秒內答出來就挑戰成功！</p>
       <button type="button" class="big-btn" id="pick">🎲 隨機挑題</button>
-      <a class="learn-link" href="learn.html">📖 先看平方數教學</a>
+      <a class="learn-link" href="learn.html">📖 先看次方教學</a>
     </section>
 
     <section class="screen" id="screen-q" hidden>
@@ -676,8 +679,13 @@
   (function () {
     'use strict';
 
-    // 題庫：11²～20² 與 25²、35²…105²（15² 只算一次，共 19 題）
-    const BASES = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 35, 45, 55, 65, 75, 85, 95, 105];
+    // 題庫：11²～20²、25²、35²…105²（15² 只算一次）與 2¹～2¹⁰，共 29 題
+    const PROBLEMS = [
+      ...[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 35, 45, 55, 65, 75, 85, 95, 105].map(b => ({ b, e: 2 })),
+      ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(e => ({ b: 2, e }))
+    ];
+    const power = p => p.b ** p.e;
+    const expr = p => `${p.b}<sup>${p.e}</sup>`;
     const LIMIT = 10;
     const INTRO_SECONDS = 7;
 
@@ -886,8 +894,8 @@
       group.rotation.x = 0.38;
       scene.add(group);
 
-      // 方塊上只寫「n²」不寫答案，背景不會洩題
-      function labelTexture(n, hue) {
+      // 方塊上只寫「aⁿ」不寫答案，背景不會洩題
+      function labelTexture(p, hue) {
         const c = document.createElement('canvas');
         c.width = c.height = 256;
         const g = c.getContext('2d');
@@ -902,23 +910,25 @@
         g.fillStyle = '#fff';
         g.textAlign = 'center';
         g.textBaseline = 'middle';
-        const s = String(n);
+        const s = String(p.b);
+        const sup = String(p.e);
+        const wide = s.length + sup.length > 3;
         g.font = `900 ${s.length > 2 ? 92 : 112}px "Microsoft JhengHei", sans-serif`;
-        g.fillText(s, 116, 140);
-        g.font = '900 64px "Microsoft JhengHei", sans-serif';
-        g.fillText('2', s.length > 2 ? 210 : 196, 70);
+        g.fillText(s, wide ? 104 : 116, 140);
+        g.font = `900 ${sup.length > 1 ? 56 : 64}px "Microsoft JhengHei", sans-serif`;
+        g.fillText(sup, s.length > 2 ? 210 : s.length > 1 ? 196 : 186, 70);
         const tex = new THREE.CanvasTexture(c);
         tex.anisotropy = 4;
         return tex;
       }
 
-      const R = 11;
-      const geo = new THREE.BoxGeometry(2.6, 2.6, 2.6);
-      const cubes = BASES.map((n, i) => {
-        const hue = Math.round((i / BASES.length) * 300);
-        const mat = new THREE.MeshStandardMaterial({ map: labelTexture(n, hue), roughness: 0.35, metalness: 0.15 });
+      const R = 13;
+      const geo = new THREE.BoxGeometry(2.4, 2.4, 2.4);
+      const cubes = PROBLEMS.map((p, i) => {
+        const hue = Math.round((i / PROBLEMS.length) * 300);
+        const mat = new THREE.MeshStandardMaterial({ map: labelTexture(p, hue), roughness: 0.35, metalness: 0.15 });
         const mesh = new THREE.Mesh(geo, mat);
-        const a = (i / BASES.length) * Math.PI * 2;
+        const a = (i / PROBLEMS.length) * Math.PI * 2;
         mesh.userData = {
           target: new THREE.Vector3(Math.cos(a) * R, Math.sin(a * 3) * 1.2, Math.sin(a) * R),
           start: new THREE.Vector3((Math.random() - 0.5) * 90, (Math.random() - 0.5) * 60, -90 - Math.random() * 60),
@@ -937,7 +947,7 @@
         camera.aspect = w / h;
         // 直式螢幕把鏡頭拉遠，整圈方塊才放得下
         const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-        camera.position.z = Math.max(26, 15 / (halfTan * camera.aspect) + 4);
+        camera.position.z = Math.max(26, 17 / (halfTan * camera.aspect) + 4);
         camera.updateProjectionMatrix();
       }
       window.addEventListener('resize', resize);
@@ -1275,22 +1285,22 @@
       endIntro();
     });
 
-    /* ---------------- 抽題（洗牌袋：19 題輪完才會重複） ---------------- */
+    /* ---------------- 抽題（洗牌袋：29 題輪完才會重複） ---------------- */
     let bag = [];
-    let lastBase = null;
+    let lastPick = null;
 
     function draw() {
       if (!bag.length) {
-        bag = BASES.slice();
+        bag = PROBLEMS.slice();
         for (let i = bag.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [bag[i], bag[j]] = [bag[j], bag[i]];
         }
         // 新一輪第一題避開上一題
-        if (bag[bag.length - 1] === lastBase) bag.unshift(bag.pop());
+        if (bag[bag.length - 1] === lastPick) bag.unshift(bag.pop());
       }
-      lastBase = bag.pop();
-      return lastBase;
+      lastPick = bag.pop();
+      return lastPick;
     }
 
     /* ---------------- 計時與作答 ---------------- */
@@ -1307,7 +1317,20 @@
 
     function show(id) {
       ['screen-start', 'screen-q', 'screen-result'].forEach(s => { $(s).hidden = s !== id; });
+      fitScreen();
     }
+
+    // 教室螢幕或瀏覽器縮放後高度不夠時，把整個畫面等比例縮小到一頁放得下
+    function fitScreen() {
+      const s = document.querySelector('.screen:not([hidden])');
+      if (!s) return;
+      s.style.zoom = '';
+      const need = s.scrollHeight;
+      const have = s.clientHeight;
+      if (need > have) s.style.zoom = Math.max(0.5, have / need - 0.01);
+    }
+
+    window.addEventListener('resize', fitScreen);
 
     function startQuestion() {
       audio();
@@ -1322,7 +1345,7 @@
       document.body.classList.remove('grey', 'shake');
 
       const q = $('question');
-      q.innerHTML = `${current}<sup>2</sup> = ?`;
+      q.innerHTML = `${expr(current)} = ?`;
       q.style.animation = 'none';
       void q.offsetWidth;
       q.style.animation = '';
@@ -1411,9 +1434,10 @@
       finish(Number(v));
     });
 
-    /* ---------------- 失敗後的教學提示（11²～20² 只顯示答案） ---------------- */
-    function tipFor(n) {
-      if (n <= 20) return '';
+    /* ---------------- 失敗後的教學提示（只有尾數 5 的平方有速算提示，其餘只顯示答案） ---------------- */
+    function tipFor(p) {
+      const n = p.b;
+      if (p.e !== 2 || n <= 20) return '';
       const a = (n - 5) / 10;
       return `<span class="tip-label">💡 尾數 5 的速算</span>
         把 ${n} 的個位 5 拿掉剩 <b>${a}</b>，算 ${a} × ${a + 1} = <b>${a * (a + 1)}</b>，
@@ -1427,7 +1451,7 @@
       setKeypad(false);
       $('answer').blur();
 
-      const sq = current * current;
+      const sq = power(current);
       const win = value === sq;
       score.total++;
       if (win) score.correct++;
@@ -1450,7 +1474,7 @@
       $('reason').textContent = win
         ? `只用了 ${(LIMIT - Math.max(0, (deadline - performance.now()) / 1000)).toFixed(1)} 秒，太厲害了！`
         : value === null ? '⏰ 時間到！' : `你的答案是 ${value}，差一點點！`;
-      $('equation').innerHTML = `${current}<sup>2</sup> = <span class="ans">${sq}</span>`;
+      $('equation').innerHTML = `${expr(current)} = <span class="ans">${sq}</span>`;
 
       const tip = $('tip');
       tip.innerHTML = win ? '' : tipFor(current);
