@@ -13,6 +13,8 @@
   'use strict';
 
   const homeHref = (document.currentScript && document.currentScript.dataset.home) || '';
+  // 站內遊戲依本檔位置組出路徑，主網頁與教材頁都能連到
+  const siteBase = document.currentScript ? new URL('.', document.currentScript.src).href : '';
 
   const TOOLS = [
     {
@@ -36,6 +38,13 @@
       href: 'https://www.youtube.com/channel/UCJSu-tJVglBSUfduuF4iLww',
       title: 'YouTube 頻道',
       desc: '老師的 YouTube 頻道，課後複習與補充影片。'
+    },
+    {
+      cls: 'game',
+      icon: 'fa-gamepad',
+      href: siteBase + 'games/square-challenge/',
+      title: '平方數大挑戰',
+      desc: '隨機挑一題平方數，10 秒內答出來就挑戰成功！'
     }
   ];
 

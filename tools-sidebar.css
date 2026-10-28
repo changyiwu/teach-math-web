@@ -176,6 +176,10 @@
 .tsb-card.youtube .tsb-card-title { color: #fecaca; }
 .tsb-card.youtube:hover { background: rgba(239, 68, 68, 0.08); }
 
+.tsb-card.game .tsb-icon { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.tsb-card.game .tsb-card-title { color: #fde68a; }
+.tsb-card.game:hover { background: rgba(245, 158, 11, 0.08); }
+
 .tsb-card.home .tsb-icon { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
 .tsb-card.home .tsb-card-title { color: #ddd6fe; }
 .tsb-card.home:hover { background: rgba(139, 92, 246, 0.08); }

@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平方數大挑戰 - 國中數學教學整合網</title>
+  <link rel="icon" type="image/svg+xml" href="../../header-logo.svg">
+  <meta name="description" content="從 19 題平方數中隨機挑一題，10 秒內答出來就挑戰成功！">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #141b34;
+      --panel: rgba(20, 27, 52, 0.78);
+      --line: rgba(148, 163, 184, 0.25);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent-2: #fbbf24;
+      --win: #22c55e;
+      --lose: #ef4444;
+      --cyan: #22d3ee;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, var(--bg-2), var(--bg) 70%);
+      color: var(--text);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #bg3d, #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #bg3d { z-index: 0; transition: opacity 1s ease, filter 0.6s ease; }
+    body.playing #bg3d { opacity: 0.35; }
+    body.grey #bg3d { filter: grayscale(1) brightness(0.6); }
+    #fx { z-index: 30; pointer-events: none; }
+
+    /* 旋轉光芒（開場、挑戰成功） */
+    #rays {
+      position: fixed;
+      inset: -50%;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      background: repeating-conic-gradient(from 0deg, rgba(251, 191, 36, 0.22) 0deg 6deg, transparent 6deg 18deg);
+      -webkit-mask: radial-gradient(circle, #000 0 22%, transparent 55%);
+      mask: radial-gradient(circle, #000 0 22%, transparent 55%);
+    }
+
+    #rays.on { animation: rays var(--dur, 3s) ease forwards; }
+
+    @keyframes rays {
+      0% { opacity: 0; transform: rotate(0deg) scale(0.6); }
+      15% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: rotate(70deg) scale(1.1); }
+    }
+
+    /* 挑戰失敗時整個畫面暗下來 */
+    #gloom {
+      position: fixed;
+      inset: 0;
+      z-index: 8;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(ellipse at center, rgba(2, 6, 23, 0.35), rgba(2, 6, 23, 0.85));
+    }
+
+    #gloom.on { animation: gloom 3.2s ease forwards; }
+
+    @keyframes gloom {
+      10% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* ---------- 開場 ---------- */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      transition: opacity 0.6s ease;
+    }
+
+    .intro.hide { opacity: 0; pointer-events: none; }
+
+    .intro-title {
+      margin: 0;
+      font-size: clamp(2.6rem, 11vw, 7rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 0.3em;
+    }
+
+    .intro-title span {
+      display: inline-block;
+      opacity: 0;
+      background: linear-gradient(100deg, var(--accent) 0%, #fff7d6 20%, var(--accent-2) 40%, var(--accent) 60%, #fff7d6 80%, var(--accent-2) 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 6px 24px rgba(245, 158, 11, 0.6));
+    }
+
+    /* 標題從畫面外重重砸下來，之後金光流動 */
+    .intro.show-title .intro-title span {
+      animation: titleSlam 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) forwards, goldFlow 2.4s linear 0.6s infinite;
+    }
+
+    .intro.show-title .intro-title span:nth-child(2) { animation-delay: 0.22s, 0.82s; }
+
+    @keyframes titleSlam {
+      0% { opacity: 0; transform: scale(4) rotate(-6deg); filter: blur(18px); }
+      60% { opacity: 1; filter: blur(0) drop-shadow(0 0 40px rgba(255, 247, 214, 0.95)); }
+      100% { opacity: 1; transform: none; filter: drop-shadow(0 6px 24px rgba(245, 158, 11, 0.6)); }
+    }
+
+    @keyframes goldFlow { to { background-position: -250% 0; } }
+
+    .start-gate {
+      padding: 0.5em 1.6em;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      color: #1f1300;
+      font: inherit;
+      font-size: clamp(1.6rem, 6vw, 3rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      box-shadow: 0 8px 0 #b45309, 0 0 60px rgba(251, 191, 36, 0.6);
+      animation: breathe 2s ease-in-out infinite;
+    }
+
+    .intro:not(.running) .intro-title,
+    .intro:not(.running) .intro-sub { display: none; }
+
+    .gate-hint {
+      margin: 1em 0 0;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+    }
+
+    .intro.running .start-gate,
+    .intro.running .gate-hint { display: none; }
+
+    .intro:not(.running) .skip { display: none; }
+
+    .intro-sub {
+      margin: 0.8em 0 0;
+      font-size: clamp(1rem, 3.5vw, 1.6rem);
+      color: var(--cyan);
+      letter-spacing: 0.3em;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.6s;
+    }
+
+    .intro.show-title .intro-sub { opacity: 1; }
+
+    .skip {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--muted);
+      font: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .skip:hover { color: var(--text); }
+
+    /* ---------- 主畫面 ---------- */
+    .app {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .app.show { opacity: 1; }
+    .app[hidden] { display: none; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+    }
+
+    .home {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .home:hover { color: var(--text); }
+
+    .score {
+      padding: 6px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+      white-space: nowrap;
+    }
+
+    .score b { color: var(--accent-2); font-size: 1.15em; }
+
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--panel);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 16px 48px;
+      gap: clamp(16px, 3vh, 28px);
+    }
+
+    .screen[hidden] { display: none; }
+
+    .title {
+      margin: 0;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      background: linear-gradient(180deg, #fff7d6, var(--accent-2) 55%, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 4px 18px rgba(245, 158, 11, 0.45));
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      max-width: 32em;
+      line-height: 1.6;
+    }
+
+    .big-btn {
+      padding: 0.6em 1.6em;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      color: #1f1300;
+      font: inherit;
+      font-size: clamp(1.4rem, 5vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 0 8px 0 #b45309, 0 14px 30px rgba(245, 158, 11, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      animation: breathe 2.4s ease-in-out infinite;
+    }
+
+    .big-btn:hover { filter: brightness(1.08); }
+
+    .big-btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 #b45309, 0 6px 16px rgba(245, 158, 11, 0.35);
+    }
+
+    .learn-link {
+      padding: 10px 22px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--cyan);
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .learn-link:hover { border-color: var(--cyan); }
+
+    @keyframes breathe {
+      50% { box-shadow: 0 8px 0 #b45309, 0 14px 44px rgba(251, 191, 36, 0.7); }
+    }
+
+    /* ---------- 出題 ---------- */
+    #screen-q { gap: clamp(8px, 2vh, 22px); padding-bottom: 16px; }
+
+    .timer {
+      position: relative;
+      width: clamp(72px, min(22vw, 13vh), 140px);
+      aspect-ratio: 1;
+      flex-shrink: 0;
+    }
+
+    .timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .timer .track { stroke: rgba(148, 163, 184, 0.2); }
+    .timer .ring { stroke: var(--cyan); stroke-linecap: round; transition: stroke 0.3s ease; }
+
+    .timer-num {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: clamp(1.6rem, min(7vw, 5.5vh), 3.2rem);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer.danger .ring { stroke: var(--lose); }
+    .timer.danger .timer-num { color: var(--lose); animation: pulse 0.5s ease-in-out infinite alternate; }
+
+    @keyframes pulse { to { transform: scale(1.15); } }
+
+    .question {
+      margin: 0;
+      font-size: clamp(3rem, min(18vw, 14vh), 9rem);
+      font-weight: 900;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 6px 30px rgba(34, 211, 238, 0.35);
+      animation: qIn 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+    }
+
+    .question sup { font-size: 0.5em; color: var(--accent-2); }
+
+    @keyframes qIn {
+      from { opacity: 0; transform: scale(0.4) rotate(-8deg); }
+    }
+
+    /* 輸入框＋觸控鍵盤，同一欄寬 */
+    .answer-form {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 1.4vh, 14px);
+      width: min(100%, 520px);
+    }
+
+    .answer-form input {
+      width: 100%;
+      padding: 0.2em 0.6em;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text);
+      font: inherit;
+      font-size: clamp(1.8rem, min(8vw, 6vh), 3.2rem);
+      font-weight: 800;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      outline: none;
+    }
+
+    .answer-form input:focus { border-color: var(--cyan); box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.2); }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(8px, 1.2vh, 12px);
+    }
+
+    .keypad button {
+      height: clamp(48px, 8.5vh, 96px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(30, 41, 72, 0.9);
+      color: var(--text);
+      font: inherit;
+      font-size: clamp(1.4rem, min(7vw, 4.6vh), 2.6rem);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+      box-shadow: 0 4px 0 rgba(2, 6, 23, 0.8);
+      transition: transform 0.06s ease, box-shadow 0.06s ease, background 0.15s ease;
+    }
+
+    .keypad button:hover { background: rgba(51, 65, 110, 0.95); }
+
+    .keypad button:active,
+    .keypad button.pressed {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 rgba(2, 6, 23, 0.8);
+    }
+
+    .keypad .key-clear { color: #fecaca; font-size: clamp(1.1rem, min(5vw, 3.4vh), 1.9rem); }
+
+    .keypad .key-submit {
+      border: 0;
+      background: var(--cyan);
+      color: #04222a;
+      font-size: clamp(1.1rem, min(5vw, 3.4vh), 1.9rem);
+      font-weight: 900;
+      box-shadow: 0 4px 0 #0e7490;
+    }
+
+    .keypad .key-submit:hover { background: #67e8f9; }
+
+    .keypad button:disabled { opacity: 0.5; cursor: default; }
+
+    /* ---------- 結果 ---------- */
+    .banner {
+      position: relative;
+      margin: 0;
+      font-size: clamp(3rem, 13vw, 7.5rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    /* 成功：每個字依序從天而降，彩虹流光後持續波浪跳動 */
+    .banner.win .ch {
+      display: inline-block;
+      background: linear-gradient(90deg, #fde68a, #ffffff, #86efac, #67e8f9, #f0abfc, #fde68a);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 14px rgba(250, 204, 21, 0.85));
+      animation:
+        chIn 0.7s cubic-bezier(0.2, 1.8, 0.4, 1) calc(var(--i) * 90ms) both,
+        rainbow 1.6s linear infinite,
+        wave 1.1s ease-in-out calc(0.9s + var(--i) * 100ms) infinite;
+    }
+
+    @keyframes chIn {
+      from { opacity: 0; transform: translateY(-140px) scale(0.2) rotate(-35deg); }
+    }
+
+    @keyframes rainbow { to { background-position: 300% 0; } }
+
+    @keyframes wave {
+      50% { transform: translateY(-16px) scale(1.08); }
+    }
+
+    /* 失敗：文字裂成上下兩半 */
+    .banner.lose { color: transparent; }
+
+    .banner.lose::before,
+    .banner.lose::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: #ffe4e4;
+      text-shadow: 0 0 18px rgba(239, 68, 68, 0.9);
+    }
+
+    .banner.lose::before {
+      clip-path: polygon(0 0, 100% 0, 100% 42%, 62% 58%, 38% 44%, 0 60%);
+      animation: crackTop 1.2s ease forwards;
+    }
+
+    .banner.lose::after {
+      clip-path: polygon(0 60%, 38% 44%, 62% 58%, 100% 42%, 100% 100%, 0 100%);
+      animation: crackBottom 1.2s ease forwards;
+    }
+
+    @keyframes crackTop {
+      0% { opacity: 0; transform: scale(1.6); }
+      30% { opacity: 1; transform: none; }
+      55% { transform: none; }
+      100% { transform: translate(-6px, -10px) rotate(-3deg); }
+    }
+
+    @keyframes crackBottom {
+      0% { opacity: 0; transform: scale(1.6); }
+      30% { opacity: 1; transform: none; }
+      55% { transform: none; }
+      100% { transform: translate(8px, 14px) rotate(2.5deg); opacity: 0.85; }
+    }
+
+    body.shake .app { animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.1s 2; }
+
+    @keyframes shake {
+      10%, 90% { transform: translateX(-2px); }
+      20%, 80% { transform: translateX(5px); }
+      30%, 50%, 70% { transform: translateX(-10px); }
+      40%, 60% { transform: translateX(10px); }
+    }
+
+    .flash {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .flash.red {
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(239, 68, 68, 0.65));
+      animation: flash 0.6s ease 3;
+    }
+
+    .flash.gold {
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(251, 191, 36, 0.45) 40%, transparent 72%);
+      animation: flash 1s ease;
+    }
+
+    .flash.white {
+      background: radial-gradient(circle, #fff, rgba(255, 247, 214, 0.7) 50%, rgba(251, 191, 36, 0.2));
+      animation: flash 0.8s ease;
+    }
+
+    @keyframes flash {
+      15% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .reason {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 3.2vw, 1.5rem);
+    }
+
+    .equation {
+      margin: 0;
+      font-size: clamp(2.2rem, 9vw, 4.6rem);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .equation sup { font-size: 0.5em; color: var(--accent-2); }
+    .equation .ans { color: var(--accent-2); }
+
+    .tip {
+      width: min(100%, 640px);
+      padding: 16px 20px;
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      border-radius: 18px;
+      background: var(--panel);
+      text-align: left;
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      line-height: 1.7;
+    }
+
+    .tip-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--cyan);
+      font-weight: 800;
+    }
+
+    .tip b { color: var(--accent-2); }
+
+    .later {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .later.in { opacity: 1; transform: none; }
+    .later[hidden] { display: none; }
+
+    @media (max-height: 560px) {
+      .screen { gap: 10px; padding-bottom: 16px; }
+      .topbar { padding: 6px 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg3d" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div id="rays" aria-hidden="true"></div>
+  <div id="gloom" aria-hidden="true"></div>
+  <div class="flash" id="flash"></div>
+
+  <div class="intro" id="intro">
+    <!-- 瀏覽器規定要先點一下才能播音效，所以開場前先按「開始」 -->
+    <button type="button" class="start-gate" id="start">▶ 開始</button>
+    <p class="gate-hint">平方數大挑戰 · 請開啟喇叭 🔊</p>
+    <h1 class="intro-title"><span>平方數</span><span>大挑戰</span></h1>
+    <p class="intro-sub">n² 速算對決</p>
+    <button type="button" class="skip" id="skip">跳過 ▸</button>
+  </div>
+
+  <main class="app" id="app" hidden>
+    <header class="topbar">
+      <a class="home" href="../../index.html">← 回首頁</a>
+      <div class="score">答對 <b id="correct">0</b> ／ 挑戰 <b id="total">0</b></div>
+      <button type="button" class="icon-btn" id="mute" aria-label="關閉音效" title="音效開關">🔊</button>
+    </header>
+
+    <section class="screen" id="screen-start">
+      <h1 class="title">平方數大挑戰</h1>
+      <p class="hint">按下按鈕，從 19 題平方數中隨機挑一題，<br>10 秒內答出來就挑戰成功！</p>
+      <button type="button" class="big-btn" id="pick">🎲 隨機挑題</button>
+      <a class="learn-link" href="learn.html">📖 先看平方數教學</a>
+    </section>
+
+    <section class="screen" id="screen-q" hidden>
+      <div class="timer" id="timer">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="track" cx="50" cy="50" r="44" fill="none" stroke-width="8"></circle>
+          <circle class="ring" id="ring" cx="50" cy="50" r="44" fill="none" stroke-width="8"></circle>
+        </svg>
+        <div class="timer-num" id="timer-num">10</div>
+      </div>
+      <p class="question" id="question"></p>
+      <form class="answer-form" id="answer-form" autocomplete="off">
+        <!-- inputmode="none"：觸控時不跳系統鍵盤，改用下方數字鍵；實體鍵盤照常輸入 -->
+        <input id="answer" type="text" inputmode="none" pattern="[0-9]*" maxlength="6" aria-label="輸入答案" placeholder="答案">
+        <div class="keypad" id="keypad">
+          <button type="button" data-key="1">1</button>
+          <button type="button" data-key="2">2</button>
+          <button type="button" data-key="3">3</button>
+          <button type="button" data-key="4">4</button>
+          <button type="button" data-key="5">5</button>
+          <button type="button" data-key="6">6</button>
+          <button type="button" data-key="7">7</button>
+          <button type="button" data-key="8">8</button>
+          <button type="button" data-key="9">9</button>
+          <button type="button" class="key-clear" data-key="clear">清除</button>
+          <button type="button" data-key="0">0</button>
+          <button type="submit" class="key-submit">送出</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="screen" id="screen-result" hidden>
+      <p class="banner" id="banner"></p>
+      <p class="reason later" id="reason"></p>
+      <p class="equation later" id="equation"></p>
+      <div class="tip later" id="tip" hidden></div>
+      <button type="button" class="big-btn later" id="again">🎲 再挑一題</button>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    // 題庫：11²～20² 與 25²、35²…105²（15² 只算一次，共 19 題）
+    const BASES = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 35, 45, 55, 65, 75, 85, 95, 105];
+    const LIMIT = 10;
+    const INTRO_SECONDS = 7;
+
+    const $ = id => document.getElementById(id);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------------- 音效（Web Audio 即時合成） ---------------- */
+    let actx = null;
+    let master = null;
+    let out = null;      // 目前音效送往的節點；開場音效另走一條，跳過時可以整條關掉
+    let noiseBuf = null;
+    let muted = false;
+
+    function audio() {
+      if (!actx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        actx = new AC();
+        // 壓縮器避免多個音效疊在一起時爆音
+        const comp = actx.createDynamicsCompressor();
+        master = actx.createGain();
+        master.gain.value = 0.9;
+        master.connect(comp).connect(actx.destination);
+        out = master;
+      }
+      if (actx.state === 'suspended') actx.resume();
+      return actx;
+    }
+
+    // o.lp：低通濾波；o.vib：[顫音速度, 深度]；o.attack：起音時間
+    function tone(freq, at, dur, type, vol, slideTo, o = {}) {
+      const ctx = audio();
+      if (!ctx || muted) return;
+      const t = ctx.currentTime + at;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, t);
+      if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+      let node = osc;
+      if (o.lp) {
+        const f = ctx.createBiquadFilter();
+        f.type = 'lowpass';
+        f.frequency.value = o.lp;
+        node = node.connect(f);
+      }
+      if (o.vib) {
+        const lfo = ctx.createOscillator();
+        const depth = ctx.createGain();
+        lfo.frequency.value = o.vib[0];
+        depth.gain.value = o.vib[1];
+        lfo.connect(depth).connect(osc.frequency);
+        lfo.start(t);
+        lfo.stop(t + dur + 0.05);
+      }
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(vol || 0.2, t + Math.min(o.attack || 0.02, dur / 2));
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      node.connect(gain).connect(out);
+      osc.start(t);
+      osc.stop(t + dur + 0.05);
+    }
+
+    // 濾波白噪音：鼓聲、爆炸、鈸、歡呼都靠它
+    function noise(at, dur, vol, o = {}) {
+      const ctx = audio();
+      if (!ctx || muted) return;
+      if (!noiseBuf) {
+        noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+        const d = noiseBuf.getChannelData(0);
+        for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      }
+      const t = ctx.currentTime + at;
+      const src = ctx.createBufferSource();
+      src.buffer = noiseBuf;
+      src.loop = true;
+      const f = ctx.createBiquadFilter();
+      f.type = o.type || 'bandpass';
+      f.frequency.setValueAtTime(o.freq || 1000, t);
+      if (o.freqEnd) f.frequency.exponentialRampToValueAtTime(o.freqEnd, t + dur);
+      f.Q.value = o.q || 1;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + Math.min(o.attack || 0.005, dur / 2));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      src.connect(f).connect(g).connect(out);
+      src.start(t, Math.random() * 1.5);
+      src.stop(t + dur + 0.05);
+    }
+
+    // 兩支微微走音的鋸齒波疊在一起，聽起來像銅管
+    function brass(freq, at, dur, vol = 0.11) {
+      tone(freq, at, dur, 'sawtooth', vol, null, { lp: 2400, attack: 0.03 });
+      tone(freq * 1.006, at, dur, 'sawtooth', vol * 0.6, null, { lp: 1600, attack: 0.03 });
+    }
+
+    const sfx = {
+      pick() { tone(440, 0, 0.12, 'triangle', 0.18); tone(660, 0.08, 0.16, 'triangle', 0.18); },
+      tick() { tone(1000, 0, 0.06, 'square', 0.06); },
+      whoosh(at = 0) { noise(at, 0.9, 0.25, { freq: 300, freqEnd: 3500, q: 1.2, attack: 0.4 }); },
+      boom(at = 0, vol = 0.6) {
+        tone(140, at, 0.9, 'sine', vol, 32);
+        noise(at, 0.6, vol * 0.6, { type: 'lowpass', freq: 600, freqEnd: 80 });
+      },
+      crash(at = 0) {
+        noise(at, 1.8, 0.2, { type: 'highpass', freq: 5000 });
+        noise(at, 0.4, 0.18, { freq: 2500 });
+      },
+      roll(at, dur) {
+        const n = Math.floor(dur / 0.045);
+        for (let i = 0; i < n; i++) noise(at + i * 0.045, 0.06, 0.04 + 0.16 * i / n, { freq: 900, q: 0.8 });
+      },
+      sparkle(at, span, n) {
+        for (let i = 0; i < n; i++) tone(1800 + Math.random() * 2600, at + Math.random() * span, 0.18, 'sine', 0.05);
+      },
+      cheer(at, dur) {
+        noise(at, dur, 0.09, { freq: 1100, q: 0.6, attack: 0.5 });
+        noise(at + 0.1, dur, 0.06, { freq: 2300, q: 0.8, attack: 0.6 });
+      },
+      pop() {
+        noise(0, 0.25, 0.32, { type: 'lowpass', freq: 2500, freqEnd: 200 });
+        tone(220, 0, 0.2, 'sine', 0.22, 60);
+        for (let i = 0; i < 6; i++) noise(0.15 + Math.random() * 0.5, 0.04, 0.06, { type: 'highpass', freq: 4000 });
+      },
+      fanfare(at) {
+        brass(392, at, 0.16);
+        brass(523, at + 0.16, 0.16);
+        brass(659, at + 0.32, 0.16);
+        brass(784, at + 0.48, 0.3);
+        brass(659, at + 0.8, 0.14);
+        brass(784, at + 0.96, 1.1, 0.13);
+        [523, 659, 784, 1047].forEach(f => tone(f, at + 0.96, 1.5, 'triangle', 0.07));
+      },
+      intro() {
+        // 開場音效另走 introBus，按「跳過」時整條淡出
+        const prev = out;
+        sfx.introBus = actx.createGain();
+        sfx.introBus.connect(master);
+        out = sfx.introBus;
+        sfx.whoosh(0.1);
+        sfx.whoosh(0.7);
+        sfx.whoosh(1.3);
+        sfx.roll(1.8, 1.2);
+        sfx.boom(3.0);
+        sfx.crash(3.0);
+        sfx.fanfare(3.1);
+        sfx.sparkle(3.2, 2.6, 20);
+        sfx.cheer(3.1, 3);
+        out = prev;
+      },
+      stopIntro() {
+        if (!sfx.introBus) return;
+        sfx.introBus.gain.setTargetAtTime(0, actx.currentTime, 0.08);
+      },
+      win() {
+        sfx.roll(0, 0.45);
+        sfx.boom(0.45, 0.35);
+        sfx.crash(0.45);
+        sfx.fanfare(0.5);
+        sfx.sparkle(0.6, 2.6, 22);
+        sfx.cheer(0.5, 3);
+      },
+      lose() {
+        sfx.boom(0, 0.7);
+        // 玻璃碎裂
+        noise(0.12, 0.35, 0.3, { type: 'highpass', freq: 2800 });
+        [2637, 3136, 2349, 2794].forEach((f, i) => tone(f, 0.14 + i * 0.05, 0.25, 'triangle', 0.06));
+        // 哇哇哇哇～的悲傷長號，最後一聲拉長帶顫音
+        [293.7, 277.2, 261.6, 246.9].forEach((f, i) => {
+          const last = i === 3;
+          tone(f, 0.8 + i * 0.42, last ? 1.4 : 0.38, 'sawtooth', 0.14, last ? f * 0.94 : null,
+            { lp: 1100, attack: 0.04, vib: last ? [6, 7] : null });
+        });
+        sfx.boom(2.9, 0.25);
+      }
+    };
+
+    $('mute').addEventListener('click', () => {
+      muted = !muted;
+      $('mute').textContent = muted ? '🔇' : '🔊';
+      $('mute').setAttribute('aria-label', muted ? '開啟音效' : '關閉音效');
+    });
+
+    /* ---------------- 3D 場景（開場動畫＋遊戲背景） ---------------- */
+    const scene3d = (function init3D() {
+      if (!window.THREE) return null;
+      const canvas = $('bg3d');
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      } catch (e) {
+        return null;
+      }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 300);
+      camera.position.set(0, 0, 26);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const light = new THREE.DirectionalLight(0xffffff, 0.9);
+      light.position.set(6, 10, 12);
+      scene.add(light);
+
+      const group = new THREE.Group();
+      group.rotation.x = 0.38;
+      scene.add(group);
+
+      // 方塊上只寫「n²」不寫答案，背景不會洩題
+      function labelTexture(n, hue) {
+        const c = document.createElement('canvas');
+        c.width = c.height = 256;
+        const g = c.getContext('2d');
+        const grad = g.createLinearGradient(0, 0, 256, 256);
+        grad.addColorStop(0, `hsl(${hue}, 85%, 58%)`);
+        grad.addColorStop(1, `hsl(${hue + 30}, 80%, 38%)`);
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 256, 256);
+        g.strokeStyle = 'rgba(255,255,255,0.85)';
+        g.lineWidth = 12;
+        g.strokeRect(10, 10, 236, 236);
+        g.fillStyle = '#fff';
+        g.textAlign = 'center';
+        g.textBaseline = 'middle';
+        const s = String(n);
+        g.font = `900 ${s.length > 2 ? 92 : 112}px "Microsoft JhengHei", sans-serif`;
+        g.fillText(s, 116, 140);
+        g.font = '900 64px "Microsoft JhengHei", sans-serif';
+        g.fillText('2', s.length > 2 ? 210 : 196, 70);
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 4;
+        return tex;
+      }
+
+      const R = 11;
+      const geo = new THREE.BoxGeometry(2.6, 2.6, 2.6);
+      const cubes = BASES.map((n, i) => {
+        const hue = Math.round((i / BASES.length) * 300);
+        const mat = new THREE.MeshStandardMaterial({ map: labelTexture(n, hue), roughness: 0.35, metalness: 0.15 });
+        const mesh = new THREE.Mesh(geo, mat);
+        const a = (i / BASES.length) * Math.PI * 2;
+        mesh.userData = {
+          target: new THREE.Vector3(Math.cos(a) * R, Math.sin(a * 3) * 1.2, Math.sin(a) * R),
+          start: new THREE.Vector3((Math.random() - 0.5) * 90, (Math.random() - 0.5) * 60, -90 - Math.random() * 60),
+          spin: new THREE.Vector3(Math.random() + 0.3, Math.random() + 0.3, Math.random() * 0.5),
+          delay: Math.random() * 0.5
+        };
+        mesh.position.copy(mesh.userData.start);
+        group.add(mesh);
+        return mesh;
+      });
+
+      function resize() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        // 直式螢幕把鏡頭拉遠，整圈方塊才放得下
+        const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+        camera.position.z = Math.max(26, 15 / (halfTan * camera.aspect) + 4);
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      let introStart = null; // 按「開始」後才飛入
+      let last = performance.now();
+      let boost = 0;
+      let red = 0;
+      let hopStart = -1e9;
+      let fallStart = -1e9;
+
+      const ease = p => 1 - Math.pow(1 - p, 3);
+      const backOut = p => 1 + 2.7 * Math.pow(p - 1, 3) + 1.7 * Math.pow(p - 1, 2);
+
+      // 挑戰失敗：方塊一個接一個掉下去，停一下再彈回原位
+      function fallOffset(t) {
+        if (t <= 0 || t >= 3.4) return 0;
+        if (t < 1) return -18 * t * t;
+        if (t < 2.3) return -18;
+        return -18 * (1 - backOut((t - 2.3) / 1.1));
+      }
+
+      function frame(now) {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        const elapsed = introStart === null ? -1 : (now - introStart) / 1000;
+        const hopT = (now - hopStart) / 1000;
+        const fallT = (now - fallStart) / 1000;
+
+        cubes.forEach((m, i) => {
+          const u = m.userData;
+          const p = Math.min(Math.max((elapsed - u.delay) / 2.4, 0), 1);
+          m.position.lerpVectors(u.start, u.target, ease(p));
+
+          // 挑戰成功：方塊輪流彈跳，像在歡呼
+          const h = hopT - i * 0.05;
+          if (h > 0 && h < 3) m.position.y += Math.abs(Math.sin(h * Math.PI * 2.2)) * 2.6 * (1 - h / 3);
+          m.position.y += fallOffset(fallT - i * 0.03);
+
+          const fast = 1 + (1 - p) * 5 + boost;
+          m.rotation.x += u.spin.x * dt * fast;
+          m.rotation.y += u.spin.y * dt * fast;
+          m.rotation.z += u.spin.z * dt * fast;
+          m.material.emissive.setRGB(red * 0.9, 0, 0);
+        });
+
+        // 開場時鏡頭從遠處推近
+        const camP = ease(Math.min(Math.max(elapsed, 0) / 3, 1));
+        group.position.z = -20 * (1 - camP);
+        group.rotation.y += dt * (0.22 + boost * 1.5);
+
+        boost = Math.max(0, boost - dt * 1.6);
+        red = Math.max(0, red - dt * 0.35);
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      return {
+        startIntro() { introStart = performance.now(); },
+        skipIntro() { introStart = performance.now() - 5000; },
+        pulse() { boost = 5; },
+        celebrate() { boost = 6; hopStart = performance.now(); },
+        alarm() { red = 1; fallStart = performance.now(); }
+      };
+    })();
+
+    /* ---------------- 彩帶特效 ---------------- */
+    const fx = $('fx');
+    const fxCtx = fx.getContext('2d');
+    let pieces = [];
+    let fxRunning = false;
+
+    function sizeFx() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      fx.width = window.innerWidth * dpr;
+      fx.height = window.innerHeight * dpr;
+      fxCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', sizeFx);
+    sizeFx();
+
+    const COLORS = ['#fbbf24', '#22c55e', '#22d3ee', '#f472b6', '#a78bfa', '#ffffff'];
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    function add(p) {
+      if (reduceMotion) return;
+      p.life = 0;
+      pieces.push(p);
+      if (!fxRunning) {
+        fxRunning = true;
+        requestAnimationFrame(drawFx);
+      }
+    }
+
+    // 左右兩門彩帶砲
+    function confetti() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      for (let i = 0; i < 180; i++) {
+        const fromLeft = i % 2 === 0;
+        add({
+          type: 'conf', g: 0.32, max: 300,
+          x: fromLeft ? -10 : w + 10,
+          y: h * rand(0.55, 0.85),
+          vx: (fromLeft ? 1 : -1) * rand(4, 13),
+          vy: -rand(9, 20),
+          size: rand(6, 14), rot: rand(0, Math.PI), vr: rand(-0.2, 0.2),
+          color: COLORS[i % COLORS.length], star: Math.random() < 0.25
+        });
+      }
+    }
+
+    // 從天而降的星星雨
+    function starRain() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      for (let i = 0; i < 120; i++) {
+        add({
+          type: 'conf', g: 0.04, max: 400,
+          x: rand(0, w), y: -rand(10, h * 0.6),
+          vx: rand(-0.6, 0.6), vy: rand(2, 5),
+          size: rand(6, 13), rot: rand(0, Math.PI), vr: rand(-0.1, 0.1),
+          color: COLORS[i % COLORS.length], star: true
+        });
+      }
+    }
+
+    function shockwave(x, y, color, power = 1) {
+      add({ type: 'ring', x, y, r: 10, vr: 24 * power, w: 14 * power, max: 40, color });
+    }
+
+    function firework(x, y) {
+      const hue = rand(0, 360);
+      const n = 80;
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2 + rand(-0.05, 0.05);
+        const s = rand(2.5, 8);
+        add({
+          type: 'spark', x, y, px: x, py: y,
+          vx: Math.cos(a) * s, vy: Math.sin(a) * s,
+          max: rand(55, 85), size: rand(1.6, 3),
+          color: `hsl(${hue + rand(-25, 25)}, 100%, ${rand(60, 75)}%)`
+        });
+      }
+      shockwave(x, y, `hsl(${hue}, 100%, 75%)`, 0.5);
+      sfx.pop();
+    }
+
+    function fireworks(times) {
+      times.forEach(t => setTimeout(() => {
+        firework(window.innerWidth * rand(0.12, 0.88), window.innerHeight * rand(0.12, 0.5));
+      }, t));
+    }
+
+    // 「挑戰失敗」碎片從文字位置噴散掉落
+    function shards(rect) {
+      const colors = ['#fecaca', '#ef4444', '#ffffff', '#f87171'];
+      for (let i = 0; i < 46; i++) {
+        const s = rand(10, 28);
+        add({
+          type: 'shard', g: 0.38, max: 220,
+          x: rand(rect.left, rect.right), y: rand(rect.top, rect.bottom),
+          vx: rand(-7, 7), vy: rand(-8, 1),
+          rot: rand(0, Math.PI), vr: rand(-0.3, 0.3),
+          pts: [[0, -s], [s * rand(0.4, 0.9), s * rand(0.2, 0.8)], [-s * rand(0.4, 0.9), s * rand(0.1, 0.7)]],
+          color: colors[i % colors.length]
+        });
+      }
+    }
+
+    // 灰色雨絲
+    function rain(delay, dur) {
+      setTimeout(() => {
+        const end = performance.now() + dur;
+        const timer = setInterval(() => {
+          if (performance.now() > end) return clearInterval(timer);
+          for (let i = 0; i < 5; i++) {
+            add({ type: 'drop', x: rand(0, window.innerWidth), y: -30, vy: rand(16, 24), len: rand(14, 30), max: 120 });
+          }
+        }, 30);
+      }, delay);
+    }
+
+    function drawStar(ctx, r) {
+      ctx.beginPath();
+      for (let i = 0; i < 10; i++) {
+        const rr = i % 2 ? r * 0.45 : r;
+        const a = (i / 10) * Math.PI * 2 - Math.PI / 2;
+        ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr);
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawFx() {
+      const h = window.innerHeight;
+      const ctx = fxCtx;
+      ctx.clearRect(0, 0, window.innerWidth, h);
+      pieces = pieces.filter(p => p.life < p.max && p.y < h + 60);
+      pieces.forEach(p => {
+        p.life++;
+        const fade = 1 - p.life / p.max;
+        ctx.save();
+        if (p.type === 'conf' || p.type === 'shard') {
+          p.vy += p.g;
+          p.vx *= 0.99;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vr;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          if (p.type === 'shard') {
+            ctx.globalAlpha = Math.min(1, fade * 2);
+            ctx.beginPath();
+            p.pts.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+            ctx.closePath();
+            ctx.fill();
+          } else if (p.star) {
+            drawStar(ctx, p.size);
+          } else {
+            ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+          }
+        } else if (p.type === 'spark') {
+          p.px = p.x;
+          p.py = p.y;
+          p.vx *= 0.955;
+          p.vy = p.vy * 0.955 + 0.07;
+          p.x += p.vx;
+          p.y += p.vy;
+          ctx.globalCompositeOperation = 'lighter';
+          ctx.globalAlpha = fade;
+          ctx.strokeStyle = p.color;
+          ctx.lineWidth = p.size;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(p.px, p.py);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+        } else if (p.type === 'ring') {
+          p.r += p.vr;
+          p.vr *= 0.93;
+          ctx.globalAlpha = fade;
+          ctx.strokeStyle = p.color;
+          ctx.lineWidth = Math.max(1, p.w * fade);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.stroke();
+        } else if (p.type === 'drop') {
+          p.y += p.vy;
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.45)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x - 3, p.y - p.len);
+          ctx.stroke();
+        }
+        ctx.restore();
+      });
+      if (pieces.length) requestAnimationFrame(drawFx);
+      else fxRunning = false;
+    }
+
+    function flash(kind) {
+      const f = $('flash');
+      f.className = 'flash';
+      void f.offsetWidth;
+      f.classList.add(kind);
+    }
+
+    function rays(seconds) {
+      const r = $('rays');
+      r.style.setProperty('--dur', seconds + 's');
+      r.className = '';
+      void r.offsetWidth;
+      r.className = 'on';
+    }
+
+    /* ---------------- 開場流程 ---------------- */
+    let introDone = false;
+    const introTimers = [];
+    const introAfter = (ms, fn) => introTimers.push(setTimeout(fn, ms));
+
+    function endIntro() {
+      if (introDone) return;
+      introDone = true;
+      introTimers.forEach(clearTimeout);
+      if (scene3d) scene3d.skipIntro();
+      $('intro').classList.add('hide');
+      document.body.classList.add('playing');
+      $('app').hidden = false;
+      requestAnimationFrame(() => $('app').classList.add('show'));
+      setTimeout(() => $('pick').focus({ preventScroll: true }), 300);
+    }
+
+    // 開場：方塊呼嘯飛入 → 鼓聲 → 標題砸下＋震波＋煙火 → 進入遊戲
+    function playIntro() {
+      audio();
+      const intro = $('intro');
+      intro.classList.add('running');
+      if (actx) sfx.intro();
+
+      if (!scene3d || reduceMotion) {
+        intro.classList.add('show-title');
+        introAfter(reduceMotion ? 800 : 3000, endIntro);
+        return;
+      }
+
+      scene3d.startIntro();
+      introAfter(1900, () => rays(INTRO_SECONDS - 1.9));
+      introAfter(3000, () => {
+        intro.classList.add('show-title');
+        flash('white');
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        shockwave(cx, cy, 'rgba(255, 247, 214, 0.9)', 1.4);
+        introAfter(150, () => shockwave(cx, cy, 'rgba(251, 191, 36, 0.8)', 1));
+        scene3d.pulse();
+      });
+      [3300, 3800, 4300, 4800, 5300, 5800].forEach(t => introAfter(t, () => {
+        firework(window.innerWidth * rand(0.12, 0.88), window.innerHeight * rand(0.12, 0.5));
+      }));
+      introAfter(4200, starRain);
+      introAfter(INTRO_SECONDS * 1000, endIntro);
+    }
+
+    $('start').addEventListener('click', playIntro, { once: true });
+    $('start').focus({ preventScroll: true });
+
+    $('skip').addEventListener('click', () => {
+      sfx.stopIntro();
+      endIntro();
+    });
+
+    /* ---------------- 抽題（洗牌袋：19 題輪完才會重複） ---------------- */
+    let bag = [];
+    let lastBase = null;
+
+    function draw() {
+      if (!bag.length) {
+        bag = BASES.slice();
+        for (let i = bag.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [bag[i], bag[j]] = [bag[j], bag[i]];
+        }
+        // 新一輪第一題避開上一題
+        if (bag[bag.length - 1] === lastBase) bag.unshift(bag.pop());
+      }
+      lastBase = bag.pop();
+      return lastBase;
+    }
+
+    /* ---------------- 計時與作答 ---------------- */
+    const ring = $('ring');
+    const CIRC = 2 * Math.PI * 44;
+    ring.style.strokeDasharray = CIRC;
+
+    let current = null;
+    let deadline = 0;
+    let timerRaf = 0;
+    let lastShown = LIMIT;
+    let answering = false;
+    let score = { correct: 0, total: 0 };
+
+    function show(id) {
+      ['screen-start', 'screen-q', 'screen-result'].forEach(s => { $(s).hidden = s !== id; });
+    }
+
+    function startQuestion() {
+      audio();
+      sfx.pick();
+      current = draw();
+      show('screen-q');
+
+      // 清掉上一題還沒播完的彩帶、雨和暗幕
+      pieces = [];
+      $('gloom').className = '';
+      $('rays').className = '';
+      document.body.classList.remove('grey', 'shake');
+
+      const q = $('question');
+      q.innerHTML = `${current}<sup>2</sup> = ?`;
+      q.style.animation = 'none';
+      void q.offsetWidth;
+      q.style.animation = '';
+
+      $('answer').value = '';
+      $('answer').focus({ preventScroll: true });
+      $('timer').classList.remove('danger');
+      lastShown = LIMIT;
+      $('timer-num').textContent = LIMIT;
+      ring.style.strokeDashoffset = 0;
+
+      deadline = performance.now() + LIMIT * 1000;
+      answering = true;
+      setKeypad(true);
+      cancelAnimationFrame(timerRaf);
+      timerRaf = requestAnimationFrame(tickTimer);
+    }
+
+    function tickTimer(now) {
+      if (!answering) return;
+      const left = Math.max(0, (deadline - now) / 1000);
+      ring.style.strokeDashoffset = CIRC * (1 - left / LIMIT);
+      const secs = Math.ceil(left);
+      if (secs !== lastShown) {
+        lastShown = secs;
+        $('timer-num').textContent = secs;
+        if (secs <= 3 && secs > 0) {
+          $('timer').classList.add('danger');
+          sfx.tick();
+        }
+      }
+      if (left <= 0) {
+        finish(null);
+        return;
+      }
+      timerRaf = requestAnimationFrame(tickTimer);
+    }
+
+    $('answer').addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+    /* ---------------- 觸控數字鍵盤 ---------------- */
+    const keypad = $('keypad');
+    const answerInput = $('answer');
+
+    // 按鍵不搶走輸入框焦點，實體鍵盤可以接著打
+    keypad.addEventListener('mousedown', e => {
+      if (e.target.closest('button')) e.preventDefault();
+    });
+
+    keypad.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-key]');
+      if (!btn || !answering) return;
+      const key = btn.dataset.key;
+      if (key === 'clear') {
+        answerInput.value = '';
+        tone(300, 0, 0.08, 'triangle', 0.12);
+      } else if (answerInput.value.length < answerInput.maxLength) {
+        answerInput.value += key;
+        tone(700 + Number(key) * 30, 0, 0.06, 'triangle', 0.12);
+      }
+    });
+
+    // 實體鍵盤按數字時，對應的觸控鍵也閃一下
+    answerInput.addEventListener('keydown', e => {
+      const btn = /^\d$/.test(e.key) ? keypad.querySelector(`[data-key="${e.key}"]`)
+        : e.key === 'Enter' ? keypad.querySelector('.key-submit') : null;
+      if (!btn) return;
+      btn.classList.add('pressed');
+      setTimeout(() => btn.classList.remove('pressed'), 120);
+    });
+
+    function setKeypad(enabled) {
+      keypad.querySelectorAll('button').forEach(b => { b.disabled = !enabled; });
+    }
+
+    $('answer-form').addEventListener('submit', e => {
+      e.preventDefault();
+      if (!answering) return;
+      const v = $('answer').value.trim();
+      if (!v) {
+        $('answer').focus();
+        return;
+      }
+      finish(Number(v));
+    });
+
+    /* ---------------- 失敗後的教學提示（11²～20² 只顯示答案） ---------------- */
+    function tipFor(n) {
+      if (n <= 20) return '';
+      const a = (n - 5) / 10;
+      return `<span class="tip-label">💡 尾數 5 的速算</span>
+        把 ${n} 的個位 5 拿掉剩 <b>${a}</b>，算 ${a} × ${a + 1} = <b>${a * (a + 1)}</b>，
+        後面接上 <b>25</b> → ${n}² = <b>${n * n}</b>`;
+    }
+
+    /* ---------------- 結算 ---------------- */
+    function finish(value) {
+      answering = false;
+      cancelAnimationFrame(timerRaf);
+      setKeypad(false);
+      $('answer').blur();
+
+      const sq = current * current;
+      const win = value === sq;
+      score.total++;
+      if (win) score.correct++;
+      $('correct').textContent = score.correct;
+      $('total').textContent = score.total;
+
+      const banner = $('banner');
+      const text = win ? '挑戰成功！' : '挑戰失敗';
+      banner.className = 'banner';
+      void banner.offsetWidth;
+      banner.dataset.text = text;
+      if (win) {
+        // 拆成單字，才能一個一個掉下來、波浪跳動
+        banner.innerHTML = [...text].map((c, i) => `<span class="ch" style="--i:${i}">${c}</span>`).join('');
+      } else {
+        banner.textContent = text;
+      }
+      banner.classList.add(win ? 'win' : 'lose');
+
+      $('reason').textContent = win
+        ? `只用了 ${(LIMIT - Math.max(0, (deadline - performance.now()) / 1000)).toFixed(1)} 秒，太厲害了！`
+        : value === null ? '⏰ 時間到！' : `你的答案是 ${value}，差一點點！`;
+      $('equation').innerHTML = `${current}<sup>2</sup> = <span class="ans">${sq}</span>`;
+
+      const tip = $('tip');
+      tip.innerHTML = win ? '' : tipFor(current);
+      tip.hidden = !tip.innerHTML;
+
+      const later = ['reason', 'equation', 'tip', 'again'].map($);
+      later.forEach(el => el.classList.remove('in'));
+      show('screen-result');
+
+      const gloom = $('gloom');
+      gloom.className = '';
+      document.body.classList.remove('shake', 'grey');
+      clearTimeout(finish.greyTimer);
+
+      if (win) {
+        // 金光一閃 → 光芒旋轉 → 彩帶砲 → 連發煙火 → 星星雨，方塊跟著跳
+        sfx.win();
+        flash('gold');
+        rays(3.4);
+        setTimeout(confetti, 450);
+        fireworks([550, 950, 1350, 1750, 2150, 2550, 2950]);
+        setTimeout(starRain, 1300);
+        if (scene3d) scene3d.celebrate();
+      } else {
+        // 轟一聲畫面變暗變灰 → 紅光閃三下＋震動 → 文字碎裂噴散 → 下雨，方塊掉下去再彈回
+        sfx.lose();
+        void gloom.offsetWidth;
+        gloom.className = 'on';
+        document.body.classList.add('grey');
+        finish.greyTimer = setTimeout(() => document.body.classList.remove('grey'), 2800);
+        void document.body.offsetWidth;
+        document.body.classList.add('shake');
+        flash('red');
+        setTimeout(() => shards(banner.getBoundingClientRect()), 500);
+        rain(700, 2300);
+        if (scene3d) scene3d.alarm();
+      }
+
+      // 動畫播完再依序出現答案、提示與按鈕
+      const base = 2700;
+      later.forEach((el, i) => setTimeout(() => el.classList.add('in'), base + i * 220));
+      setTimeout(() => $('again').focus({ preventScroll: true }), base + 900);
+    }
+
+    $('pick').addEventListener('click', startQuestion);
+    $('again').addEventListener('click', startQuestion);
+  })();
+  </script>
+</body>
+</html>
