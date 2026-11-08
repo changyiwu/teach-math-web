@@ -13,14 +13,15 @@
 
 | 任務 | 必讀 | 需要時才讀 |
 |---|---|---|
-| 新建／修改教材頁 | [手冊入口](docs/reference/README.md)、[網頁規則](docs/reference/web-production.md)、[數學規則](docs/reference/mathematics.md)、目標冊別；再按本地 [製作技能](.agents/skills/math-interactive-material/SKILL.md) 執行 | 手冊連到的工具附錄、目標節原始教材、圖片提示及上游漫畫技能 |
-| 出卷／其他數學專案 | [數學規則](docs/reference/mathematics.md)、目標冊別，加目標專案本身的規範 | 個別教材或題目原文 |
+| 新建／修改教材頁 | [手冊入口](docs/reference/README.md)、[網頁規則](docs/reference/web-production.md)、[數學規則](docs/reference/shared-math/math-rules.md)、[各章提醒](docs/reference/shared-math/chapter-notes.md) 的目標章、目標冊別索引；再按本地 [製作技能](.agents/skills/math-interactive-material/SKILL.md) 執行 | 手冊連到的工具附錄、目標節原始教材、圖片提示及上游漫畫技能 |
+| 出卷／其他數學專案 | [數學規則](docs/reference/shared-math/math-rules.md)、[各章提醒](docs/reference/shared-math/chapter-notes.md)，加目標專案本身的規範 | 個別教材或題目原文 |
 | 開工／收工 | 本檔與 [handoff.md](handoff.md)，並使用對應 project-startup／project-shutdown 技能 | 歷史決策 |
-| 查舊規則或原因 | [來源對照](docs/reference/sources.md) | [歷史里程碑](docs/history/project-milestones.md)、Obsidian 專案工作流程 |
+| 查舊規則或原因 | Git log、Obsidian 專案工作流程 | 舊里程碑與舊編號對照見提交 6d2e58f 的 docs/ |
 
 - 本手冊各主題只有一份規則正文；技能只排步驟，冊別檔只維護章節特有內容。新規則改所屬正文，其他檔案以連結引用。
 - `handoff.md` 只保存下一次接續狀態、未決事項及暫時 workaround；長期規則移進對應手冊，歷史移進歷史紀錄。
-- 歷史資料中的舊規則編號、狀態與參數不作為現行指令；查 sources.md 的現行位置。
+- 歷史資料中的舊規則編號、狀態與參數不作為現行指令。
+- `docs/reference/shared-math/` 是與 teach-math-exam 共用的數學命題通則及各章提醒，**本 repo 為正本**：只改這裡，改完以 `python docs/reference/shared-math/sync_shared_math.py --write` 覆蓋鏡像，再不帶參數檢查一致；共用檔不寫網頁專屬內容。
 
 ## 資料夾與同步
 
@@ -31,8 +32,8 @@
 | materials/<冊-章-節>/ | 各節 HTML、CSS、canvas.js 與正式圖片 |
 | materials/math-canvas.js | 各節共用 Canvas 工具 |
 | tools-sidebar、lesson-nav、annotate 的 CSS／JS | 工具側欄、前後節導覽與課堂畫筆 |
-| docs/reference/ | 現行教材規則、各冊索引與按需操作附錄 |
-| docs/history/ | 保留原文的歷史里程碑 |
+| docs/reference/ | 現行網頁規則、各冊教材頁索引與按需操作附錄 |
+| docs/reference/shared-math/ | 與 teach-math-exam 共用的數學命題通則、各章提醒與同步腳本（正本） |
 | tools/ | 抽字、HTTP 預覽、Canvas 擷取、索引更新等工具 |
 | comfyui/ | ignored 的提示、原圖、候選、漫畫中介檔及 QA，由 GDrive 跨機同步 |
 | .agents/skills/math-interactive-material/ | 此專案教材建置流程入口 |

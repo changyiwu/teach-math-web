@@ -1,6 +1,6 @@
 # 按需操作附錄
 
-[回手冊](README.md)。日常建頁不必全文讀取；本檔只維護工具、排查與重構操作。數學規則在 mathematics.md，網頁規格在 web-production.md。
+[回手冊](README.md)。日常建頁不必全文讀取；本檔只維護工具、排查與重構操作。數學規則在 shared-math/math-rules.md，網頁規格在 web-production.md。
 
 ## O1 文件處理與編碼
 
@@ -39,7 +39,7 @@ $materialPython = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure
 - 隱藏頁 setTimeout 可能被節流，可用 MessageChannel 讓步；分批小量掃描，既有 Browser pane 每次 2～3 張互動、大批 Canvas 每批約 100 組以內，依當前工具調整。
 - 長掃描將計數與結果存 window 狀態；工具逾時先讀進度，避免重跑已完成批次。固定種子用於可重現比較。
 - 解析 LaTeX 先移除 wbr、wbrEq 插入的空 `{}`，處理 text 括號及 left/right；整批案例全失敗先查 parser。
-- 洩題掃描抓 no-store 原始 HTML 經 DOMParser，不用 MathJax 排版後 textContent。移除 input 屬性，數字比對加完整邊界，以免將 min/max 或 4 與 45 誤命中；審查範圍依 [M5](mathematics.md#m5-防止示範或提示洩漏答案)。
+- 洩題掃描抓 no-store 原始 HTML 經 DOMParser，不用 MathJax 排版後 textContent。移除 input 屬性，數字比對加完整邊界，以免將 min/max 或 4 與 45 誤命中；審查範圍依 [M5](shared-math/math-rules.md#m5-防止洩題與照抄原題)。
 
 ## O4 共用工具與重構比對
 
@@ -56,7 +56,7 @@ $materialPython = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure
 |---|---|
 | drawChip 第 7 參數 | 是 bg 色字串，不是 alpha 數字。 |
 | drawStepRows rows[].items | 是元件陣列；inkItems 回單一 SEQ，使用 [inkItems(...)]。 |
-| texFrac | 不自動約分，先 reduce 再轉文字；倒數中間式依 [M3](mathematics.md#m3-算式與答案的呈現)。 |
+| texFrac | 不自動約分，先 reduce 再轉文字；倒數中間式依 [M3](shared-math/math-rules.md#m3-算式與答案的呈現)。 |
 | sub | 只替負數加括號，不當通用乘法括號。 |
 | FR／自製分數 | 先正規化負分母。 |
 | drawArrow | 預設箭頭投影過細，數線／坐標用清楚的實心 axisArrow 類箭頭；既有長 13、半寬 5.5px 可參照。 |
@@ -69,7 +69,7 @@ $materialPython = & (Join-Path $HOME '.claude/skills/file-toolkit/scripts/ensure
 - caption 以矩形 bbox 查重疊；相鄰橢圓角落誤中時，核圖後縮靠近邊約 15～20px，不加 -AllowOverlap 全面放行。
 - 排字先折行，真正放不下才縮字；長數串要一行時另試 font_size，仍依 [W5](web-production.md#w5-圖片與漫畫製作) 底限。缺字換字型或改文字。
 - 覆寫 normalized／final 加 -Force；只有 raw 的生成呼叫計費，調對白重排不必重生。
-- 幾何與數量依 [M6](mathematics.md#m6-圖形比例與量測)。簡化背景小機件，避免密集齒輪；盤有立體物件可指定 Roberval balance，降低吊鏈碰撞。
+- 幾何與數量依 [M6](shared-math/math-rules.md#m6-圖形比例與量測)。簡化背景小機件，避免密集齒輪；盤有立體物件可指定 Roberval balance，降低吊鏈碰撞。
 - 選圖放大四角看淡色字跡／浮水印，修正不得侵入身體或教學內容；修後重驗全張。
 - gpt-image-2 的 mask 曾破壞四格，該既有流程不依賴 mask 修漫畫，改整張編修／重生；其他工具依當前能力驗收，不宣稱有同一限制。
 - 提示需要寫數字時採少位數，要求各數字只印一次、置中、不鏡像、不被橫桿遮住，避免翻牌式重複兩排。生成的刻度與端點需放大核對，不以提示已寫清楚代替驗收。

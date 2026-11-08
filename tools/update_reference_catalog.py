@@ -1,8 +1,10 @@
-"""Update generated lesson indexes; keep chapter editorial notes in Markdown."""
+"""Update the generated lesson indexes in docs/reference/book-N.md.
+
+Chapter notes are hand-edited in docs/reference/shared-math/chapter-notes.md.
+"""
 from __future__ import annotations
 
 import argparse
-import hashlib
 from html import unescape
 import json
 from pathlib import Path
@@ -16,13 +18,6 @@ def build_outputs() -> tuple[dict[Path, str], dict[str, int]]:
     raw = (ROOT / 'curriculum.js').read_text(encoding='utf-8-sig')
     start = raw.index('{', raw.index('const CURRICULUM_DATA'))
     curriculum, _ = json.JSONDecoder().raw_decode(raw[start:])
-    catalog = {
-        'title': 'teach-math-web 各冊各章概念索引',
-        'schema_version': 2,
-        'source': 'curriculum.js and materials/*/index.html',
-        'scope': '自動產生的教材標題索引；規則及章節編輯說明不在 JSON 複寫。',
-        'books': [],
-    }
     outputs = {}
     counts = {'books': len(curriculum), 'chapters': 0, 'sections': 0, 'concepts': 0}
     for volume, chapters in curriculum.items():
@@ -32,17 +27,14 @@ def build_outputs() -> tuple[dict[Path, str], dict[str, int]]:
         actual_keys = set(re.findall(r'<!-- BEGIN LESSONS ([0-9-]+) -->', book_text))
         if actual_keys != expected_keys:
             raise ValueError(f'Chapter blocks differ from curriculum: {book_path.name}')
-        book = {'volume': int(volume), 'chapters': []}
         for ci, chapter in enumerate(chapters, 1):
             counts['chapters'] += 1
             key = f'{volume}-{ci}'
-            chapter_data = {'number': ci, 'title': chapter['chapter'], 'sections': []}
             lines = []
             for si, section in enumerate(chapter['sections'], 1):
                 folder = f'{volume}-{ci}-{si}'
                 page = ROOT / 'materials' / folder / 'index.html'
-                page_bytes = page.read_bytes()
-                html = page_bytes.decode('utf-8-sig')
+                html = page.read_bytes().decode('utf-8-sig')
                 concepts = []
                 for match in re.finditer(r'<h2\b[^>]*>(.*?)</h2>', html, re.S):
                     title = ' '.join(unescape(re.sub(r'<[^>]+>', '', match[1])).split())
@@ -61,15 +53,6 @@ def build_outputs() -> tuple[dict[Path, str], dict[str, int]]:
                            for p in concepts]
                 if not concepts or numbers != list(range(1, len(concepts) + 1)):
                     raise ValueError(f'Missing or nonsequential concepts: {folder}: {numbers}')
-                entry = {
-                    'folder': folder, 'title': section['title'],
-                    'source': f'materials/{folder}/index.html',
-                    'source_sha256': hashlib.sha256(page_bytes).hexdigest(),
-                    'concept_count': len(concepts), 'concepts': concepts,
-                }
-                # Local ignored assets are intentionally not catalog inputs:
-                # outputs must be identical on another checkout without them.
-                chapter_data['sections'].append(entry)
                 counts['sections'] += 1
                 counts['concepts'] += len(concepts)
                 url = f'../../materials/{folder}/index.html'
@@ -86,11 +69,7 @@ def build_outputs() -> tuple[dict[Path, str], dict[str, int]]:
             lo = book_text.index(begin) + len(begin)
             hi = book_text.index(end, lo)
             book_text = book_text[:lo] + '\n' + '\n'.join(lines) + book_text[hi:]
-            book['chapters'].append(chapter_data)
-        catalog['books'].append(book)
         outputs[book_path] = book_text
-    catalog['counts'] = counts
-    outputs[DOCS / 'catalog.json'] = json.dumps(catalog, ensure_ascii=False, indent=2) + '\n'
     return outputs, counts
 
 
