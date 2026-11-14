@@ -13,8 +13,6 @@
   'use strict';
 
   const homeHref = (document.currentScript && document.currentScript.dataset.home) || '';
-  // 站內遊戲依本檔位置組出路徑，主網頁與教材頁都能連到
-  const siteBase = document.currentScript ? new URL('.', document.currentScript.src).href : '';
 
   const TOOLS = [
     {
@@ -42,7 +40,7 @@
     {
       cls: 'game',
       icon: 'fa-gamepad',
-      href: siteBase + 'games/power-challenge/',
+      href: 'https://changyiwu.github.io/teach-math-games/power-challenge/',
       title: '次方大挑戰',
       desc: '隨機挑一題次方，10 秒內答出來就挑戰成功！'
     }
