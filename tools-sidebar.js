@@ -40,9 +40,9 @@
     {
       cls: 'game',
       icon: 'fa-gamepad',
-      href: 'https://changyiwu.github.io/teach-math-games/power-challenge/',
-      title: '次方大挑戰',
-      desc: '隨機挑一題次方，10 秒內答出來就挑戰成功！'
+      href: 'https://changyiwu.github.io/teach-math-games/',
+      title: '數學遊戲場',
+      desc: '課堂小遊戲合集，投在大螢幕叫學生上台挑戰，回家也能自己玩。'
     }
   ];
 
