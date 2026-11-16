@@ -14,6 +14,7 @@ function initClock() {
   const clockTime = document.getElementById('clock-time');
   const clockDate = document.getElementById('clock-date');
   const clockDay = document.getElementById('clock-day');
+  if (!clockTime || !clockDate || !clockDay) return;
 
   const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 
@@ -79,6 +80,7 @@ function initTabs() {
 function initNotepad() {
   const notepad = document.getElementById('teacher-notes');
   const STORAGE_KEY = 'teaching_portal_notes';
+  if (!notepad) return;
 
   // Load saved notes if any
   const savedNotes = localStorage.getItem(STORAGE_KEY);
@@ -124,6 +126,7 @@ function sectionLinkHtml(sec, prefix) {
 
 function initCurriculum() {
   const curriculum = window.CURRICULUM;
+  if (!document.getElementById('chapters-v1')) return; // 只有教學資料庫頁需要渲染
   if (!curriculum) {
     console.error('找不到 curriculum.js，課程資料無法載入。');
     return;

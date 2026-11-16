@@ -428,6 +428,44 @@ header {
 .portal-card.nani:hover { box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.4); }
 .portal-card.tools:hover { box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.4); }
 .portal-card.score:hover { box-shadow: 0 8px 25px rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.4); }
+/* 首頁站內教材與課堂工具卡片（原側邊欄連結） */
+.portal-card.library .portal-icon-wrapper { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+.portal-card.animated .portal-icon-wrapper { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.portal-card.game .portal-icon-wrapper { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.portal-card.youtube .portal-icon-wrapper { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.portal-card.library .portal-card-title { color: #ddd6fe; }
+.portal-card.animated .portal-card-title { color: #a7f3d0; }
+.portal-card.game .portal-card-title { color: #fde68a; }
+.portal-card.youtube .portal-card-title { color: #fecaca; }
+.portal-card.library .portal-card-desc,
+.portal-card.animated .portal-card-desc,
+.portal-card.game .portal-card-desc,
+.portal-card.youtube .portal-card-desc { color: #cbd5e1; }
+.portal-card.library:hover .portal-card-title,
+.portal-card.animated:hover .portal-card-title,
+.portal-card.game:hover .portal-card-title,
+.portal-card.youtube:hover .portal-card-title { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
+.portal-card.library:hover { box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2); border-color: rgba(139, 92, 246, 0.4); }
+.portal-card.animated:hover { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); }
+.portal-card.game:hover { box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.4); }
+.portal-card.youtube:hover { box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); }
+
+/* 子頁（教學資料庫）返回主網頁按鈕 */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-back:hover { background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.4); color: #fff; }
+
 .portal-card:hover .portal-icon-wrapper {
   transform: scale(1.1) rotate(5deg);
 }

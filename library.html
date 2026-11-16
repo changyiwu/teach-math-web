@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教學資料庫 - 國中數學教學整合網</title>
+  <link rel="icon" type="image/svg+xml" href="header-logo.svg">
+  <meta name="description" content="國中數學六冊各章節互動教材索引，可搜尋小節、篩選完成狀態，並自訂各冊常用連結。">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="annotate.css">
+</head>
+<body>
+
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="title-section">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="header-logo.svg" alt="" width="64" height="64">
+        </div>
+        <div class="site-title">
+          <h1>各冊教學資料庫</h1>
+          <p>國中數學六冊互動教材 • 搜尋小節直接開課</p>
+        </div>
+      </div>
+      <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> 返回主網頁</a>
+    </header>
+
+    <main>
+      <!-- 各冊教學資料庫：課程內容由 curriculum.js 動態產生 -->
+      <section class="section-card" id="volume-materials">
+        <h2 class="section-title">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>各冊教學資料庫
+        </h2>
+        
+        <!-- Search & Status Filter across all 6 volumes -->
+        <div class="curriculum-toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" id="curriculum-search" placeholder="搜尋小節：輸入單元名稱或代號（例如「畢氏」、「2-3」）" aria-label="搜尋小節">
+            <button type="button" class="search-clear" id="search-clear" aria-label="清除搜尋">&times;</button>
+          </div>
+          <div class="filter-chips" role="group" aria-label="完成狀態篩選">
+            <button type="button" class="filter-chip active" data-status="all">全部</button>
+            <button type="button" class="filter-chip" data-status="completed"><i class="fa-solid fa-circle-check"></i> 已完成</button>
+            <button type="button" class="filter-chip" data-status="pending"><i class="fa-solid fa-person-digging"></i> 待施工</button>
+          </div>
+        </div>
+
+        <!-- Search Results (顯示於搜尋或篩選時) -->
+        <div class="search-results" id="search-results"></div>
+
+        <div class="tabs-container" id="volume-tabs">
+          <!-- Tab Buttons (Volume 1 to 6) -->
+          <div class="tabs-navigation" role="tablist" aria-label="教學冊別分頁">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-v1" id="tab-v1">
+              <i class="fa-solid fa-bookmark"></i>第一冊
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-v2" id="tab-v2">
+              <i class="fa-solid fa-bookmark"></i>第二冊
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-v3" id="tab-v3">
+              <i class="fa-solid fa-bookmark"></i>第三冊
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-v4" id="tab-v4">
+              <i class="fa-solid fa-bookmark"></i>第四冊
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-v5" id="tab-v5">
+              <i class="fa-solid fa-bookmark"></i>第五冊
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-v6" id="tab-v6">
+              <i class="fa-solid fa-bookmark"></i>第六冊
+            </button>
+          </div>
+
+          <!-- Tab Panels -->
+          <div class="tab-panels">
+            <!-- V1 -->
+            <div class="tab-panel active" id="panel-v1" role="tabpanel" aria-labelledby="tab-v1">
+              <div class="chapters-grid" id="chapters-v1"></div>
+            </div>
+
+            <!-- V2 -->
+            <div class="tab-panel" id="panel-v2" role="tabpanel" aria-labelledby="tab-v2">
+              <div class="chapters-grid" id="chapters-v2"></div>
+            </div>
+
+            <!-- V3 -->
+            <div class="tab-panel" id="panel-v3" role="tabpanel" aria-labelledby="tab-v3">
+              <div class="chapters-grid" id="chapters-v3"></div>
+            </div>
+
+            <!-- V4 -->
+            <div class="tab-panel" id="panel-v4" role="tabpanel" aria-labelledby="tab-v4">
+              <div class="chapters-grid" id="chapters-v4"></div>
+            </div>
+
+            <!-- V5 -->
+            <div class="tab-panel" id="panel-v5" role="tabpanel" aria-labelledby="tab-v5">
+              <div class="chapters-grid" id="chapters-v5"></div>
+            </div>
+
+            <!-- V6 -->
+            <div class="tab-panel" id="panel-v6" role="tabpanel" aria-labelledby="tab-v6">
+              <div class="chapters-grid" id="chapters-v6"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 國中數學教學整合網. 專為高效課堂互動設計.</p>
+    </footer>
+  </div>
+
+  <!-- Interactive Modal to Add Custom Link to Volumes -->
+  <div class="modal" id="add-link-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeAddLinkModal()" aria-label="關閉視窗">&times;</button>
+      <h3 class="modal-header" id="modal-title">新增教學連結 - 第 <span id="target-volume-num">1</span> 冊</h3>
+      <form id="add-link-form" onsubmit="handleFormSubmit(event)">
+        <input type="hidden" id="modal-volume-index" value="1">
+        <div class="form-group">
+          <label for="link-title">連結名稱</label>
+          <input type="text" id="link-title" required placeholder="例如：第1冊 Google Drive 教材庫" maxlength="25">
+        </div>
+        <div class="form-group">
+          <label for="link-url">連結網址 (URL)</label>
+          <input type="url" id="link-url" required placeholder="https://example.com/folder">
+        </div>
+        <div class="form-group">
+          <label for="link-desc">簡短描述 (選填)</label>
+          <input type="text" id="link-desc" placeholder="例如：含全冊影片及複習題庫" maxlength="50">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeAddLinkModal()">取消</button>
+          <button type="submit" class="btn btn-primary">確認新增</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="curriculum.js"></script>
+  <script src="script.js"></script>
+  <script src="annotate.js"></script>
+</body>
+</html>

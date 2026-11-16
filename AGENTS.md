@@ -7,7 +7,7 @@
 - 國中六冊數學教學靜態網站，供課堂智慧白板使用。實際章節、完成狀態以 [curriculum.js](curriculum.js) 為準。
 - 線上：[teach-math-web](https://changyiwu.github.io/teach-math-web/)；儲存庫：[changyiwu/teach-math-web](https://github.com/changyiwu/teach-math-web)。
 - 架構與元件規格見 [W3](docs/reference/web-production.md#w3-前端架構共用工具與操作)，部署見 [W7](docs/reference/web-production.md#w7-整合與發布)。
-- 「考卷檢討」現屬 teach-class-score，從側欄的「課堂表現登記系統」登入後進入；exam-review 已退場。不要搬回本站，也不在本 repo 存考卷資料夾 ID。
+- 「考卷檢討」現屬 teach-class-score，從首頁的「課堂表現登記系統」卡片登入後進入；exam-review 已退場。不要搬回本站，也不在本 repo 存考卷資料夾 ID。
 
 ## 文件職責與必讀入口
 
@@ -27,12 +27,13 @@
 
 | 位置 | 用途 |
 |---|---|
-| index.html、style.css、script.js | 首頁與入口介面 |
+| index.html、style.css、script.js | 首頁與入口介面（所有站內外連結集中於首頁卡片，已無側邊欄） |
+| library.html | 各冊教學資料庫（搜尋、分冊分頁、自訂連結） |
 | curriculum.js | 課程分類與完成狀態 |
 | materials/<冊-章-節>/ | 各節 HTML、CSS、canvas.js 與正式圖片 |
 | materials/math-canvas.js | 各節共用 Canvas 工具 |
-| animated-solutions/ | 側欄「動畫解題」：每題一個 section 與一支 pNN-*.js，新增方式見 problems.js 開頭註解 |
-| tools-sidebar、lesson-nav、annotate 的 CSS／JS | 工具側欄、前後節導覽與課堂畫筆 |
+| animated-solutions/ | 首頁「動畫解題」卡片：每題一個 section 與一支 pNN-*.js，新增方式見 problems.js 開頭註解 |
+| lesson-nav、annotate 的 CSS／JS | 前後節導覽與課堂畫筆 |
 | docs/reference/ | 現行網頁規則、各冊教材頁索引與按需操作附錄 |
 | docs/reference/shared-math/ | 與 teach-math-exam 共用的數學命題通則、各章提醒與同步腳本（正本） |
 | tools/ | 抽字、HTTP 預覽、Canvas 擷取、索引更新等工具 |
