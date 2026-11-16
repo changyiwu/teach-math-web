@@ -31,6 +31,7 @@
 | curriculum.js | 課程分類與完成狀態 |
 | materials/<冊-章-節>/ | 各節 HTML、CSS、canvas.js 與正式圖片 |
 | materials/math-canvas.js | 各節共用 Canvas 工具 |
+| hard-problems/ | 側欄「難題解說」：每題一個 section 與一支 pNN-*.js，新增方式見 problems.js 開頭註解 |
 | tools-sidebar、lesson-nav、annotate 的 CSS／JS | 工具側欄、前後節導覽與課堂畫筆 |
 | docs/reference/ | 現行網頁規則、各冊教材頁索引與按需操作附錄 |
 | docs/reference/shared-math/ | 與 teach-math-exam 共用的數學命題通則、各章提醒與同步腳本（正本） |

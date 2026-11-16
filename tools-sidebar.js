@@ -13,8 +13,19 @@
   'use strict';
 
   const homeHref = (document.currentScript && document.currentScript.dataset.home) || '';
+  // 站內頁面以本檔所在位置（網站根目錄）為基準，主網頁與各層教材頁都能用同一份路徑
+  const siteRoot = (document.currentScript && document.currentScript.src)
+    ? new URL('.', document.currentScript.src).href : '';
 
   const TOOLS = [
+    {
+      cls: 'hard',
+      icon: 'fa-brain',
+      href: siteRoot + 'hard-problems/index.html',
+      title: '難題解說',
+      desc: '把課本難題做成動畫一步步拆解，例如把周長剪開拉直來解間隔問題。',
+      internal: true
+    },
     {
       cls: 'tools',
       icon: 'fa-toolbox',

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../header-logo.svg">
+  <title>難題解說 - 國中數學教學整合網</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 共用課堂元件（課堂工具側邊欄 / 課堂畫筆） -->
+  <link rel="stylesheet" href="../tools-sidebar.css">
+  <link rel="stylesheet" href="../annotate.css">
+
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] }, startup: { typeset: true } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> 返回主網頁</a>
+      <div class="page-title">
+        <span class="badge"><i class="fa-solid fa-brain"></i> 難題解說</span>
+        <h1>難題解說</h1>
+        <p>用動畫把難題拆開來看。點選題目開始。</p>
+      </div>
+    </header>
+
+    <!-- 題目清單：由下方各 .problem 區塊的 data-* 自動產生 -->
+    <nav class="problem-list" id="hp-problem-list" aria-label="題目清單"></nav>
+
+    <main>
+      <!-- ===== 第 1 題：長方形周圍種樹（康軒 1上 2-2 例8） ===== -->
+      <section class="problem" id="p1"
+               data-no="1" data-title="長方形周圍種樹" data-tag="1上 2-2 最大公因數" data-src="康軒 1上 p.123 例8">
+        <div class="problem-card">
+          <div class="problem-head">
+            <span class="problem-no">第 1 題</span>
+            <span class="problem-tag">1上 2-2 最大公因數與最小公倍數 · 間隔問題</span>
+          </div>
+          <p class="problem-text">
+            王伯伯有一塊長 315 公尺、寬 135 公尺的長方形土地，他想在其周圍種樹，相鄰兩棵樹之間的距離要相等，且四個頂點都種，則相鄰兩棵樹之間的距離最大是幾公尺？此時總共要種幾棵樹？
+          </p>
+        </div>
+
+        <div class="stage-card">
+          <div class="step-dots" id="p1-dots" aria-label="解題步驟"></div>
+          <div class="canvas-wrap">
+            <canvas id="p1-canvas" width="1000" height="520" aria-label="長方形周長剪開拉直的動畫"></canvas>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn" id="p1-prev"><i class="fa-solid fa-chevron-left"></i> 上一步</button>
+            <button type="button" class="btn" id="p1-replay"><i class="fa-solid fa-rotate-right"></i> 重播這步</button>
+            <button type="button" class="btn btn-primary" id="p1-next">下一步 <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="explain" id="p1-explain" aria-live="polite"></div>
+
+          <div class="try-box" id="p1-try" hidden>
+            <span class="try-label"><i class="fa-solid fa-flask"></i> 換個間距試試看：</span>
+            <div class="chip-row" id="p1-chips"></div>
+            <p class="try-note" id="p1-try-note"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="p01-tree-spacing.js"></script>
+  <script src="problems.js"></script>
+
+  <script src="../tools-sidebar.js" data-home="../index.html"></script>
+  <script src="../annotate.js"></script>
+</body>
+</html>
