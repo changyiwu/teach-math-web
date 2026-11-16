@@ -224,7 +224,7 @@
     for (let s = d; s <= PERI; s += d) all.push(s);
     let solid = all;
     if (st.step === 4) solid = all.slice(0, Math.floor(all.length * st.anim + 1e-9));
-    return { solid, ghost: [] };
+    return { solid, ghost: [0] };   // 起點留虛線樹；折回後與 900 那棵重疊就不畫
   }
 
   function draw() {
