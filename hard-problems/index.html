@@ -72,10 +72,45 @@
           </div>
         </div>
       </section>
+
+      <!-- ===== 第 2 題：長方體積木拼正方體（1上 2-2 考卷 非選擇題 2） ===== -->
+      <section class="problem" id="p2"
+               data-no="2" data-title="積木拼正方體" data-tag="1上 2-2 最小公倍數" data-src="1上 2-2 考卷 非選擇題 2">
+        <div class="problem-card">
+          <div class="problem-head">
+            <span class="problem-no">第 2 題</span>
+            <span class="problem-tag">1上 2-2 最大公因數與最小公倍數 · 立體堆疊</span>
+          </div>
+          <p class="problem-text">
+            有一大袋相同的長方體積木，每塊積木的長、寬、高依次為 12 公分、8 公分與 9 公分，至少需這種積木多少塊，才能拼成一個正方體？
+          </p>
+        </div>
+
+        <div class="stage-card">
+          <div class="step-dots" id="p2-dots" aria-label="解題步驟"></div>
+          <div class="canvas-wrap">
+            <canvas id="p2-canvas" class="rotatable" width="1000" height="560" aria-label="長方體積木堆成正方體的立體動畫，可拖曳旋轉"></canvas>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn" id="p2-prev"><i class="fa-solid fa-chevron-left"></i> 上一步</button>
+            <button type="button" class="btn" id="p2-replay"><i class="fa-solid fa-rotate-right"></i> 重播這步</button>
+            <button type="button" class="btn" id="p2-view"><i class="fa-solid fa-cube"></i> 重設視角</button>
+            <button type="button" class="btn btn-primary" id="p2-next">下一步 <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="explain" id="p2-explain" aria-live="polite"></div>
+
+          <div class="try-box" id="p2-try" hidden>
+            <span class="try-label"><i class="fa-solid fa-flask"></i> 換個邊長試試看：</span>
+            <div class="chip-row" id="p2-chips"></div>
+            <p class="try-note" id="p2-try-note"></p>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
   <script src="p01-tree-spacing.js"></script>
+  <script src="p02-block-cube.js"></script>
   <script src="problems.js"></script>
 
   <script src="../tools-sidebar.js" data-home="../index.html"></script>
