@@ -50,8 +50,8 @@
     {
       cls: 'hard',
       icon: 'fa-brain',
-      href: siteRoot + 'hard-problems/index.html',
-      title: '難題解說',
+      href: siteRoot + 'animated-solutions/index.html',
+      title: '動畫解題',
       desc: '把課本難題做成動畫一步步拆解，例如把周長剪開拉直來解間隔問題。',
       internal: true
     }
