@@ -422,7 +422,7 @@
   canvas.addEventListener('pointermove', e => {
     if (!drag) return;
     const k = 0.009;
-    st.yaw = drag.yaw + (e.clientX - drag.x) * k;
+    st.yaw = drag.yaw - (e.clientX - drag.x) * k;   // 往右拖，正面跟著往右轉
     st.pitch = Math.max(0.08, Math.min(1.35, drag.pitch + (e.clientY - drag.y) * k));
     if (!rafId) draw();
   });
