@@ -140,6 +140,39 @@
           </div>
         </div>
       </section>
+
+      <!-- ===== 第 4 題：果汁連瓶重（康軒 1上 2-3 例11 隨堂練習） ===== -->
+      <section class="problem" id="p4"
+               data-book="1" data-no="4" data-title="果汁連瓶重" data-tag="1上 2-3 分數的四則運算" data-src="康軒 1上 p.142 例11 隨堂練習">
+        <div class="problem-card">
+          <div class="problem-head">
+            <span class="problem-no">第 4 題</span>
+            <span class="problem-tag">1上 2-3 分數的四則運算 · 分數應用問題（例11 隨堂練習）</span>
+          </div>
+          <p class="problem-text">
+            有一瓶果汁，連瓶子共重 930 公克，喝了 \(\frac{2}{3}\) 瓶的果汁後，剩餘的果汁連瓶子共重 430 公克，求空瓶子重多少公克？
+          </p>
+        </div>
+
+        <div class="stage-card">
+          <div class="step-dots" id="p4-dots" aria-label="解題步驟"></div>
+          <div class="canvas-wrap">
+            <canvas id="p4-canvas" width="1000" height="560" aria-label="果汁瓶液面下降與重量線段圖的動畫"></canvas>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn" id="p4-prev"><i class="fa-solid fa-chevron-left"></i> 上一步</button>
+            <button type="button" class="btn" id="p4-replay"><i class="fa-solid fa-rotate-right"></i> 重播這步</button>
+            <button type="button" class="btn btn-primary" id="p4-next">下一步 <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="explain" id="p4-explain" aria-live="polite"></div>
+
+          <div class="try-box" id="p4-try" hidden>
+            <span class="try-label"><i class="fa-solid fa-flask"></i> 換個喝掉的量試試看：</span>
+            <div class="chip-row" id="p4-chips"></div>
+            <p class="try-note" id="p4-try-note"></p>
+          </div>
+        </div>
+      </section>
     </main>
     </div>
   </div>
@@ -147,6 +180,7 @@
   <script src="p01-tree-spacing.js"></script>
   <script src="p02-block-cube.js"></script>
   <script src="p03-drone-pesticide.js"></script>
+  <script src="p04-juice-bottle.js"></script>
   <script src="problems.js"></script>
 
   <script src="../tools-sidebar.js" data-home="../index.html"></script>
