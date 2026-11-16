@@ -36,13 +36,14 @@
       </div>
     </header>
 
-    <!-- 題目清單：由下方各 .problem 區塊的 data-* 自動產生 -->
-    <nav class="problem-list" id="hp-problem-list" aria-label="題目清單"></nav>
+    <div class="hp-layout">
+    <!-- 左側導航：由下方各 .problem 區塊的 data-* 自動產生，依 data-book 分冊 -->
+    <nav class="hp-nav" id="hp-problem-list" aria-label="題目清單"></nav>
 
-    <main>
+    <main class="hp-main">
       <!-- ===== 第 1 題：長方形周圍種樹（康軒 1上 2-2 例8） ===== -->
       <section class="problem" id="p1"
-               data-no="1" data-title="長方形周圍種樹" data-tag="1上 2-2 最大公因數" data-src="康軒 1上 p.123 例8">
+               data-book="1" data-no="1" data-title="長方形周圍種樹" data-tag="1上 2-2 最大公因數" data-src="康軒 1上 p.123 例8">
         <div class="problem-card">
           <div class="problem-head">
             <span class="problem-no">第 1 題</span>
@@ -75,7 +76,7 @@
 
       <!-- ===== 第 2 題：長方體積木拼正方體（1上 2-2 考卷 非選擇題 2） ===== -->
       <section class="problem" id="p2"
-               data-no="2" data-title="積木拼正方體" data-tag="1上 2-2 最小公倍數" data-src="1上 2-2 考卷 非選擇題 2">
+               data-book="1" data-no="2" data-title="積木拼正方體" data-tag="1上 2-2 最小公倍數" data-src="1上 2-2 考卷 非選擇題 2">
         <div class="problem-card">
           <div class="problem-head">
             <span class="problem-no">第 2 題</span>
@@ -107,6 +108,7 @@
         </div>
       </section>
     </main>
+    </div>
   </div>
 
   <script src="p01-tree-spacing.js"></script>

@@ -19,14 +19,6 @@
 
   const TOOLS = [
     {
-      cls: 'hard',
-      icon: 'fa-brain',
-      href: siteRoot + 'hard-problems/index.html',
-      title: '難題解說',
-      desc: '把課本難題做成動畫一步步拆解，例如把周長剪開拉直來解間隔問題。',
-      internal: true
-    },
-    {
       cls: 'tools',
       icon: 'fa-toolbox',
       href: 'https://changyiwu.github.io/teach-class-tools',
@@ -54,6 +46,14 @@
       href: 'https://changyiwu.github.io/teach-math-games/',
       title: '數學遊戲場',
       desc: '課堂小遊戲合集，投在大螢幕叫學生上台挑戰，回家也能自己玩。'
+    },
+    {
+      cls: 'hard',
+      icon: 'fa-brain',
+      href: siteRoot + 'hard-problems/index.html',
+      title: '難題解說',
+      desc: '把課本難題做成動畫一步步拆解，例如把周長剪開拉直來解間隔問題。',
+      internal: true
     }
   ];
 
