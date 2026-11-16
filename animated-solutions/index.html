@@ -107,12 +107,46 @@
           </div>
         </div>
       </section>
+
+      <!-- ===== 第 3 題：農用無人機噴農藥（康軒 1上 2-3 例11） ===== -->
+      <section class="problem" id="p3"
+               data-book="1" data-no="3" data-title="無人機噴農藥" data-tag="1上 2-3 分數的四則運算" data-src="康軒 1上 p.142 例11">
+        <div class="problem-card">
+          <div class="problem-head">
+            <span class="problem-no">第 3 題</span>
+            <span class="problem-tag">1上 2-3 分數的四則運算 · 分數應用問題</span>
+          </div>
+          <p class="problem-text">
+            一臺農用無人機裝滿農藥的重量為 45 公斤，若每分鐘噴灑的農藥重量皆相等，噴灑飛行 50 分鐘後，可將農藥噴完沒有剩下。某次此無人機裝滿農藥噴灑飛行 20 分鐘後，無人機與剩餘農藥重量為 37 公斤，則此無人機未裝農藥時的重量為多少公斤？
+          </p>
+        </div>
+
+        <div class="stage-card">
+          <div class="step-dots" id="p3-dots" aria-label="解題步驟"></div>
+          <div class="canvas-wrap">
+            <canvas id="p3-canvas" width="1000" height="560" aria-label="無人機噴灑農藥與時間、重量線段圖的動畫"></canvas>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn" id="p3-prev"><i class="fa-solid fa-chevron-left"></i> 上一步</button>
+            <button type="button" class="btn" id="p3-replay"><i class="fa-solid fa-rotate-right"></i> 重播這步</button>
+            <button type="button" class="btn btn-primary" id="p3-next">下一步 <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="explain" id="p3-explain" aria-live="polite"></div>
+
+          <div class="try-box" id="p3-try" hidden>
+            <span class="try-label"><i class="fa-solid fa-flask"></i> 換個飛行時間試試看：</span>
+            <div class="chip-row" id="p3-chips"></div>
+            <p class="try-note" id="p3-try-note"></p>
+          </div>
+        </div>
+      </section>
     </main>
     </div>
   </div>
 
   <script src="p01-tree-spacing.js"></script>
   <script src="p02-block-cube.js"></script>
+  <script src="p03-drone-pesticide.js"></script>
   <script src="problems.js"></script>
 
   <script src="../tools-sidebar.js" data-home="../index.html"></script>

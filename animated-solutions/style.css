@@ -157,6 +157,10 @@ header { margin-bottom: 1.5rem; }
 .explain .hl-wid { color: #fbbf24; font-weight: 700; }
 .explain .hl-hei { color: #4ade80; font-weight: 700; }
 .explain .hl-key { color: #4ade80; font-weight: 700; }
+.explain .hl-drone { color: #a78bfa; font-weight: 700; }
+.explain .hl-pest { color: #2dd4bf; font-weight: 700; }
+.explain .hl-time { color: #fb923c; font-weight: 700; }
+.explain .hl-used { color: #f87171; font-weight: 700; }
 .explain mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 
 /* 短除法 */
